@@ -1,0 +1,7 @@
+img {
+    position: absolute;
+    width: 70px;
+    transform: rotate(-20deg);
+    cursor: pointer;
+    top: -5px
+}
