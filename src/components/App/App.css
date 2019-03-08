@@ -1,3 +1,10 @@
 .App {
-    font-family: 'Alegreya Sans SC', sans-serif!important;
+    font-family: 'Alegreya Sans SC', sans-serif;
+    padding-bottom: 90px;
+    font-size: 14px;
+}
+
+body {
+    overflow-y: scroll;
+    background: url('~/./../../../images/body_pattern.png ');
 }

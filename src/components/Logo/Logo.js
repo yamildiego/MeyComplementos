@@ -5,7 +5,7 @@ import Image from 'react-bootstrap/Image'
 class Logo extends React.Component {
     render() {
         return (
-            <Image src="images/logo.png" fluid />
+            <Image className="Logo" src="images/logo.png" fluid />
         )
     }
 }

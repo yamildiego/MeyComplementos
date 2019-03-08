@@ -1,0 +1,68 @@
+.MenuLeft .pedido {
+    margin-top: 1rem;
+    -moz-transform: rotate(-5deg);
+    -ms-transform: rotate(-5deg);
+    -o-transform: rotate(-5deg);
+    -webkit-transform: rotate(-5deg);
+    transform: rotate(-5deg);
+    box-shadow: 0 1px 1px #444;
+}
+
+.MenuLeft .category .list-group-item {
+    padding: 10px 15px;
+}
+
+.MenuLeft .shopping {
+    margin-top: 10px;
+}
+
+.MenuLeft .shopping .list-group-item {
+    padding: 5px;
+}
+
+.MenuLeft .shopping .line .fa-check-circle {
+    margin: 0 8px;
+    color: green;
+}
+
+.MenuLeft .shopping .line .fa-times {
+    margin: 0 8px;
+    color: #666;
+}
+
+.MenuLeft .shopping .line .fa-times:hover {
+    margin: 0 8px;
+    color: red;
+    cursor: pointer;
+}
+
+.MenuLeft .shopping .name {
+    cursor: default;
+    float: left;
+}
+
+.MenuLeft .shopping .amount {
+    cursor: default;
+    float: right;
+}
+
+.MenuLeft .shopping .buy {
+    width: 100%;
+}
+
+.MenuLeft .shopping .total {
+    background: #ddd;
+    font-weight: bold;
+    padding: 10px 15px;
+}
+
+.MenuLeft .shopping .total .amount {
+    padding-right: 16px;
+}
+
+.MenuLeft .active {
+    background: #5C5A5B;
+    color: #fff;
+    letter-spacing: 2px;
+    border-color: #444;
+}

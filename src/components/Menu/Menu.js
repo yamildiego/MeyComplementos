@@ -16,10 +16,6 @@ class Menu extends React.Component {
                             <Nav.Link href="#link">Medios de pago</Nav.Link>
                             <Nav.Link href="#link">Contacto</Nav.Link>
                         </Nav>
-                        <Form inline>
-                            <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-                            <Button variant="outline-success">Search</Button>
-                        </Form>
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
