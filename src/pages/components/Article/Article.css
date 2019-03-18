@@ -1,0 +1,46 @@
+.Article {
+    cursor: pointer;
+}
+
+.Article:hover .Article-Card {
+    background: #FAFAFA;
+    box-shadow: 2px 2px 30px #888888;
+}
+
+.Article-Text {
+    font-family: sans-serif;
+    text-align: justify;
+    margin-bottom: 0;
+}
+
+.Article:hover .Article-Body {
+    height: 120px;
+}
+
+.Article-Body {
+    height: 60px;
+    position: relative;
+    -webkit-transition: all .2s linear;
+    -moz-transition: all .2s linear;
+    -o-transition: all .2s linear;
+    transition: all .2s linear;
+}
+
+.Article-Body .Article-Title {
+    color: #337ab7;
+}
+
+.Article-Body .Article-Price {
+    font-size: 15px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 5px;
+    color: #333;
+    font-family: monospace;
+}
+
+.Article-Footer {
+    position: relative;
+    background: #FDFDFD;
+}

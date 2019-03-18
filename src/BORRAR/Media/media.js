@@ -7,6 +7,17 @@ import { Row, Col, Container } from 'react-bootstrap';
 
 
 class Media extends Component {
+
+        // state = {
+    //     title: this.props.title
+    // }
+    //
+    // handleClick = (event) => {
+    //     console.error(event);
+    //     console.error(this.state.title);
+    //     this.setState({ title: 'probando' });
+    // }
+    // onClick={this.handleClick}
     render() {
         const styles = {
             container: {

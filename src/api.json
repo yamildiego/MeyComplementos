@@ -1,0 +1,62 @@
+{
+    "categories": [
+        {
+            "id": 1,
+            "name": "Ropa interior"
+        },
+        {
+            "id": 2,
+            "name": "Remeras"
+        },
+        {
+            "id": 3,
+            "name": "Calzado"
+        },
+        {
+            "id": 4,
+            "name": "Dda"
+        }
+    ],
+    "articles": [
+        {
+            "id": 1,
+            "title": "Conjunto",
+            "price": "200.99",
+            "image": "http://www.clasientrerriano.com.ar/web//components/com_djclassifieds/images/148586_prisma6.jpg.thm.jpg",
+            "description": "Descripcion",
+            "colors": "Colores: Rojo | Azul",
+            "brand": "Lody",
+            "size": "Talle 80 | 85"
+        },
+        {
+            "id": 2,
+            "title": "Maya rayada",
+            "price": "359.99",
+            "image": "http://www.clasientrerriano.com.ar/web//components/com_djclassifieds/images/148586_prisma6.jpg.thm.jpg",
+            "description": "Descripcion",
+            "colors": "Colores: Verde | Azul",
+            "brand": "Marcela Koury",
+            "size": "Talle 90"
+        },
+        {
+            "id": 3,
+            "title": "Corpiño",
+            "price": "1240.50",
+            "image": "http://www.clasientrerriano.com.ar/web//components/com_djclassifieds/images/148586_prisma6.jpg.thm.jpg",
+            "description": "Descripcion",
+            "colors": "Colores: Amarillo",
+            "brand": "Lody",
+            "size": "Talle 85 | 90"
+        },
+        {
+            "id": 4,
+            "title": "Pack X3 tangas",
+            "price": "1240.50",
+            "image": "http://www.clasientrerriano.com.ar/web//components/com_djclassifieds/images/148586_prisma6.jpg.thm.jpg",
+            "description": "Descripcion",
+            "colors": "Colores: Amarillo",
+            "brand": "Lody",
+            "size": "Talle 85 | 90"
+        }
+    ]
+}

@@ -1,0 +1,13 @@
+.MenuLeftLayout {
+    margin-bottom: 30px;
+}
+
+.MenuLeftLayout-Ad {
+    margin-top: 1rem;
+    -moz-transform: rotate(-5deg);
+    -ms-transform: rotate(-5deg);
+    -o-transform: rotate(-5deg);
+    -webkit-transform: rotate(-5deg);
+    transform: rotate(-5deg);
+    box-shadow: 0 1px 1px #444;
+}

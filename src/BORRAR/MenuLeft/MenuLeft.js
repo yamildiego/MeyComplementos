@@ -8,6 +8,11 @@ class MenuLeft extends React.Component {
         return (
             <div className="MenuLeft">
                 <p className="lead">Categorías</p>
+                {
+                    this.props.categories.map((item) => {
+                        return <Article key={item.id} {...item}></Article>
+                    })
+                }
                 <ListGroup className="category">
                     <ListGroup.Item className="active">Calzas</ListGroup.Item>
                     <ListGroup.Item>Ropa interior</ListGroup.Item>
@@ -18,7 +23,7 @@ class MenuLeft extends React.Component {
                 <ListGroup className="shopping">
                     <ListGroup.Item className="line">
                         <div className="name">
-                            <FontAwesomeIcon icon="check-circle" />
+                            <FontAwesomeIcon icon="check-circle" color="green" />
                             Das
                         </div>
                         <div className="amount">
@@ -28,7 +33,7 @@ class MenuLeft extends React.Component {
                     </ListGroup.Item>
                     <ListGroup.Item className="line">
                         <div className="name">
-                            <FontAwesomeIcon icon="check-circle" />
+                            <FontAwesomeIcon icon="check-circle" color="green" />
                             Aca
                         </div>
                         <div className="amount">
@@ -48,17 +53,7 @@ class MenuLeft extends React.Component {
                         <Button variant="info" className="buy w-100">Comprar</Button>
                     </ListGroup.Item>
                 </ListGroup>
-                <ListGroup>
-                    <ListGroup.Item className="pedido">
-                        <div className="text-center">
-                            ¿No tenemos lo que estas buscando?
-                    </div>
-                        <div className="text-center">
-                            Hace tu pedido haciendo clic aquí!
-                            {/* Hace tu pedido haciendo clic <a style="cursor:pointer;" href="#/contact">aquí!</a> */}
-                        </div>
-                    </ListGroup.Item>
-                </ListGroup>
+
             </div>)
     }
 }

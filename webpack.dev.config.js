@@ -2,14 +2,16 @@ const path = require('path');
 
 module.exports = {
     entry: {
-        "bundle": path.resolve(__dirname, 'index.js'),
+        "home": path.resolve(__dirname, 'src/entries/home.js'),
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'js/[name].js'
     },
     devServer: {
-        port: 9000
+        port: 9000,
+        historyApiFallback: true,
+        contentBase: './'
     },
     module: {
         rules: [
@@ -34,7 +36,7 @@ module.exports = {
                 use: {
                     loader: 'url-loader',
                     options: {
-                        limit: 1000000,
+                        limit: 100000,
                         fallback: 'file-loader',
                         name: 'images/[name].[hash].[ext]',
                     }
