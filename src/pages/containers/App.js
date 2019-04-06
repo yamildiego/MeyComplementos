@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import LayoutApp from '../components/AppLayout/AppLayout';
 import LogoPresentation from '../components/LogoPresentation/LogoPresentation';
+import PaymentMethods from '../components/PaymentMethods/PaymentMethods';
 import Home from './Home';
 import HandleError from './HandleError';
 
@@ -18,7 +19,7 @@ class App extends React.Component {
     }
     timer = () => {
         if (this.state.currentCount >= 100) {
-            // this.setState({ loading: false });
+            this.setState({ loading: false });
             clearInterval(this.countdown);
         }
         else
@@ -49,12 +50,6 @@ const Child = ({ match }) => (
         <h3>ID: {match.params.id}</h3>
     </div>
 )
-
-function PaymentMethods() {
-    return (
-        <div>MEDIOS DE PAGO</div>
-    )
-}
 
 function Contact() {
     return (

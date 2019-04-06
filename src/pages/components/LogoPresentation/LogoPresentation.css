@@ -17,3 +17,10 @@
 .Image {
     position: absolute;
 }
+
+.Hide {
+    -webkit-animation: bounceOut 1s;
+    -moz-animation: bounceOut 1s;
+    -o-animation: bounceOut 1s;
+    animation: bounceOut 1s;
+}
