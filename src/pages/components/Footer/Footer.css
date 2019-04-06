@@ -2,6 +2,7 @@
     position: fixed;
     bottom: 0;
     width: 100%;
+    max-width: none!important;
     height: 90px;
     background-color: #F8C7C7;
 }
@@ -30,54 +31,3 @@
     text-decoration: underline;
     color: #FFFFFF!important;
 }
-
-/* 
-*/
-
-/* .Footer-yd {
-    position: absolute;
-    right: 4rem;
-    width: 140px;
-    padding-top: 22px;
-    color: #337ab7;
-}
-
-.yd .texts {
-    width: 70%;
-    float: left;
-    text-decoration: none;
-    -webkit-transition: all .2s linear;
-    -moz-transition: all .2s linear;
-    -o-transition: all .2s linear;
-    transition: all .2s linear;
-}
-
-.yd .texts:hover {
-    text-decoration: underline;
-    color: #fff;
-}
-
-.yd .text {
-    cursor: pointer;
-    font-size: 12px;
-    width: 100%;
-    text-align: center;
-}
-
-.yd .photo {
-    float: left;
-    width: 30%;
-}
-
-.yd .photo img {
-    cursor: pointer;
-    width: 100%;
-}
-
-.clear {
-    clear: both;
-}
-
-.copyright {
-    font-size: 12px;
-} */

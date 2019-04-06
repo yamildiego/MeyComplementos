@@ -1,12 +1,10 @@
 import React from 'react';
+import CategoriesLayout from '../components/CategoriesLayout/CategoriesLayout';
 
 class Categories extends React.Component {
     render() {
         return (
-            <div>
-                
-            </div>
-
+            <CategoriesLayout categories={this.props.categories}></CategoriesLayout>
         )
     }
 }

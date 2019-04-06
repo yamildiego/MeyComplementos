@@ -1,28 +1,54 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import LayoutApp from '../components/AppLayout/AppLayout';
-import Menu from '../components/Menu/Menu';
+import LogoPresentation from '../components/LogoPresentation/LogoPresentation';
 import Home from './Home';
-import Footer from '../components/Footer/Footer';
+import HandleError from './HandleError';
 
 class App extends React.Component {
+    state = {
+        currentCount: 0,
+        loading: true
+    }
+    componentDidMount() {
+        this.countdown = setInterval(this.timer, 100);
+    }
+    componentWillUnmount() {
+        clearInterval(this.countdown);
+    }
+    timer = () => {
+        if (this.state.currentCount >= 100) {
+            // this.setState({ loading: false });
+            clearInterval(this.countdown);
+        }
+        else
+            this.setState({ currentCount: (this.state.currentCount + 5) });
+    }
     render() {
         return (
-            <LayoutApp >
-                <Router basename="/">
-                    <div>
-                        <Menu></Menu>
-                        <Route exact path="/" component={Home} />
-                        {/* <Route exact path="/medios-de-pago" component={PaymentMethods} /> */}
-                        {/* <Route exact path="/contacto" component={Contact} /> */}
-                        <Footer></Footer>
-                    </div>
+            this.state.loading
+                ? <LogoPresentation progress={this.state.currentCount} />
+                : <Router basename="/">
+                    <LayoutApp >
+                        <HandleError>
+                            <Switch>
+                                <Route exact path="/" component={Home} />
+                                <Route exact path="/medios-de-pago" component={PaymentMethods} />
+                                <Route exact path="/contacto" component={Contact} />
+                                <Route path="/category/:id" component={Child} />
+                            </Switch>
+                        </HandleError>
+                    </LayoutApp>
                 </Router>
-            </LayoutApp>
         )
     }
 }
 
+const Child = ({ match }) => (
+    <div>
+        <h3>ID: {match.params.id}</h3>
+    </div>
+)
 
 function PaymentMethods() {
     return (

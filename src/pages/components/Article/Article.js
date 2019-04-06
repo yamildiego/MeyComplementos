@@ -4,9 +4,12 @@ import { Card } from 'react-bootstrap'
 import './Article.css';
 
 class Article extends React.PureComponent {
+    handleClick = event => {
+        this.props.openModal(this.props);
+    }
     render() {
         return (
-            <div className="Article col-6 col-md-4 mb-4" >
+            <div className="Article col-6 col-md-4 mb-4" onClick={this.handleClick}>
                 <Card className="Article-Card">
                     <Card.Img variant="top" src={this.props.image} />
                     <Card.Body className="Article-Body">
@@ -29,6 +32,7 @@ class Article extends React.PureComponent {
 }
 
 Article.propTypes = {
+    handleModalToggle: PropTypes.func,
     title: PropTypes.string.isRequired,
     brand: PropTypes.string.isRequired,
     price: PropTypes.string.isRequired,

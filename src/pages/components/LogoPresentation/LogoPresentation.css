@@ -1,0 +1,19 @@
+.LogoPresentation {
+    position: relative;
+    width: 200px;
+    margin: auto;
+    height: 200px;
+    margin-top: 50px;
+}
+
+.LogoProgressBar {
+    width: 100px;
+    height: 75px;
+    position: absolute;
+    left: 48px;
+    top: 55px;
+}
+
+.Image {
+    position: absolute;
+}

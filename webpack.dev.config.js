@@ -13,6 +13,7 @@ module.exports = {
         historyApiFallback: true,
         contentBase: './'
     },
+    devtool: 'eval-source-map',
     module: {
         rules: [
             {
