@@ -1,0 +1,36 @@
+.Cart {
+    margin-top: 20px;
+}
+
+.Cart .list-group-item {
+    padding: 5px;
+    line-height: 35px;
+}
+
+.CartCheck {
+    margin-right: 10px;
+}
+
+.CartRemove {
+    margin: 10px 5px 0px 5px;
+    float: right;
+    color: grey;
+    transition: color .3s;
+}
+
+.CartRemove:hover {
+    color: red;
+}
+
+.CartTotal {
+    background: #f8c7c7;
+    color: #ed6e70;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: sans-serif;
+}
+
+.CartPrice {
+    font-family: sans-serif;
+    font-size: 12px;
+}

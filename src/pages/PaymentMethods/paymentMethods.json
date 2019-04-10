@@ -1,0 +1,94 @@
+{
+    "plans": [
+        {
+            "id": 1,
+            "name": "Bind Banco Industrial",
+            "image": "src/images/pays/logo-bind.png",
+            "plan": 12
+        },
+        {
+            "id": 2,
+            "name": "Nativa Nacion",
+            "image": "src/images/pays/logo-nativa.png",
+            "plan": 6
+        },
+        {
+            "id": 3,
+            "name": "Tarjeta Cencosud",
+            "image": "src/images/pays/logo-cencosud.png",
+            "plan": 6
+        },
+        {
+            "id": 4,
+            "name": "Banco de la Nacion Argentina",
+            "image": "src/images/pays/logo-nacion.png",
+            "plan": 6
+        },
+        {
+            "id": 5,
+            "name": "Diners Club International",
+            "image": "src/images/pays/logo-diners.png",
+            "plan": 6
+        },
+        {
+            "id": 6,
+            "name": "Banco Patagonia",
+            "image": "src/images/pays/logo-patagonia.png",
+            "plan": 6
+        },
+        {
+            "id": 7,
+            "name": "Supervielle Banco",
+            "image": "src/images/pays/logo-supervielle.png",
+            "plan": 6
+        },
+        {
+            "id": 8,
+            "name": "Banco La Pampa",
+            "image": "src/images/pays/logo-lapampa.png",
+            "plan": 6
+        },
+        {
+            "id": 9,
+            "name": "Banco Provincia",
+            "image": "src/images/pays/logo-provincia.png",
+            "plan": 3
+        },
+        {
+            "id": 10,
+            "name": "Tarjeta Shopping",
+            "image": "src/images/pays/logo-tarshop.png",
+            "plan": 3
+        },
+        {
+            "id": 11,
+            "name": "Banco Comafi",
+            "image": "src/images/pays/logo-comafi.png",
+            "plan": 3
+        },
+        {
+            "id": 12,
+            "name": "ICBC",
+            "image": "src/images/pays/logo-icbc.png",
+            "plan": 3
+        },
+        {
+            "id": 13,
+            "name": "HSBC",
+            "image": "src/images/pays/logo-hsbc.png",
+            "plan": 3
+        },
+        {
+            "id": 14,
+            "name": "CABAL",
+            "image": "src/images/pays/logo-cabal.png",
+            "plan": 3
+        },
+        {
+            "id": 15,
+            "name": "Provencred",
+            "image": "src/images/pays/logo-provencred.png",
+            "plan": 3
+        }
+    ]
+}

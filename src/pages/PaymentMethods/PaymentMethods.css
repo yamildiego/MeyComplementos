@@ -1,0 +1,35 @@
+.PaymentMethods {
+    margin-top: 20px;
+    margin-bottom: 90px;
+}
+
+.BannerMP {
+    text-align: center;
+    height: 80px;
+    padding: 20px;
+    display: block;
+    background: #eee;
+    margin-bottom: 20px;
+}
+
+.PaymentMethodsBox {
+    border: solid 1px #ccc;
+    margin: 0 0 10px 10px;
+    border-radius: 10px;
+    background: #fff;
+}
+
+.PaymentMethodsBox .my-img {
+    text-align: center;
+    line-height: 110px;
+}
+
+.PaymentMethodsName {
+    text-decoration: none;
+    cursor: default;
+    user-select: none;
+    margin: 0 0 10px 0;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+}
