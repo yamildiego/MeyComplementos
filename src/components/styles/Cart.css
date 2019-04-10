@@ -1,18 +1,41 @@
 .Cart {
-    margin-top: 20px;
+    margin: 20px 0;
+    background: #fff;
+    padding: 5px;
+}
+
+.CartTitle {
+    font-weight: bold;
+    margin: 0;
+    line-height: 40px;
+    text-align: center;
+    font-size: 16px;
+    letter-spacing: 3px;
+}
+
+.CartTitle span {
+    font-size: 16px;
+    font-family: sans-serif;
 }
 
 .Cart .list-group-item {
-    padding: 5px;
-    line-height: 35px;
+    border: 0;
 }
 
-.CartCheck {
-    margin-right: 10px;
+.CartItem {
+    border-bottom: 1px solid #777;
+}
+
+.CartPrice {
+    font-family: Helvetica, Verdana, sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    color: #555;
+    font-weight: normal;
 }
 
 .CartRemove {
-    margin: 10px 5px 0px 5px;
+    margin: 0.2rem 0 0 0.5rem;
     float: right;
     color: grey;
     transition: color .3s;
@@ -21,6 +44,39 @@
 .CartRemove:hover {
     color: red;
 }
+
+.CartTag {
+    color: #e94f51a6;
+    margin-right: 8px;
+}
+
+.CartCheck {
+    margin-right: 8px;
+}
+
+.CartTotal {
+    color: #343434;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.CartTotalPrice {
+    font-family: Helvetica, Verdana, sans-serif;
+}
+
+/* .Cart {
+    margin-top: 20px;
+}
+
+
+
+.CartCheck {
+    margin-right: 10px;
+}
+
+
+
+
 
 .CartTotal {
     background: #f8c7c7;
@@ -33,4 +89,4 @@
 .CartPrice {
     font-family: sans-serif;
     font-size: 12px;
-}
+} */

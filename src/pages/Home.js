@@ -11,6 +11,7 @@ class Home extends React.Component {
     state = {
         modalVisible: false,
         cartItems: new Array(),
+        totalItems: 0,
         quantitySelected: 0,
         maxId: 0,
         total: 0
@@ -42,13 +43,15 @@ class Home extends React.Component {
                         item.quantity = item.quantity - 1;
                         this.setState({
                             total: (this.state.total - item.price),
-                            quantitySelected: item.quantity
+                            quantitySelected: item.quantity,
+                            totalItems: (this.state.totalItems - 1)
                         })
                         return item;
                     } else {
                         this.setState({
                             total: (this.state.total - item.price),
-                            quantitySelected: 0
+                            quantitySelected: 0,
+                            totalItems: (this.state.totalItems - 1)
                         })
                     }
                 } else
@@ -68,7 +71,8 @@ class Home extends React.Component {
                 item.quantity = item.quantity + 1;
                 this.setState({
                     total: (this.state.total + item.price),
-                    quantitySelected: item.quantity
+                    quantitySelected: item.quantity,
+                    totalItems: (this.state.totalItems + 1)
                 })
             }
             return item;
@@ -85,7 +89,8 @@ class Home extends React.Component {
 
             this.setState({
                 total: (this.state.total + article.price),
-                quantitySelected: 1
+                quantitySelected: 1,
+                totalItems: (this.state.totalItems + 1)
             })
 
             var itemsUpdated = [...this.state.cartItems];
@@ -100,7 +105,7 @@ class Home extends React.Component {
         return (
             < React.Fragment >
                 <HomeLayout
-                    menuLeft={<MenuLeft total={this.state.total} handleRemoveItemById={this.handleRemoveItemById} cartItems={this.state.cartItems} categories={data.categories} />}
+                    menuLeft={<MenuLeft totalItems={this.state.totalItems} total={this.state.total} handleRemoveItemById={this.handleRemoveItemById} cartItems={this.state.cartItems} categories={data.categories} />}
                     main={<Articles
                         articles={data.articles}
                         openModal={this.openModal} />} />
