@@ -1,18 +1,21 @@
 import React from 'react';
-import SearchLayout from './SearchLayout';
+import './styles/SearchLayout.css'
 
 class Search extends React.Component {
-    handleSubmit = event => {
-        event.preventDefault();
-        console.error(this.input.value);
-    }
-    setInputRef = element => {
-        this.input = element;
+    handleOnChange = event => {
+        this.props.setFilterBySearch(event.target.value);
     }
     render() {
-        return (<SearchLayout handleSubmit={this.handleSubmit} setRef={this.setInputRef}>
-            Casa
-        </SearchLayout>)
+        return (
+            <form className="Search">
+                <input
+                    onChange={this.handleOnChange}
+                    placeholder="Buscador"
+                    className="Search-input"
+                    value={this.props.valueSearch}
+                    type="text" />
+            </form>
+        )
     }
 }
 

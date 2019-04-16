@@ -8,7 +8,7 @@ function Menu() {
     return (
         <Navbar className="Menu" expand="lg" variant="dark">
             <Container>
-                <Navbar.Brand href="/"><Logo /></Navbar.Brand>
+                <Link className="navbar-brand" to="/"><Logo /></Link>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse className="Menu-Navbar" id="basic-navbar-nav">
                     <Nav className="mr-auto">

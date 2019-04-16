@@ -18,7 +18,7 @@
 }
 
 .Article-Body {
-    height: 60px;
+    height: 80px;
     position: relative;
     -webkit-transition: all .2s linear;
     -moz-transition: all .2s linear;
@@ -27,7 +27,11 @@
 }
 
 .Article-Body .Article-Title {
-    color: #337ab7;
+    font-size: 0.8rem;
+    color: #333;
+    background: #ffffff7a;
+    text-align: center;
+    padding: 10px;
 }
 
 .Article-Body .Article-Price {
@@ -43,4 +47,18 @@
 .Article-Footer {
     position: relative;
     background: #FDFDFD;
+}
+
+.ArticleImage {
+    height: 200px;
+}
+
+.ArticleImage img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
 }

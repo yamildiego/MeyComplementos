@@ -1,20 +1,24 @@
 import React from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
 import MenuLeft from '../components/MenuLeft';
 import Articles from '../components/Articles';
-import HomeLayout from '../components/HomeLayout';
 import ViewArticle from '../components/ViewArticle';
 import ModalContainer from '../components/ModalContainer';
 import Modal from '../components/Modal';
 import data from './../api.json';
-
+import './../components/styles/Home.css'
 class Home extends React.Component {
     state = {
+        filter: { category: 0, text: '' },
+        articles: [],
         modalVisible: false,
         cartItems: new Array(),
         totalItems: 0,
-        quantitySelected: 0,
+        total: 0,
         maxId: 0,
-        total: 0
+    }
+    componentDidMount = () => {
+        this.setState({ articles: data.articles });
     }
     openModal = article => {
         var itemFlag = undefined;
@@ -38,77 +42,107 @@ class Home extends React.Component {
     handleRemoveItemById = (id) => {
         this.setState({
             cartItems: this.state.cartItems.filter((item) => {
-                if (item.idProduct == id) {
-                    if (item.quantity > 1) {
-                        item.quantity = item.quantity - 1;
-                        this.setState({
-                            total: (this.state.total - item.price),
-                            quantitySelected: item.quantity,
-                            totalItems: (this.state.totalItems - 1)
-                        })
-                        return item;
-                    } else {
-                        this.setState({
-                            total: (this.state.total - item.price),
-                            quantitySelected: 0,
-                            totalItems: (this.state.totalItems - 1)
-                        })
-                    }
-                } else
+                if (item.idProduct != id)
                     return item;
             })
-        });
+        })
     }
     getNextId = () => {
         this.setState({ maxId: this.state.maxId + 1 });
         return this.state.maxId;
     }
     handleAddItem = (element) => {
-        var updated = false;
-        var itemsUpdated = this.state.cartItems.filter((item) => {
-            if (item.idProduct == this.state.article.id) {
-                updated = true;
-                item.quantity = item.quantity + 1;
-                this.setState({
-                    total: (this.state.total + item.price),
-                    quantitySelected: item.quantity,
-                    totalItems: (this.state.totalItems + 1)
-                })
-            }
-            return item;
+        var newCartItems = [];
+
+        var ArrayWithiItem = this.state.cartItems.filter((item) => {
+            if (item.idArticle == element.idArticle)
+                return item;
+            else
+                newCartItems.push(item);
         });
 
-        if (updated === false) {
-            var article = {
-                id: this.getNextId(),
-                title: this.state.article.title,
-                price: this.state.article.price,
-                idProduct: this.state.article.id,
-                quantity: 1
+        if (ArrayWithiItem.length == 0) {
+            var newItem = {
+                idArticle: element.idArticle,
+                title: element.title,
+                price: element.price,
+                quantity: 1,
+                details: [{ size: element.size, color: element.color, quantity: 1 }]
+            }
+            newCartItems.push(newItem);
+        } else {
+            var newDatails = [];
+            var added = false;
+            ArrayWithiItem[0].details.filter((item) => {
+                if (item.size == element.size && item.color == element.color) {
+                    item.quantity++;
+                    newDatails.push(item);
+                    var added = true;
+                } else {
+                    newDatails.push(item);
+                }
+            });
+
+            if (!added) {
+                newDatails.push({ size: element.size, color: element.color, quantity: 1 });
             }
 
-            this.setState({
-                total: (this.state.total + article.price),
-                quantitySelected: 1,
-                totalItems: (this.state.totalItems + 1)
-            })
-
-            var itemsUpdated = [...this.state.cartItems];
-            itemsUpdated.push(article);
+            var itemUpdated = ArrayWithiItem[0];
+            itemUpdated.quantity++;
+            itemUpdated.details = newDatails;
+            newCartItems.push(itemUpdated);
         }
 
+        this.setState({ cartItems: newCartItems, totalItems: this.state.totalItems + 1, total: this.state.total + element.price });
+    }
+    setFilterBySearch = text => {
+        if (text == '') {
+            this.setFilterByCategory(this.state.filter.category);
+        } else
+            this.setState({
+                filter: { ...this.state.filter, text: text },
+                articles: data.articles.filter(item => {
+                    if (this.state.filter.category != 0) {
+                        if (item.category == this.state.filter.category && item.title.toUpperCase().search(text.toUpperCase()) != -1)
+                            return item;
+                    } else {
+                        if (item.title.toUpperCase().search(text.toUpperCase()) != -1)
+                            return item;
+                    }
+                })
+            })
+    }
+    setFilterByCategory = (categoryId) => {
+        var itemsFiltered = data.articles;
+
+        if (categoryId != 0)
+            itemsFiltered = data.articles.filter(item => {
+                if (item.category == categoryId)
+                    return item;
+            });
+
         this.setState({
-            cartItems: itemsUpdated
-        });
+            filter: { category: categoryId, text: '' },
+            articles: itemsFiltered
+        })
     }
     render() {
         return (
-            < React.Fragment >
-                <HomeLayout
-                    menuLeft={<MenuLeft totalItems={this.state.totalItems} total={this.state.total} handleRemoveItemById={this.handleRemoveItemById} cartItems={this.state.cartItems} categories={data.categories} />}
-                    main={<Articles
-                        articles={data.articles}
-                        openModal={this.openModal} />} />
+            <React.Fragment>
+                <Container fluid={true} className="Home">
+                    <Row>
+                        <Col md={4}>
+                            <MenuLeft setFilterByCategory={this.setFilterByCategory} totalItems={this.state.totalItems} total={this.state.total} cartItems={this.state.cartItems} categories={data.categories} />
+                        </Col>
+                        <Col md={8}>
+                            <Articles
+                                valueSearch={this.state.filter.text}
+                                setFilterBySearch={this.setFilterBySearch}
+                                articles={this.state.articles}
+                                openModal={this.openModal} />
+                        </Col>
+                    </Row>
+                </Container>
                 {
                     this.state.modalVisible &&
                     <ModalContainer>

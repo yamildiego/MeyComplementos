@@ -7,8 +7,8 @@ import Search from './Search';
 class Articles extends React.Component {
     render() {
         return (
-            <div>
-                <Search></Search>
+            <React.Fragment>
+                <Search valueSearch={this.props.valueSearch} setFilterBySearch={this.props.setFilterBySearch}></Search>
                 <ArticlesLayout>
                     {
                         this.props.articles.map((item) => {
@@ -16,13 +16,9 @@ class Articles extends React.Component {
                         })
                     }
                 </ArticlesLayout>
-            </div>
+            </React.Fragment>
         )
     }
-}
-
-Articles.propTypes = {
-    articles: PropTypes.array.isRequired
 }
 
 export default Articles;

@@ -1,8 +1,11 @@
 .MenuLeftLayout {
     margin-bottom: 30px;
+    background: #ffffffa1;
+    padding: 15px;
 }
 
 .MenuLeftLayout-Ad {
+    position: absolute;
     margin-top: 1rem;
     -moz-transform: rotate(-5deg);
     -ms-transform: rotate(-5deg);

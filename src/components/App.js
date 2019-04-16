@@ -37,7 +37,6 @@ class App extends React.Component {
                                 <Route exact path="/" component={Home} />
                                 <Route exact path="/medios-de-pago" component={PaymentMethods} />
                                 <Route exact path="/contacto" component={Contact} />
-                                {/* <Route path="/category/:id" component={Child} /> */}
                             </Switch>
                         </HandleError>
                     </LayoutApp>

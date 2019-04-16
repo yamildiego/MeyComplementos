@@ -1,7 +1,19 @@
+.ViewArticle .card {
+    border: 0;
+}
+
+.ViewArticle .card-header {
+    background: transparent;
+}
+
 .ViewArticlePrice {
     float: right;
     font-size: 20px;
     font-weight: bold;
+}
+
+.ViewArticleTitle {
+    float: left;
 }
 
 .ViewArticleText {
@@ -13,4 +25,73 @@
 
 .btn-warning {
     color: #fff;
+}
+
+.btn-warning:hover {
+    color: #fff;
+}
+
+.ViewArticleInfo {
+    font-size: 15px;
+    font-family: 'Alegreya Sans SC', sans-serif;
+}
+
+.ViewArticleInfo span {
+    font-weight: bold;
+}
+
+.ViewArticleSlider img {
+    max-height: 300px;
+    height: 70%;
+    width: auto;
+}
+
+.ViewArticleSlider video {
+    width: 100%;
+}
+
+.slick-prev:before, .slick-next:before {
+    color: red;
+}
+
+.ViewArticleToggleSizes {
+    width: 300px;
+}
+
+.ViewArticleToggleColors {
+    width: 100%;
+}
+
+.toggleContainer {
+    border: 0;
+}
+
+.toggleContainer .toggleOption:first-child {
+    border-left: 1px solid #6c757d;
+}
+
+.toggleContainer .toggleOption {
+    line-height: 28px;
+    height: auto;
+    color: #807b77;
+    border-right: 1px solid #6c757d;
+    border-top: 1px solid #6c757d;
+    border-bottom: 1px solid #6c757d;
+}
+
+.toggleContainer .toggle {
+    background: #807b77;
+    color: white;
+}
+
+.BtnAddArticle {
+    position: absolute;
+    bottom: 0;
+}
+
+@media only screen and (max-width: 768px) {
+    .BtnAddArticle {
+        bottom: -60px;
+        margin-bottom: 10px;
+    }
 }

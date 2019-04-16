@@ -1,0 +1,12 @@
+.Categories .list-group-item {
+    color: #333;
+    transition: background-color 0.3s ease;
+    background: transparent;
+    border: 0;
+}
+
+.Categories .list-group-item:hover {
+    text-decoration: none;
+    background: #ddd;
+    color: #444;
+}

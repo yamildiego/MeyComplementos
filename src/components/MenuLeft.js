@@ -8,10 +8,10 @@ import Categories from './Categories';
 class MenuLeft extends React.Component {
     render() {
         return (
-            <MenuLeftLayout >
-                <Categories categories={this.props.categories} />
+            <MenuLeftLayout>
+                <Categories setFilterByCategory={this.props.setFilterByCategory} categories={this.props.categories} />
                 {
-                    this.props.totalItems > 0 &&
+                    this.props.cartItems.length > 0 &&
                     <Cart totalItems={this.props.totalItems} total={this.props.total} handleRemoveItemById={this.props.handleRemoveItemById} cartItems={this.props.cartItems} />
                 }
                 <ListGroup>

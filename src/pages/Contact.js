@@ -1,7 +1,11 @@
 import React from 'react';
+import ContactForm from './../components/ContactForm';
 
 const Contact = () => (
-    <div>CONTACTO</div>
+    <div>
+        <ContactForm />
+    </div>
+
 )
 
 const Child = ({ match }) => (

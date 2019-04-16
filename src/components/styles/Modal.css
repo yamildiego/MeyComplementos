@@ -1,14 +1,14 @@
 .Modal {
-    max-width: 768px;
+    max-width: 890px;
     width: 100%;
     margin: 0 auto;
     position: fixed;
     left: 0;
     right: 0;
-    top: 100px;
+    top: 20px;
     background: white;
     padding: 20px;
-    border-radius: 20px;
+    border-radius: 4px;
     box-shadow: 0 0 10px rgba(0, 0, 0, .4);
 }
 
@@ -29,4 +29,17 @@
     content: "X";
     font-weight: bold;
     font-size: 30px;
+}
+
+@media only screen and (max-width: 768px) {
+    .Modal {
+        top: 0;
+        overflow: scroll;
+        height: 100%;
+        top: 0;
+    }
+    .Modal-close {
+        right: 0;
+        top: 0;
+    }
 }

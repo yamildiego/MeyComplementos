@@ -5,24 +5,20 @@ import './styles/Cart.css';
 import formatNumber from './../utilities/formatNumber';
 
 class Cart extends React.Component {
-    handleClick = item => {
-        this.props.handleRemoveItemById(item.idProduct);
-    }
     render() {
         return (
             <div className="Cart">
                 <ListGroup >
                     <h4 className="CartTitle">TOTAL <span>{this.props.totalItems}</span> ITEM{this.props.totalItems > 1 ? "S" : ""}</h4>
                     {
-                        this.props.cartItems.map((item) => {
+                        this.props.cartItems.map((item, index) => {
                             return (
-                                <ListGroup.Item key={item.id} >
-                                    <div class="CartItem">
+                                <ListGroup.Item key={index} >
+                                    <div className="CartItem">
                                         <FontAwesomeIcon className="CartTag" icon="tag" color="green" />
                                         <span>
                                             {item.title} <span className="font-weight-bold">X{item.quantity}</span>
                                         </span>
-                                        <FontAwesomeIcon onClick={() => this.handleClick(item)} className="CartRemove" icon="times" color="grey" />
                                         <span className="float-right CartPrice">{formatNumber(item.price)}</span>
                                     </div>
                                 </ListGroup.Item>
@@ -38,6 +34,8 @@ class Cart extends React.Component {
                         </ListGroup.Item>
                     }
                 </ListGroup>
+
+                <button className="btn btn-info ViewArticleSeeCart">Ver carrito</button>
             </div>
         )
     }
