@@ -1,0 +1,26 @@
+.ArticlesItems li {
+    font-size: 16px;
+    margin-left: 30px;
+}
+
+.ArticlesSearch {
+    text-align: right;
+}
+
+.ArticlesIconSearch {
+    font-size: 90px;
+    color: #666;
+}
+
+.ArticlesBoxNoItems {
+    background: #ffffffa1;
+    padding: 20px;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+}
+
+@media only screen and (max-width: 767px) {
+    .ArticlesSearch {
+        text-align: center;
+    }
+}

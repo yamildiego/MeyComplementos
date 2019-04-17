@@ -35,7 +35,7 @@ class Cart extends React.Component {
                     }
                 </ListGroup>
 
-                <button className="btn btn-info ViewArticleSeeCart">Ver carrito</button>
+                <button type="button" className="btn btn-info ViewArticleSeeCart" onClick={this.props.toggleViewCart}>Ver carrito</button>
             </div>
         )
     }

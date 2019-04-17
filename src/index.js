@@ -13,6 +13,7 @@ import {
     faTimes,
     faPlay,
     faPause,
+    faSearch,
     faSpinner,
     faVolumeUp,
     faVolumeMute,
@@ -20,7 +21,7 @@ import {
     faCompressArrowsAlt,
     faTag
 } from '@fortawesome/free-solid-svg-icons';
-library.add(fab, faTag, faCheckCircle, faTimes, faPlay, faPause, faSpinner, faVolumeUp, faVolumeMute, faCompress, faCompressArrowsAlt);
+library.add(fab, faSearch, faTag, faCheckCircle, faTimes, faPlay, faPause, faSpinner, faVolumeUp, faVolumeMute, faCompress, faCompressArrowsAlt);
 
 import App from './components/App';
 

@@ -15,7 +15,26 @@ class ContactForm extends React.Component {
     }
     handleSubmit = e => {
         e.preventDefault();
-        console.error(this.state);
+        fetch('http://localhost/unallamanew/Server/Home/sendMsg', {
+            method: 'POST',
+            // headers: {
+            // 'Accept': 'application/json',
+            // 'Content-Type': 'application/json',
+            // },
+            data: {
+
+            }
+            // body: JSON.stringify({
+            //     name: 'yourValue',
+            //     email: 'yourOtherValue',
+            //     query: 'yourOtherValue',
+            // })
+        }).then(response => response.json())
+            .then(response => {
+                console.log(response);
+            });
+        // fetch('http://localhost/unallamanew/Server/Home/sendMsg')
+
     }
     render() {
         return (

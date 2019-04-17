@@ -5,8 +5,10 @@ import Articles from '../components/Articles';
 import ViewArticle from '../components/ViewArticle';
 import ModalContainer from '../components/ModalContainer';
 import Modal from '../components/Modal';
+import ViewCart from '../components/ViewCart.js';
 import data from './../api.json';
 import './../components/styles/Home.css'
+
 class Home extends React.Component {
     state = {
         filter: { category: 0, text: '' },
@@ -16,10 +18,18 @@ class Home extends React.Component {
         totalItems: 0,
         total: 0,
         maxId: 0,
+        showCart: true
     }
     componentDidMount = () => {
         this.setState({ articles: data.articles });
     }
+    // componentWillMount = () => {
+    //     fetch('http://localhost/unallamanew/Server/ParticipantController/getParticipants')
+    //         .then(response => response.json())
+    //         .then(response => {
+    //             console.error(response);
+    //         });
+    // }
     openModal = article => {
         var itemFlag = undefined;
         this.state.cartItems.filter(item => {
@@ -126,23 +136,30 @@ class Home extends React.Component {
             articles: itemsFiltered
         })
     }
+    toggleViewCart = e => {
+        this.setState({ showCart: !this.state.showCart })
+    }
     render() {
         return (
             <React.Fragment>
-                <Container fluid={true} className="Home">
-                    <Row>
-                        <Col md={4}>
-                            <MenuLeft setFilterByCategory={this.setFilterByCategory} totalItems={this.state.totalItems} total={this.state.total} cartItems={this.state.cartItems} categories={data.categories} />
-                        </Col>
-                        <Col md={8}>
-                            <Articles
-                                valueSearch={this.state.filter.text}
-                                setFilterBySearch={this.setFilterBySearch}
-                                articles={this.state.articles}
-                                openModal={this.openModal} />
-                        </Col>
-                    </Row>
-                </Container>
+                {!this.state.showCart ?
+                    <Container fluid={true} className="Home">
+                        <Row>
+                            <Col md={4}>
+                                <MenuLeft toggleViewCart={this.toggleViewCart} setFilterByCategory={this.setFilterByCategory} totalItems={this.state.totalItems} total={this.state.total} cartItems={this.state.cartItems} categories={data.categories} />
+                            </Col>
+                            <Col md={8}>
+                                <Articles
+                                    valueSearch={this.state.filter.text}
+                                    setFilterBySearch={this.setFilterBySearch}
+                                    articles={this.state.articles}
+                                    openModal={this.openModal} />
+                            </Col>
+                        </Row>
+                    </Container>
+                    :
+                    <ViewCart toggleViewCart={this.toggleViewCart} />
+                }
                 {
                     this.state.modalVisible &&
                     <ModalContainer>

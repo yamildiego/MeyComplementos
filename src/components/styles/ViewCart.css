@@ -1,0 +1,50 @@
+.ViewCart {
+    background: red;
+}
+
+.ViewCartItem {
+    padding: 10px;
+    background: #fff;
+}
+
+.ViewCartItem .row {
+    margin: 0;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-top: 1px dotted #444;
+}
+
+.ViewCartItem img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+}
+
+.ViewCartBody {
+    height: 125px;
+}
+
+.ViewCartBody .label {
+    margin: 0;
+    margin-right: 10px;
+}
+
+.ViewCartAction .Link {
+    float: left;
+    margin-right: 10px;
+    cursor: pointer;
+    color: #007bff;
+}
+
+.ViewCartAction .Link:hover {
+    text-decoration: underline
+}
+
+.ViewCartAction {
+    position: absolute;
+    bottom: 0;
+}

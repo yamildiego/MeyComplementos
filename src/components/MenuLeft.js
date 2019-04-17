@@ -12,7 +12,7 @@ class MenuLeft extends React.Component {
                 <Categories setFilterByCategory={this.props.setFilterByCategory} categories={this.props.categories} />
                 {
                     this.props.cartItems.length > 0 &&
-                    <Cart totalItems={this.props.totalItems} total={this.props.total} handleRemoveItemById={this.props.handleRemoveItemById} cartItems={this.props.cartItems} />
+                    <Cart toggleViewCart={this.props.toggleViewCart} totalItems={this.props.totalItems} total={this.props.total} handleRemoveItemById={this.props.handleRemoveItemById} cartItems={this.props.cartItems} />
                 }
                 <ListGroup>
                     <ListGroup.Item className="MenuLeftLayout-Ad">
