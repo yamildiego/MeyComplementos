@@ -5,14 +5,27 @@
     position: relative;
 }
 
+.LineCheckOutContainer {
+    max-width: 900px;
+    margin: auto;
+}
+
+.LineCheckOutContainerLink {
+    cursor: pointer;
+    float: right;
+}
+
+.LineCheckOutContainerLink:hover {
+    text-decoration: underline!important;
+}
+
 .LineCheckOut ul {
     padding-left: 0;
     list-style: none;
-    margin: auto;
-    max-width: 900px;
 }
 
 .LineCheckOutOption {
+    cursor: pointer;
     position: relative;
     display: inline-block;
     padding: 0 10px;
@@ -20,11 +33,15 @@
     text-align: center;
 }
 
-.LineCheckOutOption:not(:last-child) {
+.LineCheckOutOption:hover {
+    background: #efefef;
+}
+
+.LineCheckOutOption div {
     padding-right: 1.5rem;
 }
 
-.LineCheckOutOption:not(:first-child) {
+.LineCheckOutOption div {
     padding-left: 1.5rem;
 }
 
@@ -45,4 +62,13 @@
     width: 100%;
     height: 8px;
     background: #ddd;
+}
+
+@media only screen and (max-width: 768px) {
+    .LineCheckOutOption div {
+        padding-right: 0.5rem;
+    }
+    .LineCheckOutOption div {
+        padding-left: 0.5rem;
+    }
 }

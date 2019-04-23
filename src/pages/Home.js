@@ -146,11 +146,15 @@ class Home extends React.Component {
     }
     handleUpdateQuantity = (itemUpdated, item) => {
         var cartItemsNew = [];
-        this.state.dataCart.cartItems.filter((item) => {
-            if (item.idArticle == itemUpdated.idArticle && item.size == itemUpdated.size && item.color == itemUpdated.color)
-                cartItemsNew.push(itemUpdated);
-            else
-                cartItemsNew.push(item);
+        this.state.dataCart.cartItems.filter((i) => {
+            if (i.idArticle == itemUpdated.idArticle) {
+                if (i.size == itemUpdated.size && i.color == itemUpdated.color) {
+                    if (itemUpdated.quantity > 0)
+                        cartItemsNew.push(itemUpdated);
+                } else
+                    cartItemsNew.push(i);
+            } else
+                cartItemsNew.push(i);
         });
 
         var dataCart = {

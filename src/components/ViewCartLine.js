@@ -12,16 +12,22 @@ class ViewCartLine extends React.Component {
         item: this.props.item
     }
     componentWillReceiveProps = nextProps => {
-        if (this.props.item.quantity != nextProps.item.quantity)
-            this.setState({
-                itemBack: { ...this.state.item },
-                item: { ...this.state.item, quantity: parseInt(nextProps.item.quantity) }
-            });
+        this.setState({
+            itemBack: { ...this.state.item },
+            item: { ...nextProps.item }
+        });
     }
-    handleChange = (e) => {
+    handleChange = e => {
         var itemUpdated = {
             ...this.state.item,
             quantity: parseInt(e)
+        }
+        this.props.handleUpdateQuantity(itemUpdated, this.state.item);
+    }
+    handleClickDeleteAll = e => {
+        var itemUpdated = {
+            ...this.state.item,
+            quantity: 0
         }
         this.props.handleUpdateQuantity(itemUpdated, this.state.item);
     }
@@ -36,8 +42,6 @@ class ViewCartLine extends React.Component {
                         <div>
                             <h5>{this.state.item.title}</h5>
                             <div className="ViewCartLineBody">
-                                {this.props.item.quantity}
-                                {this.state.item.quantity}
                                 {this.state.item.colors &&
                                     <div>
                                         <label className="label">Color</label>
@@ -52,7 +56,7 @@ class ViewCartLine extends React.Component {
                                 }
                                 <div className="ViewCartLineAction">
                                     <div className="Link">Editar</div>
-                                    <div className="Link">Borrar</div>
+                                    <div className="Link" onClick={this.handleClickDeleteAll}>Borrar</div>
                                 </div>
                             </div>
                         </div>

@@ -6,18 +6,14 @@ import MultiToggle from 'react-multi-toggle';
 import 'react-multi-toggle/style.css';
 import './styles/ViewArticle.css';
 
-
-// const groupOptions = ;
-
 class ViewArticle extends React.Component {
     state = {
-        // quantity: this.props.quantity,
         itemSelected: { size: 0, color: 0 }
     }
-    // componentWillReceiveProps = (nextProps) => {
-    // if (this.props.quantity != nextProps.quantity)
-    // this.setState({ quantity: nextProps.quantity });
-    // }
+    componentWillReceiveProps = (nextProps) => {
+        if (this.props.item.id != nextProps.item.id)
+            this.setState({ itemSelected: { size: 0, color: 0 } });
+    }
     handleClickAdd = () => {
         const element = {
             ...this.state.itemSelected,

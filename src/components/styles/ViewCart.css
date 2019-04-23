@@ -5,3 +5,7 @@
     max-width: 900px;
     margin: auto;
 }
+
+.ViewCart .row {
+    margin: 0;
+}

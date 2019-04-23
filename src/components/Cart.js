@@ -16,14 +16,14 @@ class Cart extends React.Component {
                     {
                         this.props.dataCart.cartItems.map((item, index) => {
                             return (
-                                <ListGroup.Item key={index} >
+                                <ListGroup.Item key={index} className="non-selectable" >
                                     <div className="CartItem">
                                         <FontAwesomeIcon className="CartTag" icon="tag" color="green" />
                                         <span>
                                             {item.title} <span className="font-weight-bold">X{item.quantity}</span>
                                         </span>
                                         <FontAwesomeIcon onClick={() => this.handleClick(item)} className="CartRemove" icon="times" color="grey" />
-                                        <span className="float-right CartPrice">{formatNumber(item.price)}</span>
+                                        <span className="CartPrice">{formatNumber(item.price)}</span>
                                     </div>
                                     <div className="CartDetail">
                                         {

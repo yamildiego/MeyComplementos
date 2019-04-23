@@ -15,13 +15,14 @@ import {
     faPause,
     faSearch,
     faSpinner,
+    faLongArrowAltRight,
     faVolumeUp,
     faVolumeMute,
     faCompress,
     faCompressArrowsAlt,
     faTag
 } from '@fortawesome/free-solid-svg-icons';
-library.add(fab, faSearch, faTag, faCheckCircle, faTimes, faPlay, faPause, faSpinner, faVolumeUp, faVolumeMute, faCompress, faCompressArrowsAlt);
+library.add(fab, faLongArrowAltRight, faSearch, faTag, faCheckCircle, faTimes, faPlay, faPause, faSpinner, faVolumeUp, faVolumeMute, faCompress, faCompressArrowsAlt);
 
 import App from './components/App';
 
