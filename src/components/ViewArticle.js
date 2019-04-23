@@ -21,9 +21,13 @@ class ViewArticle extends React.Component {
     handleClickAdd = () => {
         const element = {
             ...this.state.itemSelected,
+            size: ((this.state.itemSelected.size != undefined) ? this.state.itemSelected.size : 0),
+            color: ((this.state.itemSelected.color != undefined) ? this.state.itemSelected.color : 0),
             idArticle: this.props.item.id,
             title: this.props.item.title,
-            price: this.props.item.price
+            price: this.props.item.price,
+            sizes: this.props.item.sizes,
+            colors: this.props.item.colors
         }
         this.props.handleAddItem(element);
     }

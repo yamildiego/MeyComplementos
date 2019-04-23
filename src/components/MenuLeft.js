@@ -9,10 +9,17 @@ class MenuLeft extends React.Component {
     render() {
         return (
             <MenuLeftLayout>
-                <Categories setFilterByCategory={this.props.setFilterByCategory} categories={this.props.categories} />
+                <Categories
+                    setFilterByCategory={this.props.setFilterByCategory}
+                    categories={this.props.categories}
+                />
                 {
-                    this.props.cartItems.length > 0 &&
-                    <Cart toggleViewCart={this.props.toggleViewCart} totalItems={this.props.totalItems} total={this.props.total} handleRemoveItemById={this.props.handleRemoveItemById} cartItems={this.props.cartItems} />
+                    this.props.dataCart.cartItems.length > 0 &&
+                    <Cart
+                        handleRemoveItem={this.props.handleRemoveItem}
+                        toggleViewCart={this.props.toggleViewCart}
+                        dataCart={this.props.dataCart}
+                    />
                 }
                 <ListGroup>
                     <ListGroup.Item className="MenuLeftLayout-Ad">

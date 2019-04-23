@@ -20,7 +20,7 @@
     "articles": [
         {
             "id": 1,
-            "title": "SHORTS PARA CICLISMO",
+            "title": "Shorts para ciclismo",
             "price": 1699,
             "category": 1,
             "images": [
@@ -71,7 +71,7 @@
         },
         {
             "id": 2,
-            "title": "ZAPATILLAS NIKE METCON 3",
+            "title": "Zapatillas nike metcon 3",
             "price": 5390,
             "category": 3,
             "images": [
@@ -121,7 +121,7 @@
         },
         {
             "id": 3,
-            "title": "CONJUNTO DE PUNTILLA Y TUL",
+            "title": "Conjunto de puntilla y tul",
             "description": "Conjunto de puntilla y tul, Corpiño tasa soft con base y colaless.",
             "price": 959.99,
             "category": 2,
@@ -185,7 +185,7 @@
         },
         {
             "id": 4,
-            "title": "CALZA DE MICROFIBRA",
+            "title": "Calza de microfibra",
             "description": "Calza de microfibra con elastano.",
             "price": 1399.99,
             "category": 1,
@@ -232,7 +232,7 @@
         },
         {
             "id": 5,
-            "title": "CONJUNTO DE MICROFIBRA",
+            "title": "Conjunto de microfibra",
             "description": "Conjunto de microfibra Jacquard, Corpiño con base tasa soft y coulotteless. Free spirit",
             "price": 1399.99,
             "category": 2,

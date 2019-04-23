@@ -1,0 +1,71 @@
+.ViewCartLine {
+    padding: 10px;
+    background: #fafafa;
+}
+
+.ViewCartLine .row {
+    margin: 0;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-top: 1px dotted #444;
+}
+
+.ViewCartLine img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+}
+
+.ViewCartLineBody {
+    font-family: 'Alegreya Sans SC', sans-serif;
+    height: 125px;
+}
+
+.ViewCartLineBody .label {
+    margin: 0;
+    margin-right: 10px;
+}
+
+.ViewCartLineAction .Link {
+    float: left;
+    margin-right: 10px;
+    cursor: pointer;
+    color: #007bff;
+}
+
+.ViewCartLineAction .Link:hover {
+    text-decoration: underline
+}
+
+.ViewCartLineAction {
+    position: absolute;
+    bottom: 0;
+}
+
+.ViewCartLinePrice {
+    margin-top: 30px;
+}
+
+.ViewCartLinePrice .ViewCartLineItem {
+    width: 33%;
+    line-height: 38px;
+    text-align: center;
+    float: left;
+}
+
+.ViewCartLinePrice select {
+    width: 68px;
+    margin: auto;
+}
+
+@media only screen and (max-width: 768px) {
+    .ViewCartLinePrice .ViewCartLineItem {
+        width: 100%;
+        text-align: center;
+        float: none;
+    }
+}

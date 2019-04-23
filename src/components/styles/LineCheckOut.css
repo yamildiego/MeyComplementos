@@ -1,0 +1,48 @@
+.LineCheckOut {
+    background: #fff;
+    margin: 10px auto;
+    line-height: 50px;
+    position: relative;
+}
+
+.LineCheckOut ul {
+    padding-left: 0;
+    list-style: none;
+    margin: auto;
+    max-width: 900px;
+}
+
+.LineCheckOutOption {
+    position: relative;
+    display: inline-block;
+    padding: 0 10px;
+    font-size: 16px;
+    text-align: center;
+}
+
+.LineCheckOutOption:not(:last-child) {
+    padding-right: 1.5rem;
+}
+
+.LineCheckOutOption:not(:first-child) {
+    padding-left: 1.5rem;
+}
+
+.LineCheckOutOptionActive {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    background: #444;
+    z-index: 10;
+}
+
+.LineCheckOutOptionInactive {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    background: #ddd;
+}

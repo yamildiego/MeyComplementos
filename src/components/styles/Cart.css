@@ -68,3 +68,12 @@
 .ViewArticleSeeCart {
     width: 100%;
 }
+
+.CartDetail span:first-child {
+    margin-right: 10px;
+}
+
+.CartDetail span {
+    color: #666;
+    font-size: 12px;
+}
