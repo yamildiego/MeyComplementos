@@ -12,12 +12,14 @@ class LineCheckOut extends React.Component {
                         {
                             statusText.map((item, index) => {
                                 return (
-                                    <li key={index} className="LineCheckOutOption">
+                                    <li key={index} className={(index <= this.props.status) ? "LineCheckOutOption" : "LineCheckOutOption LineCheckOutOptionDisabled"}  >
                                         {
-                                            this.props.status == index &&
+                                            index <= this.props.status &&
                                             <div className="LineCheckOutOptionActive"></div>
                                         }
-                                        <div className="non-selectable" onClick={() => { this.props.setStep(index) }}>
+                                        <div
+                                            className="non-selectable"
+                                            onClick={() => { (index <= this.props.status) ? this.props.setStep(index) : null }}>
                                             {item}
                                         </div>
                                     </li>

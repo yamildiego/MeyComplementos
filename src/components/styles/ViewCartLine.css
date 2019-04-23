@@ -62,6 +62,10 @@
     margin: auto;
 }
 
+.ViewCartLine .dropdown-item.active, .dropdown-item:active {
+    background: #343a40;
+}
+
 @media only screen and (max-width: 768px) {
     .ViewCartLinePrice .ViewCartLineItem {
         width: 100%;

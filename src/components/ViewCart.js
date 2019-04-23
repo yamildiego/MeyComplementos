@@ -47,7 +47,7 @@ class ViewCart extends React.Component {
                                 <button
                                     type="button"
                                     onClick={this.props.nextStep}
-                                    className="btn btn-outline-dark btn-lg">
+                                    className="btn btn-outline-success btn-lg">
                                     Continuar&nbsp;&nbsp;
                                 <FontAwesomeIcon icon="long-arrow-alt-right" />
                                 </button>

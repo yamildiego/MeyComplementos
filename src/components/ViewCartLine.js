@@ -66,7 +66,7 @@ class ViewCartLine extends React.Component {
                             <div className="ViewCartLineItem">{formatNumber(this.state.item.price)}</div>
                             <div className="ViewCartLineItem">
                                 <Dropdown onSelect={this.handleChange}>
-                                    <Dropdown.Toggle id="dropdown-custom-components">
+                                    <Dropdown.Toggle id="dropdown-custom-components" variant="outline-dark">
                                         X{this.state.item.quantity}
                                     </Dropdown.Toggle>
                                     <Dropdown.Menu>

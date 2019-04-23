@@ -1,6 +1,7 @@
 import React from 'react';
 import ViewCart from './ViewCart';
 import LineCheckOut from './LineCheckOut';
+import DeliveryData from './DeliveryData';
 import './styles/CheckOut.css';
 
 class CheckOut extends React.Component {
@@ -15,6 +16,9 @@ class CheckOut extends React.Component {
     }
     nextStep = e => {
         this.setState({ status: this.state.status + 1 })
+    }
+    backStep = e => {
+        this.setState({ status: this.state.status - 1 })
     }
     setStep = step => {
         this.setState({ status: step })
@@ -34,6 +38,17 @@ class CheckOut extends React.Component {
                         handleUpdateQuantity={this.props.handleUpdateQuantity}
                         dataCart={this.state.dataCart}
                         toggleViewCart={this.props.toggleViewCart}
+                        nextStep={this.nextStep}
+                    />
+                }
+                {
+                    this.state.status == 1 &&
+                    <DeliveryData
+                        // toggleViewCart={this.props.toggleViewCart}
+                        // handleUpdateQuantity={this.props.handleUpdateQuantity}
+                        // dataCart={this.state.dataCart}
+                        // toggleViewCart={this.props.toggleViewCart}
+                        backStep={this.backStep}
                         nextStep={this.nextStep}
                     />
                 }

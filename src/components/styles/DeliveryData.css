@@ -1,4 +1,4 @@
-.ViewCart {
+.DeliveryData {
     background: #ffffffc7;
     padding: 20px;
     border-radius: 5px;
@@ -7,6 +7,6 @@
     margin: auto;
 }
 
-.ViewCart .row {
-    margin: 0;
+.DeliveryData label {
+    font-family: 'Alegreya Sans SC', sans-serif;
 }
