@@ -4,6 +4,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import "../node_modules/slick-carousel/slick/slick.css";
 import "../node_modules/slick-carousel/slick/slick-theme.css";
+import './fonts/fonts.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import './animate.css';
 import './global.css';

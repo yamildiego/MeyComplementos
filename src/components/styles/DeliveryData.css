@@ -1,12 +1,3 @@
-.DeliveryData {
-    background: #ffffffc7;
-    padding: 20px;
-    border-radius: 5px;
-    font-family: Helvetica, Verdana, sans-serif;
-    max-width: 900px;
-    margin: auto;
-}
-
-.DeliveryData label {
-    font-family: 'Alegreya Sans SC', sans-serif;
+.DeliveryDataError {
+    border: 1px solid #f32e31;
 }

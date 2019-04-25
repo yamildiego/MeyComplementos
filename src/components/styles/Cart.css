@@ -28,7 +28,7 @@
 }
 
 .CartPrice {
-    font-family: Helvetica, Verdana, sans-serif;
+    font-family: "Adihaus";
     font-size: 14px;
     line-height: 20px;
     color: #555;
@@ -63,7 +63,7 @@
 }
 
 .CartTotalPrice {
-    font-family: Helvetica, Verdana, sans-serif;
+    font-family: "Adihaus";
 }
 
 .ViewArticleSeeCart {

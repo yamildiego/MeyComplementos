@@ -1,0 +1,48 @@
+.OrderSummary {
+    width: 100%;
+    background: #fafafa;
+    padding: 15px;
+}
+
+.OrderSummaryTitle {
+    font-weight: bold;
+    line-height: 45px;
+    margin: 0;
+}
+
+.OrderSummaryBody {
+    background: #fff;
+}
+
+.OrderSummaryBody ul {
+    list-style: none;
+    padding: 0.5rem 1rem;
+}
+
+.OrderSummaryBody ul li {
+    font-family: "Adihaus";
+    line-height: 40px;
+    font-size: 16 px;
+}
+
+.OrderSummaryBody ul li:not(:last-child) {
+    border-bottom: 1px solid #a09797;
+}
+
+.OrderSummaryTotal {
+    font-family: "Adihaus", sans-serif;
+    float: right;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.OrderSummaryAmount {
+    font-family: "Adihaus", sans-serif;
+    float: right;
+    font-size: 14px;
+}
+
+.OrderSummaryBody ul li:last-child {
+    font-weight: bold;
+    font-size: 20px;
+}

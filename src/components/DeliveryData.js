@@ -3,75 +3,175 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './styles/DeliveryData.css';
 
 class DeliveryData extends React.Component {
+    state = {
+        showErrors: this.props.showErrors,
+        form: {
+            ...this.props.dataPeronal
+        }
+    }
+    handleChange = e => this.props.handleChangeDataPersonal(e);
+    handleClickNext = e => this.props.nextStep(e);
+    componentWillReceiveProps = nextProps => {
+        if (this.state.form != nextProps.dataPeronal)
+            this.setState({
+                form: {
+                    ...nextProps.dataPeronal
+                }
+            })
+        if (this.state.showErrors != nextProps.showErrors)
+            this.setState({ showErrors: nextProps.showErrors })
+    }
     render() {
         return (
-            <div className="DeliveryData">
-                <form className="row">
-                    <div className="form-group col-sm-6">
-                        <label htmlFor="name">Nombre(s)</label>
-                        <input type="text" className="form-control" id="name" placeholder="Ingrese su Nombre(s)" />
-                    </div>
-                    <div className="form-group col-sm-6">
-                        <label htmlFor="lastname">Apellido(s)</label>
-                        <input type="text" className="form-control" id="lastname" placeholder="Ingrese su Apellido(s)" />
-                    </div>
-                    <div className="form-group col-8">
-                        <label htmlFor="street">Calle</label>
-                        <input type="text" className="form-control" id="street" placeholder="Calle" />
-                    </div>
-                    <div className="form-group col-4">
-                        <label htmlFor="numberStreet">Numero</label>
-                        <input type="text" className="form-control" id="numberStreet" placeholder="Numero" />
-                    </div>
-                    <div className="form-group col-sm-6">
-                        <label htmlFor="floor">Piso</label>
-                        <input type="text" className="form-control" id="floor" placeholder="Piso" />
-                    </div>
-                    <div className="form-group col-sm-6">
-                        <label htmlFor="apartment">Departamento</label>
-                        <input type="text" className="form-control" id="apartment" placeholder="Departamento" />
-                    </div>
-                    <div className="form-group col-sm-6">
-                        <label htmlFor="postCode">Codigo postal</label>
-                        <input type="text" className="form-control" id="postCode" placeholder="Codigo postal" />
-                    </div>
-                    <div className="form-group col-sm-6">
-                        <label htmlFor="country">Pais</label>
-                        <input type="text" className="form-control" id="country" disabled value="Argentina" />
-                    </div>
-                    <div className="form-group col-sm-6">
-                        <label htmlFor="phone">Telefono</label>
-                        <input type="text" className="form-control" id="phone" placeholder="Telefono" />
-                        <small id="phoneHelp" className="form-text text-muted">Por si acaso tenemos preguntas sobre tu pedido.</small>
-                    </div>
-                    <div className="col-sm-6"></div>
-                    <div className="form-group form-check">
+            <React.Fragment>
+                <h1>Datos personales</h1>
+                <div className="DeliveryData">
+                    <form className="row" onSubmit={this.handleClickNext}>
+                        <div className="form-group col-sm-6">
+                            <label htmlFor="name"><span className="required">(*)</span>Nombre(s)</label>
+                            <input
+                                onChange={this.handleChange}
+                                type="text"
+                                className={(this.state.showErrors && this.state.form.name == "") ? "form-control DeliveryDataError" : "form-control"}
+                                id="name"
+                                name="name"
+                                placeholder="Ingrese su Nombre(s)"
+                                value={this.state.form.name}
+                            />
+                        </div>
+                        <div className="form-group col-sm-6">
+                            <label htmlFor="lastname"><span className="required">(*)</span>Apellido(s)</label>
+                            <input
+                                onChange={this.handleChange}
+                                type="text"
+                                className={(this.state.showErrors && this.state.form.lastname == "") ? "form-control DeliveryDataError" : "form-control"}
+                                id="lastname"
+                                name="lastname"
+                                placeholder="Ingrese su Apellido(s)"
+                                value={this.state.form.lastname}
+                            />
+                        </div>
+                        <div className="form-group col-8">
+                            <label htmlFor="street"><span className="required">(*)</span>Calle</label>
+                            <input
+                                onChange={this.handleChange}
+                                type="text"
+                                className={(this.state.showErrors && this.state.form.street == "") ? "form-control DeliveryDataError" : "form-control"}
+                                id="street"
+                                name="street"
+                                placeholder="Calle"
+                                value={this.state.form.street}
+                            />
+                        </div>
+                        <div className="form-group col-4">
+                            <label htmlFor="numberStreet"><span className="required">(*)</span>Número</label>
+                            <input
+                                onChange={this.handleChange}
+                                type="number"
+                                className={(this.state.showErrors && this.state.form.numberStreet == "") ? "form-control DeliveryDataError" : "form-control"}
+                                id="numberStreet"
+                                name="numberStreet"
+                                placeholder="Número"
+                                value={this.state.form.numberStreet}
+                            />
+                        </div>
+                        <div className="form-group col-sm-6">
+                            <label htmlFor="floor">Piso</label>
+                            <input
+                                onChange={this.handleChange}
+                                type="text"
+                                className="form-control"
+                                id="floor"
+                                name="floor"
+                                placeholder="Piso"
+                                value={this.state.form.floor}
+                            />
+                        </div>
+                        <div className="form-group col-sm-6">
+                            <label htmlFor="apartment">Departamento</label>
+                            <input
+                                onChange={this.handleChange}
+                                type="text"
+                                className="form-control"
+                                id="apartment"
+                                name="apartment"
+                                placeholder="Departamento"
+                                value={this.state.form.apartment}
+                            />
+                        </div>
+                        <div className="form-group col-sm-6">
+                            <label htmlFor="postCode"><span className="required">(*)</span>Código postal</label>
+                            <input
+                                onChange={this.handleChange}
+                                type="text"
+                                className={(this.state.showErrors && this.state.form.postCode == "") ? "form-control DeliveryDataError" : "form-control"}
+                                id="postCode"
+                                name="postCode"
+                                placeholder="Código postal"
+                                value={this.state.form.postCode}
+                            />
+                        </div>
+                        <div className="form-group col-sm-6">
+                            <label htmlFor="country">País</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="country"
+                                value="Argentina"
+                                disabled
+                            />
+                        </div>
+                        <div className="form-group col-sm-6">
+                            <label htmlFor="phone"><span className="required">(*)</span>Teléfono</label>
+                            <input
+                                onChange={this.handleChange}
+                                type="text"
+                                className={(this.state.showErrors && this.state.form.phone == "") ? "form-control DeliveryDataError" : "form-control"}
+                                id="phone"
+                                name="phone"
+                                placeholder="Teléfono"
+                                value={this.state.form.phone}
+                            />
+                            <small id="phoneHelp"
+                                className="form-text text-muted">Por si acaso tenemos preguntas sobre tu pedido.</small>
+                        </div>
+                        <div className="form-group col-sm-6">
+                            <label htmlFor="email"><span className="required">(*)</span>Correo electrónico</label>
+                            <input
+                                onChange={this.handleChange}
+                                type="email"
+                                className={(this.state.showErrors && this.state.form.email == "") ? "form-control DeliveryDataError" : "form-control"}
+                                id="email"
+                                name="email"
+                                placeholder="Correo electrónico"
+                                value={this.state.form.email}
+                            />
+                        </div>
+                        {/* <div className="form-group form-check">
                         <label className="checkBoxCustom">
                             Dirección de facturación es igual a dirección de entrega.
-                            <input type="checkbox" />
+                            <input type="checkbox"
+/>
                             <span className="checkmark"></span>
                         </label>
-                    </div>
-                </form>
+                    </div> */}
 
-                <div className="text-center mt-4">
-                    <button
-                        type="button"
-                        onClick={this.props.backStep}
-                        className="btn btn-outline-success btn-lg mr-5">
-                        <FontAwesomeIcon icon="long-arrow-alt-left" />
-                        Volver&nbsp;&nbsp;
-                    </button>
-                    <button
-                        type="button"
-                        onClick={this.props.nextStep}
-                        className="btn btn-outline-success btn-lg">
-                        Continuar&nbsp;&nbsp;
-                        <FontAwesomeIcon icon="long-arrow-alt-right" />
-                    </button>
+                        <div className="col-12 text-center mt-4">
+                            <button
+                                type="button"
+                                onClick={this.props.backStep}
+                                className="btn btn-outline-dark btn-lg mr-5">
+                                Volver&nbsp;&nbsp;
+                                </button>
+                            <button
+                                className="btn btn-outline-success btn-lg">
+                                Continuar&nbsp;&nbsp;
+                                <FontAwesomeIcon icon="long-arrow-alt-right" />
+                            </button>
+                        </div>
+                    </form>
                 </div>
-
-            </div>
+            </React.Fragment>
         )
     }
 }

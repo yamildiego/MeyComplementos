@@ -7,6 +7,7 @@
 }
 
 .ViewArticlePrice {
+    font-family: "Adihaus";
     float: right;
     font-size: 20px;
     font-weight: bold;
@@ -33,7 +34,7 @@
 
 .ViewArticleInfo {
     font-size: 15px;
-    font-family: 'Alegreya Sans SC', sans-serif;
+    font-family: 'Alegreya';
 }
 
 .ViewArticleInfo span {
@@ -71,6 +72,7 @@
 }
 
 .toggleContainer .toggleOption {
+    font-family: "Adihaus";
     line-height: 28px;
     height: auto;
     color: #807b77;

@@ -27,8 +27,6 @@ class Home extends React.Component {
         this.setState({ articles: data.articles });
         var _this = this;
 
-        // localforage.setItem('dataCart', this.state.dataCart, function (err, value) { });
-
         localforage.getItem('dataCart', function (err, value) {
             if (typeof value === "object" && value !== null) _this.setState({ dataCart: value });
         });

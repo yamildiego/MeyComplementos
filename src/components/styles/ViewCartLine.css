@@ -21,7 +21,6 @@
 }
 
 .ViewCartLineBody {
-    font-family: 'Alegreya Sans SC', sans-serif;
     height: 125px;
 }
 
@@ -51,6 +50,7 @@
 }
 
 .ViewCartLinePrice .ViewCartLineItem {
+    font-family: "Adihaus";
     width: 33%;
     line-height: 38px;
     text-align: center;
@@ -60,6 +60,10 @@
 .ViewCartLinePrice select {
     width: 68px;
     margin: auto;
+}
+
+.ViewCartLine .dropdown-item {
+    font-family: "Adihaus";
 }
 
 .ViewCartLine .dropdown-item.active, .dropdown-item:active {
