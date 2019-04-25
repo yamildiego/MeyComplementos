@@ -5,6 +5,7 @@ import LineCheckOut from './LineCheckOut';
 import DeliveryData from './DeliveryData';
 import OrderSummary from './OrderSummary';
 import OrderCompleted from './OrderCompleted';
+import localforage from 'localforage';
 import './styles/CheckOut.css';
 
 class CheckOut extends React.Component {
@@ -59,18 +60,12 @@ class CheckOut extends React.Component {
             this.setState({ status: this.state.status + 1 })
     }
     nextStepComplete = e => {
-        //TODO
+        //TODO 
         this.setState({
             showErrors: false,
             status: this.state.status + 1,
-            dataCart: []
         });
-        localforage.setItem('dataCart', {
-            cartItems: new Array(),
-            totalItems: 0,
-            total: 0,
-            maxId: 0,
-        });
+        this.props.cleanCart();
     }
     backStep = e => {
         this.setState({ status: this.state.status - 1 })

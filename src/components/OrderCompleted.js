@@ -8,7 +8,7 @@ class OrderCompleted extends React.Component {
                 <h1>El pedido se ha completado!</h1>
                 <div className="OrderCompleted">
                     <h5>Pedido #{this.props.id}</h5>
-                    <p>FELICITACION! tu compra a sido exitosa.</p>
+                    <p>FELICITACIONES! tu compra a sido exitosa.</p>
                     <p>Estamos procesando el envió. El numero de seguimiento    sera enviado a {this.props.email}</p>
                 </div>
             </React.Fragment>

@@ -39,12 +39,6 @@ class Home extends React.Component {
     //         });
     // }
     openModal = article => {
-        var itemFlag = undefined;
-        this.state.dataCart.cartItems.filter(item => {
-            if (item.idProduct == article.id) {
-                itemFlag = item;
-            }
-        })
         this.setState({
             modalVisible: true,
             article
@@ -105,6 +99,16 @@ class Home extends React.Component {
         localforage.setItem('dataCart', dataCart);
         this.setState({ dataCart });
     }
+    cleanCart = () => {
+        var dataCart = {
+            cartItems: new Array(),
+            totalItems: 0,
+            total: 0,
+            maxId: 0,
+        }
+        localforage.setItem('dataCart', dataCart);
+        this.setState({ dataCart });
+    }
     setFilterBySearch = text => {
         if (text == '')
             this.setFilterByCategory(this.state.filter.category);
@@ -125,11 +129,26 @@ class Home extends React.Component {
     setFilterByCategory = (categoryId) => {
         var itemsFiltered = data.articles;
 
-        if (categoryId != 0)
-            itemsFiltered = data.articles.filter(item => {
-                if (item.category == categoryId)
-                    return item;
-            });
+        if (categoryId != 0) {
+            if (data.categories[categoryId] != undefined) {
+                let ids = [];
+                ids.push(categoryId);
+                if (data.categories[categoryId].subcategories && data.categories[categoryId].subcategories.length > 0) {
+                    data.categories[categoryId].subcategories.map(i => {
+                        ids.push(i.id);
+                    })
+                }
+                itemsFiltered = data.articles.filter(item => {
+                    if (ids.includes(item.category))
+                        return item;
+                });
+            } else {
+                itemsFiltered = data.articles.filter(item => {
+                    if (item.category == categoryId)
+                        return item;
+                });
+            }
+        }
 
         this.setState({
             filter: { category: categoryId, text: '' },
@@ -165,6 +184,15 @@ class Home extends React.Component {
         localforage.setItem('dataCart', dataCart);
         this.setState({ dataCart });
     }
+    getQuantityById = id => {
+        let quantity = 0;
+        this.state.dataCart.cartItems.filter(i => {
+            if (i.idArticle == id)
+                quantity = quantity + i.quantity;
+        })
+
+        return quantity;
+    }
     render() {
         return (
             <React.Fragment>
@@ -192,6 +220,7 @@ class Home extends React.Component {
                     </Container>
                     :
                     <CheckOut
+                        cleanCart={this.cleanCart}
                         handleUpdateQuantity={this.handleUpdateQuantity}
                         dataCart={this.state.dataCart}
                         toggleViewCart={this.toggleViewCart}
@@ -203,7 +232,7 @@ class Home extends React.Component {
                         <Modal closeModal={this.closeModal}>
                             <ViewArticle
                                 item={this.state.article}
-                                quantity={this.state.quantitySelected}
+                                quantity={() => this.getQuantityById(this.state.article.id)}
                                 closeModal={this.closeModal}
                                 handleAddItem={this.handleAddItem}
                             />

@@ -58,15 +58,19 @@ class ViewArticle extends React.Component {
                 <Card>
                     <Card.Header>
                         <div>
+                            {}
+                            {/* {this.props.quantity} */}
+                            {/* {this.props.quantity} */}
+                            {/* {this.props.quantity} */}
                             <h2 className="ViewArticleTitle">
                                 {this.props.item.title}
                             </h2>
-                            {this.state.quantity > 0 &&
+                            {this.props.quantity() > 0 &&
                                 <span className="ViewArticleText">
                                     {
-                                        this.state.quantity == 1
+                                        this.props.quantity() == 1
                                             ? "Ya se agrego uno al carrito!"
-                                            : "Ya tienes " + this.state.quantity + " en el carrito!"
+                                            : "Ya tienes " + this.props.quantity() + " en el carrito!"
                                     }
                                 </span>
                             }

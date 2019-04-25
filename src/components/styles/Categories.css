@@ -3,10 +3,50 @@
     transition: background-color 0.3s ease;
     background: transparent;
     border: 0;
+    padding: 0 1.25rem;
 }
 
 .Categories .list-group-item:hover {
     text-decoration: none;
     background: #ddd;
     color: #444;
+}
+
+.Category {
+    display: block;
+    cursor: pointer;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+}
+
+.Subcategory {
+    cursor: pointer;
+    padding-left: 3.8rem!important;
+    line-height: 40px;
+}
+
+.CategoriesIconNone {
+    float: left;
+    background: #e94f51;
+    font-size: 16px;
+    border-radius: 20px;
+    padding: 3px;
+    color: #e94f51;
+    margin-right: 10px;
+    cursor: default;
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.CategoriesIcon {
+    float: left;
+    background: #e94f51;
+    font-size: 16px;
+    border-radius: 20px;
+    padding: 3px;
+    color: #fff;
+    margin-right: 10px;
+    cursor: pointer;
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
 }

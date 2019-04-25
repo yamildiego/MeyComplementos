@@ -6,7 +6,21 @@
         },
         {
             "id": 1,
-            "name": "Mujer training"
+            "name": "Mujer training",
+            "subcategories": [
+                {
+                    "id": 4,
+                    "name": "Mujer training 4"
+                },
+                {
+                    "id": 5,
+                    "name": "Mujer training 5"
+                },
+                {
+                    "id": 6,
+                    "name": "Mujer training 6"
+                }
+            ]
         },
         {
             "id": 2,
@@ -14,7 +28,21 @@
         },
         {
             "id": 3,
-            "name": "Calzado"
+            "name": "Calzado",
+            "subcategories": [
+                {
+                    "id": 7,
+                    "name": "Calzado 7"
+                },
+                {
+                    "id": 8,
+                    "name": "Calzado 8"
+                },
+                {
+                    "id": 9,
+                    "name": "Calzado 9"
+                }
+            ]
         }
     ],
     "articles": [
@@ -73,7 +101,7 @@
             "id": 2,
             "title": "Zapatillas nike metcon 3",
             "price": 5390,
-            "category": 3,
+            "category": 4,
             "images": [
                 {
                     "id": 13,
@@ -124,7 +152,7 @@
             "title": "Conjunto de puntilla y tul",
             "description": "Conjunto de puntilla y tul, Corpiño tasa soft con base y colaless.",
             "price": 959.99,
-            "category": 2,
+            "category": 5,
             "images": [
                 {
                     "id": 13,
