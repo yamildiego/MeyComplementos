@@ -14,19 +14,23 @@
 
 .Category {
     display: block;
-    cursor: pointer;
-    padding-top: 0.75rem;
-    padding-bottom: 0.75rem;
 }
 
 .Subcategory {
     display: block;
+}
+
+.checkBoxCustom {
     cursor: pointer;
     padding-top: 0.75rem;
     padding-bottom: 0.75rem;
-    /* cursor: pointer; */
-    /* padding-left: 3.8rem!important; */
-    /* line-height: 40px; */
+    margin-bottom: 0;
+    line-height: 25px;
+}
+
+.checkBoxCustom .checkmark {
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
 }
 
 .CategoriesIconNone {
@@ -55,7 +59,6 @@
     margin-bottom: 0.75rem;
 }
 
-
-.CategoryActive{
+.CategoryActive {
     background: red;
 }

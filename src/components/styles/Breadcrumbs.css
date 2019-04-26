@@ -1,0 +1,18 @@
+.Breadcrumbs {
+    margin: 0 0 8px 0;
+    height: 22px;
+}
+
+.BreadcrumbsLabel {
+    padding: 5px;
+    border: 1px solid #ddd;
+    background: #fff;
+    margin-right: 10px;
+    line-height: 22px;
+}
+
+.BreadcrumbsClose {
+    cursor: pointer;
+    margin: 0 8px 0 0;
+    color: #444;
+}

@@ -2,13 +2,25 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Article from './Article';
 import Search from './Search';
+import Breadcrumbs from './Breadcrumbs';
 import './../components/styles/ArticlesLayout.css';
 
 class Articles extends React.Component {
+    state = {
+        category: this.props.category,
+        categories: this.props.categories
+    }
+    componentWillReceiveProps = (nextProps) => {
+        if (nextProps.category != this.state.category)
+            this.setState({ category: nextProps.category })
+        if (nextProps.categories != this.state.categories)
+            this.setState({ categories: nextProps.categories })
+    }
     render() {
         return (
             <React.Fragment>
                 <Search valueSearch={this.props.valueSearch} setFilterBySearch={this.props.setFilterBySearch}></Search>
+                <Breadcrumbs setFilterByCategory={this.props.setFilterByCategory} category={this.state.category} categories={this.state.categories} />
                 {this.props.articles.length == 0 &&
                     <React.Fragment>
                         <div className="ArticlesBoxNoItems">

@@ -10,6 +10,8 @@ class Categories extends React.Component {
     componentWillReceiveProps = (nextProps) => {
         if (nextProps.category != this.state.categoryFiltered)
             this.setState({ categoryFiltered: nextProps.category });
+        if (nextProps.category == 0)
+            this.setState({ categoryShow: nextProps.category });
     }
     handleOnChange = (e, item, fatherId) => {
         if (e.target.checked) {
@@ -32,7 +34,7 @@ class Categories extends React.Component {
                                     this.state.categoryShow == 0 &&
                                     <div className="list-group-item">
                                         <div className="Category">
-                                            <div className="form-group form-check">
+                                            <div className="form-check">
                                                 <label className="checkBoxCustom">
                                                     {item.name}
                                                     <input
@@ -52,7 +54,7 @@ class Categories extends React.Component {
                                         return (
                                             <div key={subcategory.id} className="list-group-item" >
                                                 <div className="Subcategory">
-                                                    <div className="form-group form-check">
+                                                    <div className="form-check">
                                                         <label className="checkBoxCustom">
                                                             {subcategory.name}
                                                             <input

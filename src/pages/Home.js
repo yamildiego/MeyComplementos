@@ -133,26 +133,21 @@ class Home extends React.Component {
 
             var category = undefined;
             data.categories.map(categoryItem => {
-                if (categoryItem.id == categoryId)
-                    category = categoryItem;
+                if (categoryItem.id == categoryId) category = categoryItem;
             })
 
             if (category != undefined) {
                 let ids = [];
                 ids.push(categoryId);
-                if (category.subcategories && category.subcategories.length > 0) {
-                    category.subcategories.map(i => {
-                        ids.push(i.id);
-                    })
-                }
+                if (category.subcategories && category.subcategories.length > 0)
+                    category.subcategories.map(i => { ids.push(i.id); })
 
                 itemsFiltered = data.articles.filter(item => {
                     if (ids.includes(item.category)) return item;
                 });
             } else {
                 itemsFiltered = data.articles.filter(item => {
-                    if (item.category == categoryId)
-                        return item;
+                    if (item.category == categoryId) return item;
                 });
             }
         }
@@ -218,6 +213,9 @@ class Home extends React.Component {
                             </Col>
                             <Col md={8}>
                                 <Articles
+                                    setFilterByCategory={this.setFilterByCategory}
+                                    categories={data.categories}
+                                    category={this.state.filter.category}
                                     valueSearch={this.state.filter.text}
                                     setFilterBySearch={this.setFilterBySearch}
                                     articles={this.state.articles}
