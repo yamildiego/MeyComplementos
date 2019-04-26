@@ -130,17 +130,24 @@ class Home extends React.Component {
         var itemsFiltered = data.articles;
 
         if (categoryId != 0) {
-            if (data.categories[categoryId] != undefined) {
+
+            var category = undefined;
+            data.categories.map(categoryItem => {
+                if (categoryItem.id == categoryId)
+                    category = categoryItem;
+            })
+
+            if (category != undefined) {
                 let ids = [];
                 ids.push(categoryId);
-                if (data.categories[categoryId].subcategories && data.categories[categoryId].subcategories.length > 0) {
-                    data.categories[categoryId].subcategories.map(i => {
+                if (category.subcategories && category.subcategories.length > 0) {
+                    category.subcategories.map(i => {
                         ids.push(i.id);
                     })
                 }
+
                 itemsFiltered = data.articles.filter(item => {
-                    if (ids.includes(item.category))
-                        return item;
+                    if (ids.includes(item.category)) return item;
                 });
             } else {
                 itemsFiltered = data.articles.filter(item => {
