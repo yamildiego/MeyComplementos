@@ -4,18 +4,24 @@ import MenuLeft from '../components/MenuLeft';
 import Articles from '../components/Articles';
 import ViewArticle from '../components/ViewArticle';
 import ModalContainer from '../components/ModalContainer';
+import LogoPresentation from './../components/LogoPresentation';
 import Modal from '../components/Modal';
 import CheckOut from '../components/CheckOut.js';
 import localforage from 'localforage';
+import Constants from './../config';
 import data from './../api.json';
 import './../components/styles/Home.css';
 
 class Home extends React.Component {
     state = {
+        loading: true,
+        currentCount: 0,
         filter: { category: 0, text: '' },
-        articles: [],
+        articles: new Array(),
+        articlesFiltered: new Array(),
         modalVisible: false,
         showCart: false,
+        categories: new Array(),
         dataCart: {
             cartItems: new Array(),
             totalItems: 0,
@@ -23,21 +29,32 @@ class Home extends React.Component {
             maxId: 0,
         }
     }
+    componentWillUnmount() {
+        clearInterval(this.countdown);
+    }
+    timer = () => {
+        if (!this.state.loading)
+            clearInterval(this.countdown);
+        else
+            this.setState({ currentCount: (this.state.currentCount + 5) });
+    }
     componentDidMount = () => {
-        this.setState({ articles: data.articles });
+        this.countdown = setInterval(this.timer, 100);
+        fetch(Constants.urlServer + '/categories')
+            .then(response => response.json()).then(response => {
+                this.setState({ categories: response });
+            });
+        fetch(Constants.urlServer + '/articles')
+            .then(response => response.json())
+            .then(response => {
+                this.setState({ articles: response, articlesFiltered: response, loading: false });
+            });
         var _this = this;
 
         localforage.getItem('dataCart', function (err, value) {
             if (typeof value === "object" && value !== null) _this.setState({ dataCart: value });
         });
     }
-    // componentWillMount = () => {
-    //     fetch('http://localhost/unallamanew/Server/ParticipantController/getParticipants')
-    //         .then(response => response.json())
-    //         .then(response => {
-    //             console.error(response);
-    //         });
-    // }
     openModal = article => {
         this.setState({
             modalVisible: true,
@@ -115,7 +132,7 @@ class Home extends React.Component {
         else
             this.setState({
                 filter: { ...this.state.filter, text: text },
-                articles: data.articles.filter(item => {
+                articlesFiltered: this.state.articles.filter(item => {
                     if (this.state.filter.category != 0) {
                         if (item.category == this.state.filter.category && item.title.toUpperCase().search(text.toUpperCase()) != -1)
                             return item;
@@ -127,12 +144,12 @@ class Home extends React.Component {
             })
     }
     setFilterByCategory = (categoryId) => {
-        var itemsFiltered = data.articles;
+        var itemsFiltered = this.state.articles;
 
         if (categoryId != 0) {
 
             var category = undefined;
-            data.categories.map(categoryItem => {
+            this.state.categories.map(categoryItem => {
                 if (categoryItem.id == categoryId) category = categoryItem;
             })
 
@@ -154,7 +171,7 @@ class Home extends React.Component {
 
         this.setState({
             filter: { category: categoryId, text: '' },
-            articles: itemsFiltered
+            articlesFiltered: itemsFiltered
         })
     }
     toggleViewCart = e => {
@@ -197,53 +214,59 @@ class Home extends React.Component {
     }
     render() {
         return (
-            <React.Fragment>
-                {!this.state.showCart ?
-                    <Container fluid={true} className="Home">
-                        <Row>
-                            <Col md={4}>
-                                <MenuLeft
-                                    category={this.state.filter.category}
-                                    handleRemoveItem={this.handleRemoveItem}
-                                    toggleViewCart={this.toggleViewCart}
-                                    setFilterByCategory={this.setFilterByCategory}
-                                    dataCart={this.state.dataCart}
-                                    categories={data.categories}
-                                />
-                            </Col>
-                            <Col md={8}>
-                                <Articles
-                                    setFilterByCategory={this.setFilterByCategory}
-                                    categories={data.categories}
-                                    category={this.state.filter.category}
-                                    valueSearch={this.state.filter.text}
-                                    setFilterBySearch={this.setFilterBySearch}
-                                    articles={this.state.articles}
-                                    openModal={this.openModal}
-                                />
-                            </Col>
-                        </Row>
-                    </Container>
-                    :
-                    <CheckOut
-                        cleanCart={this.cleanCart}
-                        handleUpdateQuantity={this.handleUpdateQuantity}
-                        dataCart={this.state.dataCart}
-                        toggleViewCart={this.toggleViewCart}
-                    />
-                }
+            <React.Fragment >
                 {
-                    this.state.modalVisible &&
-                    <ModalContainer>
-                        <Modal closeModal={this.closeModal}>
-                            <ViewArticle
-                                item={this.state.article}
-                                quantity={() => this.getQuantityById(this.state.article.id)}
-                                closeModal={this.closeModal}
-                                handleAddItem={this.handleAddItem}
-                            />
-                        </Modal>
-                    </ModalContainer>
+                    this.state.loading
+                        ? <LogoPresentation progress={this.state.currentCount} />
+                        : <React.Fragment>
+                            {!this.state.showCart ?
+                                <Container fluid={true} className="Home">
+                                    <Row>
+                                        <Col md={4}>
+                                            <MenuLeft
+                                                category={this.state.filter.category}
+                                                handleRemoveItem={this.handleRemoveItem}
+                                                toggleViewCart={this.toggleViewCart}
+                                                setFilterByCategory={this.setFilterByCategory}
+                                                dataCart={this.state.dataCart}
+                                                categories={this.state.categories}
+                                            />
+                                        </Col>
+                                        <Col md={8}>
+                                            <Articles
+                                                setFilterByCategory={this.setFilterByCategory}
+                                                categories={this.state.categories}
+                                                category={this.state.filter.category}
+                                                valueSearch={this.state.filter.text}
+                                                setFilterBySearch={this.setFilterBySearch}
+                                                articles={this.state.articlesFiltered}
+                                                openModal={this.openModal}
+                                            />
+                                        </Col>
+                                    </Row>
+                                </Container>
+                                :
+                                <CheckOut
+                                    cleanCart={this.cleanCart}
+                                    handleUpdateQuantity={this.handleUpdateQuantity}
+                                    dataCart={this.state.dataCart}
+                                    toggleViewCart={this.toggleViewCart}
+                                />
+                            }
+                            {
+                                this.state.modalVisible &&
+                                <ModalContainer>
+                                    <Modal closeModal={this.closeModal}>
+                                        <ViewArticle
+                                            item={this.state.article}
+                                            quantity={() => this.getQuantityById(this.state.article.id)}
+                                            closeModal={this.closeModal}
+                                            handleAddItem={this.handleAddItem}
+                                        />
+                                    </Modal>
+                                </ModalContainer>
+                            }
+                        </React.Fragment >
                 }
             </React.Fragment >
         )
