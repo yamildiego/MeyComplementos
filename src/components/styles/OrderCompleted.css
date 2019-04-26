@@ -1,5 +1,10 @@
+.OrderCompleted {
+    padding-bottom: 2rem;
+}
+
 .OrderCompleted p {
-    font-size: 25px;
+    font-size: 18px;
     text-align: center;
     color: #e94f51;
+    margin: 0;
 }

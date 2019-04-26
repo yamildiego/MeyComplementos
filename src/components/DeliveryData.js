@@ -147,15 +147,6 @@ class DeliveryData extends React.Component {
                                 value={this.state.form.email}
                             />
                         </div>
-                        {/* <div className="form-group form-check">
-                        <label className="checkBoxCustom">
-                            Dirección de facturación es igual a dirección de entrega.
-                            <input type="checkbox"
-/>
-                            <span className="checkmark"></span>
-                        </label>
-                    </div> */}
-
                         <div className="col-12 text-center mt-4">
                             <button
                                 type="button"

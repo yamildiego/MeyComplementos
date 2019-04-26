@@ -1,10 +1,6 @@
 {
     "categories": [
         {
-            "id": 0,
-            "name": "TODO"
-        },
-        {
             "id": 1,
             "name": "Mujer training",
             "subcategories": [
@@ -50,7 +46,7 @@
             "id": 1,
             "title": "Shorts para ciclismo",
             "price": 1699,
-            "category": 1,
+            "category": 2,
             "images": [
                 {
                     "id": 1,
@@ -216,7 +212,7 @@
             "title": "Calza de microfibra",
             "description": "Calza de microfibra con elastano.",
             "price": 1399.99,
-            "category": 1,
+            "category": 7,
             "images": [
                 {
                     "id": 13,
@@ -263,7 +259,7 @@
             "title": "Conjunto de microfibra",
             "description": "Conjunto de microfibra Jacquard, Corpiño con base tasa soft y coulotteless. Free spirit",
             "price": 1399.99,
-            "category": 2,
+            "category": 5,
             "images": [
                 {
                     "id": 13,

@@ -4,12 +4,21 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './styles/Categories.css'
 
 class Categories extends React.Component {
-    state = {}
-    toggleCategory = (id) => {
-        this.setState({ [id]: (this.state[id] == undefined || this.state[id] == false) ? true : false });
+    state = {
+        categoryShow: 0,
+        categoryFiltered: this.props.category
     }
-    handleOnclick = (id) => {
-        this.props.setFilterByCategory(id);
+    componentWillReceiveProps = (nextProps) => {
+        if (nextProps.category != this.state.categoryFiltered)
+            this.setState({ categoryFiltered: nextProps.category });
+    }
+    handleOnclick = (item, fatherId) => {
+        if (item.subcategories == undefined || item.subcategories.length == 0) {
+            this.setState({ categoryShow: fatherId });
+        } else {
+            this.setState({ categoryShow: item.id });
+        }
+        this.props.setFilterByCategory(item.id);
     }
     render() {
         return (
@@ -17,34 +26,41 @@ class Categories extends React.Component {
                 {
                     this.props.categories.map((item) => {
                         return (
-                            <React.Fragment key={item.id}>
-                                <div className="list-group-item">
-                                    {
-                                        item.subcategories != undefined ?
-                                            <React.Fragment>
-                                                {
-                                                    (this.state[item.id] == true)
-                                                        ? <FontAwesomeIcon className="CategoriesIcon" icon="minus" onClick={(i) => { this.toggleCategory(item.id) }} />
-                                                        : <FontAwesomeIcon className="CategoriesIcon" icon="plus" onClick={(i) => { this.toggleCategory(item.id) }} />
-                                                }
-                                            </React.Fragment>
-                                            : <FontAwesomeIcon className="CategoriesIconNone" icon="circle" onClick={(i) => { this.toggleCategory(item.id) }} />
-                                    }
-                                    <div className="Category" onClick={(i) => { this.handleOnclick(item.id) }}>
-                                        {item.name}
+                            <React.Fragment key={item.id} >
+                                {
+                                    this.state.categoryShow == 0 &&
+                                    <div className="list-group-item">
+                                        <div className="Category" onClick={(i) => { this.handleOnclick(item, 0) }}>
+                                            <div className="form-group form-check">
+                                                <label className="checkBoxCustom">
+                                                    {item.name}
+                                                    <input
+                                                        type="checkbox"
+                                                        checked={(this.state.categoryFiltered == item.id)}
+                                                    />
+                                                    <span className="checkmark"></span>
+                                                </label>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-
-                                {this.state[item.id] == true && item.subcategories && item.subcategories.length > 0 &&
-                                    item.subcategories.map((category) => {
+                                }
+                                {
+                                    (this.state.categoryShow == item.id && item.subcategories != undefined) &&
+                                    item.subcategories.map((subcategory) => {
                                         return (
-                                            <div
-                                                className="list-group-item Subcategory"
-                                                onClick={(i) => { this.handleOnclick(category.id) }}
-                                                key={category.id}>
-                                                <FontAwesomeIcon className="CategoriesIconNone" icon="circle" onClick={(i) => { this.toggleCategory(item.id) }} />
-
-                                                {category.name}
+                                            <div key={subcategory.id} className="list-group-item" >
+                                                <div className="Subcategory" onClick={(i) => { this.handleOnclick(subcategory, item.id) }}>
+                                                    <div className="form-group form-check">
+                                                        <label className="checkBoxCustom">
+                                                            {subcategory.name}
+                                                            <input
+                                                                type="checkbox"
+                                                                checked={(this.state.categoryFiltered == subcategory.id)}
+                                                            />
+                                                            <span className="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
                                             </div>
                                         )
                                     })
@@ -52,6 +68,7 @@ class Categories extends React.Component {
                             </React.Fragment>
                         )
                     })
+
                 }
             </ListGroup>
         )
@@ -59,3 +76,42 @@ class Categories extends React.Component {
 }
 
 export default Categories;
+
+                    // this.props.categories.map((item) => {
+                    //     return (
+                    //         <React.Fragment key={item.id}>
+                    //             {
+
+                    //                     ? <div className="list-group-item">
+                    //                         <div className="Category" onClick={(i) => { this.handleOnclick(item.id) }}>
+                    //                             {item.name}
+                    //                         </div>
+                    //                     </div>
+                    //                     : <div>
+
+                    //                     </div>
+                    //             }
+                    //         </React.Fragment>
+                    //     )
+                    // })
+
+
+                                                // this.props.category == 0
+                            //     ? <React.Fragment key={item.id}>
+                            //         <div className="list-group-item">
+                            //             <div className="Category" onClick={(i) => { this.handleOnclick(item.id) }}>
+                            //                 {item.name}
+                            //             </div>
+                            //         </div>
+                            //     </React.Fragment>
+                            //     : (this.props.category == item.id &&
+                            //         item.subcategories.map(subcategory => {
+                            //             return < React.Fragment key={subcategory.id} >
+                            //                 <div className="list-group-item">
+                            //                     <div className="Category" onClick={(i) => { this.handleOnclick(subcategory.id) }}>
+                            //                         {subcategory.name}
+                            //                     </div>
+                            //                 </div>
+                            //             </React.Fragment>
+                            //         })
+                            //     )

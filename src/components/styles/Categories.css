@@ -20,9 +20,13 @@
 }
 
 .Subcategory {
+    display: block;
     cursor: pointer;
-    padding-left: 3.8rem!important;
-    line-height: 40px;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    /* cursor: pointer; */
+    /* padding-left: 3.8rem!important; */
+    /* line-height: 40px; */
 }
 
 .CategoriesIconNone {
@@ -49,4 +53,9 @@
     cursor: pointer;
     margin-top: 0.75rem;
     margin-bottom: 0.75rem;
+}
+
+
+.CategoryActive{
+    background: red;
 }

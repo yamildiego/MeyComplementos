@@ -6,10 +6,18 @@ import Cart from './Cart';
 import Categories from './Categories';
 
 class MenuLeft extends React.Component {
+    state = {
+        category: this.props.category
+    }
+    componentWillReceiveProps = (nextProps) => {
+        if (nextProps.category != this.state.category)
+            this.setState({ category: nextProps.category });
+    }
     render() {
         return (
             <MenuLeftLayout>
                 <Categories
+                    category={this.state.category}
                     setFilterByCategory={this.props.setFilterByCategory}
                     categories={this.props.categories}
                 />

@@ -201,6 +201,7 @@ class Home extends React.Component {
                         <Row>
                             <Col md={4}>
                                 <MenuLeft
+                                    category={this.state.filter.category}
                                     handleRemoveItem={this.handleRemoveItem}
                                     toggleViewCart={this.toggleViewCart}
                                     setFilterByCategory={this.setFilterByCategory}
