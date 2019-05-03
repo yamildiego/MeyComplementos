@@ -27,11 +27,11 @@ class Cart extends React.Component {
                                     </div>
                                     <div className="CartDetail">
                                         {
-                                            item.colors &&
+                                            (item.colors && item.colors.length > 0) &&
                                             <span>Color {item.colors[item.color].displayName}</span>
                                         }
                                         {
-                                            item.sizes &&
+                                            (item.sizes && item.sizes.length > 0) &&
                                             <span>Talle {item.sizes[item.size].displayName}</span>
                                         }
                                     </div>

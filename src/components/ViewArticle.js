@@ -4,6 +4,7 @@ import Slider from "react-slick";
 import formatNumber from './../utilities/formatNumber';
 import MultiToggle from 'react-multi-toggle';
 import 'react-multi-toggle/style.css';
+import ImagesNotFound from './../images/images-not-found.gif';
 import './styles/ViewArticle.css';
 
 class ViewArticle extends React.Component {
@@ -22,6 +23,7 @@ class ViewArticle extends React.Component {
             idArticle: this.props.item.id,
             title: this.props.item.title,
             price: this.props.item.price,
+            image: ((this.props.item.images.length > 0) ? this.props.item.images[0].path : ImagesNotFound),
             sizes: this.props.item.sizes,
             colors: this.props.item.colors
         }
@@ -57,49 +59,50 @@ class ViewArticle extends React.Component {
             <div className="ViewArticle">
                 <Card>
                     <Card.Header>
-                        <div>
-                            {}
-                            {/* {this.props.quantity} */}
-                            {/* {this.props.quantity} */}
-                            {/* {this.props.quantity} */}
-                            <h2 className="ViewArticleTitle">
-                                {this.props.item.title}
-                            </h2>
-                            {this.props.quantity() > 0 &&
-                                <span className="ViewArticleText">
-                                    {
-                                        this.props.quantity() == 1
-                                            ? "Ya se agrego uno al carrito!"
-                                            : "Ya tienes " + this.props.quantity() + " en el carrito!"
-                                    }
-                                </span>
-                            }
-                            <span className="ViewArticlePrice">{formatNumber(this.props.item.price)}</span>
-                        </div>
+                        <h2 className="ViewArticleTitle">
+                            {this.props.item.title}
+                        </h2>
+                        {this.props.quantity() > 0 &&
+                            <span className="ViewArticleText">
+                                {
+                                    this.props.quantity() == 1
+                                        ? "Ya se agrego uno al carrito!"
+                                        : "Ya tienes " + this.props.quantity() + " en el carrito!"
+                                }
+                            </span>
+                        }
+                        <span className="ViewArticlePrice">{formatNumber(this.props.item.price)}</span>
                     </Card.Header>
                     <Card.Body>
                         <div className="row">
                             <div className="col-md-6">
-                                <Slider {...settings} className="ViewArticleSlider">
-                                    {
-                                        this.props.item.images.map((element) => {
-                                            return <div key={element.id} className="text-center">
-                                                {
-                                                    element.type == "image" ?
-                                                        <Image src={element.path} className="mx-auto" /> :
-                                                        <video controls>
-                                                            <source src={element.path} type="video/mp4" />
-                                                        </video>
-                                                }
-                                            </div>
-                                        })
-                                    }
-                                </Slider>
+                                {
+                                    this.props.item.images.length > 0 &&
+                                    <Slider {...settings} className="ViewArticleSlider">
+                                        {
+                                            this.props.item.images.map((element) => {
+                                                return <div key={element.id} className="text-center">
+                                                    {
+                                                        element.type == "image" ?
+                                                            <Image src={element.path} className="mx-auto" /> :
+                                                            <video controls>
+                                                                <source src={element.path} type="video/mp4" />
+                                                            </video>
+                                                    }
+                                                </div>
+                                            })
+                                        }
+                                    </Slider>
+                                }
+                                {
+                                    this.props.item.images.length == 0 &&
+                                    <Image src={ImagesNotFound} className="mx-auto" />
+                                }
                             </div>
                             <div className="col-md-6">
                                 <form>
                                     <div className="form-group">
-                                        {this.props.item.colors &&
+                                        {(this.props.item.colors && this.props.item.colors.length > 0) &&
                                             <React.Fragment>
                                                 <div className="ViewArticleInfo"><span>Colores</span></div>
                                                 <span>
@@ -113,7 +116,7 @@ class ViewArticle extends React.Component {
                                             </React.Fragment>
                                         }
 
-                                        {this.props.item.sizes &&
+                                        {(this.props.item.sizes && this.props.item.sizes.length > 0) &&
                                             <React.Fragment>
                                                 <div className="ViewArticleInfo"><span>Talles</span></div>
                                                 <span>

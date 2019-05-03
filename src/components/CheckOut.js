@@ -1,11 +1,11 @@
 import React from 'react';
-import { Image } from 'react-bootstrap';
 import ViewCart from './ViewCart';
 import LineCheckOut from './LineCheckOut';
 import DeliveryData from './DeliveryData';
 import OrderSummary from './OrderSummary';
+import Pay from './Pay';
 import OrderCompleted from './OrderCompleted';
-import localforage from 'localforage';
+import Constants from './../config';
 import './styles/CheckOut.css';
 
 class CheckOut extends React.Component {
@@ -13,6 +13,7 @@ class CheckOut extends React.Component {
         dataCart: this.props.dataCart,
         status: 0,
         showErrors: false,
+        linkMP: null,
         dataPeronal:
         {
             name: '',
@@ -56,8 +57,14 @@ class CheckOut extends React.Component {
             this.state.dataPeronal.phone == "" ||
             this.state.dataPeronal.email == "")
             this.setState({ showErrors: true });
-        else
-            this.setState({ status: this.state.status + 1 })
+        else {
+            fetch(Constants.urlServerPHP + '/generateLinkMP')
+                .then(response => response.json())
+                .then(response => {
+                    if (response.status)
+                        this.setState({ linkMP: response.data, status: this.state.status + 1 })
+                });
+        }
     }
     nextStepComplete = e => {
         //TODO 
@@ -109,7 +116,7 @@ class CheckOut extends React.Component {
                             }
                             {
                                 this.state.status == 2 &&
-                                <div onClick={this.nextStepComplete}>CONTINUAR</div>
+                                <Pay linkMP={this.state.linkMP} nextStepComplete={this.nextStepComplete} />
                             }
                             {
                                 this.state.status == 3 &&

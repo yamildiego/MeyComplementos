@@ -40,17 +40,22 @@ class Home extends React.Component {
     }
     componentDidMount = () => {
         this.countdown = setInterval(this.timer, 100);
-        fetch(Constants.urlServer + '/categories')
+        fetch(Constants.urlServer + '/getCategories')
             .then(response => response.json()).then(response => {
                 this.setState({ categories: response });
             });
-        fetch(Constants.urlServer + '/articles')
+        fetch(Constants.urlServer + '/getArticles')
             .then(response => response.json())
             .then(response => {
                 this.setState({ articles: response, articlesFiltered: response, loading: false });
             });
         var _this = this;
-
+        localforage.setItem('dataCart', {
+            cartItems: new Array(),
+            totalItems: 0,
+            total: 0,
+            maxId: 0,
+        });
         localforage.getItem('dataCart', function (err, value) {
             if (typeof value === "object" && value !== null) _this.setState({ dataCart: value });
         });
@@ -129,19 +134,15 @@ class Home extends React.Component {
     setFilterBySearch = text => {
         if (text == '')
             this.setFilterByCategory(this.state.filter.category);
-        else
+        else {
             this.setState({
                 filter: { ...this.state.filter, text: text },
-                articlesFiltered: this.state.articles.filter(item => {
-                    if (this.state.filter.category != 0) {
-                        if (item.category == this.state.filter.category && item.title.toUpperCase().search(text.toUpperCase()) != -1)
-                            return item;
-                    } else {
-                        if (item.title.toUpperCase().search(text.toUpperCase()) != -1)
-                            return item;
-                    }
+                articlesFiltered: this.setFilterByCategory(this.state.filter.category).filter(item => {
+                    if (item.title.toUpperCase().search(text.toUpperCase()) != -1)
+                        return item;
                 })
             })
+        }
     }
     setFilterByCategory = (categoryId) => {
         var itemsFiltered = this.state.articles;
@@ -159,11 +160,11 @@ class Home extends React.Component {
                 if (category.subcategories && category.subcategories.length > 0)
                     category.subcategories.map(i => { ids.push(i.id); })
 
-                itemsFiltered = data.articles.filter(item => {
+                itemsFiltered = this.state.articles.filter(item => {
                     if (ids.includes(item.category)) return item;
                 });
             } else {
-                itemsFiltered = data.articles.filter(item => {
+                itemsFiltered = this.state.articles.filter(item => {
                     if (item.category == categoryId) return item;
                 });
             }
@@ -173,6 +174,7 @@ class Home extends React.Component {
             filter: { category: categoryId, text: '' },
             articlesFiltered: itemsFiltered
         })
+        return itemsFiltered;
     }
     toggleViewCart = e => {
         this.setState({

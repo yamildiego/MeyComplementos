@@ -36,19 +36,19 @@ class ViewCartLine extends React.Component {
             <div className="ViewCartLine">
                 <div className="row">
                     <div className="col-3">
-                        <Image src="src/images/articles/95388.jpg" fluid />
+                        <Image src={this.state.item.image} fluid />
                     </div>
                     <div className="col-4 p-0 pl-1">
                         <div>
                             <h5>{this.state.item.title}</h5>
                             <div className="ViewCartLineBody">
-                                {this.state.item.colors &&
+                                {(this.state.item.colors && this.state.item.colors.length > 0) &&
                                     <div>
                                         <label className="label">Color</label>
                                         <span>{this.state.item.colors[this.state.item.color].displayName}</span>
                                     </div>
                                 }
-                                {this.state.item.sizes &&
+                                {(this.state.item.sizes && this.state.item.sizes.length > 0) &&
                                     <div>
                                         <label className="label">Talle</label>
                                         <span>{this.state.item.sizes[this.state.item.size].displayName}</span>
