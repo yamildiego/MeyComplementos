@@ -31,3 +31,9 @@
     text-decoration: underline;
     color: #FFFFFF!important;
 }
+
+.Copyright {
+    line-height: 48px;
+    text-align: right;
+    color: #e94f51;
+}

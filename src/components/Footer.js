@@ -2,6 +2,7 @@ import React from 'react';
 import { Navbar, Container, Nav } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import './styles/Footer.css';
+import Constants from './../config';
 
 const Footer = (props) => {
     return (
@@ -15,22 +16,9 @@ const Footer = (props) => {
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
-
-            {/* <div className="Footer-yd">
-                        <div className="texts">
-                            <div className="text">
-                                Desarrollado por
-                        </div>
-                            <div className="text">
-                                Yamil Diego
-                        </div>
-                        </div>
-                        <div className="photo">
-                            <Image src="./images/yd.jpg" roundedCircle></Image>
-                        </div>
-                    </div> */}
-            {/* <div className="clear"></div> */}
-            {/* <div className="copyright">Copyright © Mey 2019. Todos los derechos reservados.</div> */}
+            <div className="Copyright">
+                © Copyright 2019 {Constants.urlVisible}.
+            </div>
         </Container>
     )
 }

@@ -8,6 +8,7 @@ import Pay from './Pay';
 import OrderCompleted from './OrderCompleted';
 import Constants from './../config';
 import queryString from 'querystring';
+import isValidEmail from './../utilities/isValidEmail';
 import './styles/CheckOut.css';
 
 class CheckOut extends React.Component {
@@ -61,21 +62,32 @@ class CheckOut extends React.Component {
             this.state.dataPeronal.email == "")
             this.setState({ showErrors: true });
         else {
-            this.setState({ loading: true });
+            if (isValidEmail(this.state.dataPeronal.email)) {
+                this.setState({ loading: true });
 
-            fetch(Constants.urlServerPHP + '/generateLinkMP', {
-                method: 'POST',
-                body: queryString.stringify({ total: this.state.dataCart.total, totalItems: this.state.dataCart.totalItems }),
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                    'Accept': 'application/json'
-                }
-            })
-                .then(response => response.json())
-                .then(response => {
-                    if (response.status == true)
-                        this.setState({ loading: false, linkMP: response.data, status: this.state.status + 1 })
-                });
+                fetch(Constants.urlServerPHP + '/generateLinkMP', {
+                    method: 'POST',
+                    body: queryString.stringify({ total: this.state.dataCart.total, totalItems: this.state.dataCart.totalItems }),
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'Accept': 'application/json'
+                    }
+                })
+                    .then(response => response.json())
+                    .then(response => {
+                        if (response.status == true)
+                            this.setState({ loading: false, linkMP: response.data, status: this.state.status + 1 })
+                    });
+            } else {
+                this.setState({
+                    showErrors: true,
+                    dataPeronal: {
+                        ...this.state.dataPeronal,
+                        email: ""
+                    }
+                })
+            }
+
         }
     }
     nextStepComplete = e => {

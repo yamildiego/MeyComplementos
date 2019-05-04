@@ -1,0 +1,13 @@
+.CookiesPolicy {
+    background: #ffffffc7;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.CookiesPolicy h2, .CookiesPolicy h3 {
+    text-transform: uppercase;
+}
+
+.CookiesPolicy p {
+    margin-bottom: 0.5rem
+}

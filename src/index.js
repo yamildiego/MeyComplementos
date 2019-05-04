@@ -25,9 +25,10 @@ import {
     faMinus,
     faCircle,
     faCompressArrowsAlt,
-    faTag
+    faTag,
+    faShoppingBag
 } from '@fortawesome/free-solid-svg-icons';
-library.add(fab, faPlus, faMinus, faCircle, faLongArrowAltRight, faLongArrowAltLeft, faSearch, faTag, faCheckCircle, faTimes, faPlay, faPause, faSpinner, faVolumeUp, faVolumeMute, faCompress, faCompressArrowsAlt);
+library.add(fab, faShoppingBag, faPlus, faMinus, faCircle, faLongArrowAltRight, faLongArrowAltLeft, faSearch, faTag, faCheckCircle, faTimes, faPlay, faPause, faSpinner, faVolumeUp, faVolumeMute, faCompress, faCompressArrowsAlt);
 
 import App from './components/App';
 

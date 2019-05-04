@@ -7,6 +7,7 @@ import ModalContainer from '../components/ModalContainer';
 import LogoPresentation from './../components/LogoPresentation';
 import Modal from '../components/Modal';
 import CheckOut from '../components/CheckOut.js';
+import CartDirectAccess from '../components/CartDirectAccess.js';
 import localforage from 'localforage';
 import Constants from './../config';
 import './../components/styles/Home.css';
@@ -220,6 +221,11 @@ class Home extends React.Component {
                     this.state.loading
                         ? <LogoPresentation progress={this.state.currentCount} />
                         : <React.Fragment>
+                            <CartDirectAccess
+                                totalItems={this.state.dataCart.totalItems}
+                                toggleViewCart={this.toggleViewCart}
+                                showCart={this.state.showCart}
+                            />
                             {!this.state.showCart ?
                                 <Container fluid={true} className="Home">
                                     <Row>
