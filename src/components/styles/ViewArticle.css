@@ -91,6 +91,15 @@
     bottom: 0;
 }
 
+.slick-prev, .slick-next {
+    width: 30px;
+    height: 30px;
+}
+
+.slick-prev:before, .slick-next:before {
+    font-size: 30px;
+}
+
 @media only screen and (max-width: 768px) {
     .BtnAddArticle {
         bottom: -60px;

@@ -1,8 +1,8 @@
 import React from 'react';
+import Image from 'react-bootstrap/Image';
+import LogoMP from './../images/pays/logo_mp.png';
 
 class Pay extends React.Component {
-    aaa = () => {
-    }
     render() {
         return (
             <div>
@@ -15,13 +15,15 @@ class Pay extends React.Component {
                 {
                     this.props.linkMP != null &&
                     <div>
-                        <a href={this.props.linkMP}>pagarrr</a>
+                        <div className="text-center p-5">
+                            <Image src={LogoMP}></Image>
+                        </div>
+                        <div className="text-center">
+                            <a target="_blank" className="btn btn-info w-50" href={this.props.linkMP}>Pagar</a>
+                        </div>
                     </div>
                 }
-
             </div>
-            // <div onClick={this.props.nextStepComplete}>CONTINUAR</div>
-            // <div onClick={this.aaa}>CONTINUAR</div>
         )
     }
 }

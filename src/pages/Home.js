@@ -9,7 +9,6 @@ import Modal from '../components/Modal';
 import CheckOut from '../components/CheckOut.js';
 import localforage from 'localforage';
 import Constants from './../config';
-import data from './../api.json';
 import './../components/styles/Home.css';
 
 class Home extends React.Component {
@@ -50,12 +49,12 @@ class Home extends React.Component {
                 this.setState({ articles: response, articlesFiltered: response, loading: false });
             });
         var _this = this;
-        localforage.setItem('dataCart', {
-            cartItems: new Array(),
-            totalItems: 0,
-            total: 0,
-            maxId: 0,
-        });
+        // localforage.setItem('dataCart', {
+        //     cartItems: new Array(),
+        //     totalItems: 0,
+        //     total: 0,
+        //     maxId: 0,
+        // });
         localforage.getItem('dataCart', function (err, value) {
             if (typeof value === "object" && value !== null) _this.setState({ dataCart: value });
         });

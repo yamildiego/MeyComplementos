@@ -1,6 +1,5 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import './styles/DeliveryData.css';
 
 class DeliveryData extends React.Component {
     state = {
@@ -32,7 +31,7 @@ class DeliveryData extends React.Component {
                             <input
                                 onChange={this.handleChange}
                                 type="text"
-                                className={(this.state.showErrors && this.state.form.name == "") ? "form-control DeliveryDataError" : "form-control"}
+                                className={(this.state.showErrors && this.state.form.name == "") ? "form-control formInputError" : "form-control"}
                                 id="name"
                                 name="name"
                                 placeholder="Ingrese su Nombre(s)"
@@ -44,7 +43,7 @@ class DeliveryData extends React.Component {
                             <input
                                 onChange={this.handleChange}
                                 type="text"
-                                className={(this.state.showErrors && this.state.form.lastname == "") ? "form-control DeliveryDataError" : "form-control"}
+                                className={(this.state.showErrors && this.state.form.lastname == "") ? "form-control formInputError" : "form-control"}
                                 id="lastname"
                                 name="lastname"
                                 placeholder="Ingrese su Apellido(s)"
@@ -56,7 +55,7 @@ class DeliveryData extends React.Component {
                             <input
                                 onChange={this.handleChange}
                                 type="text"
-                                className={(this.state.showErrors && this.state.form.street == "") ? "form-control DeliveryDataError" : "form-control"}
+                                className={(this.state.showErrors && this.state.form.street == "") ? "form-control formInputError" : "form-control"}
                                 id="street"
                                 name="street"
                                 placeholder="Calle"
@@ -68,7 +67,7 @@ class DeliveryData extends React.Component {
                             <input
                                 onChange={this.handleChange}
                                 type="number"
-                                className={(this.state.showErrors && this.state.form.numberStreet == "") ? "form-control DeliveryDataError" : "form-control"}
+                                className={(this.state.showErrors && this.state.form.numberStreet == "") ? "form-control formInputError" : "form-control"}
                                 id="numberStreet"
                                 name="numberStreet"
                                 placeholder="Número"
@@ -104,7 +103,7 @@ class DeliveryData extends React.Component {
                             <input
                                 onChange={this.handleChange}
                                 type="text"
-                                className={(this.state.showErrors && this.state.form.postCode == "") ? "form-control DeliveryDataError" : "form-control"}
+                                className={(this.state.showErrors && this.state.form.postCode == "") ? "form-control formInputError" : "form-control"}
                                 id="postCode"
                                 name="postCode"
                                 placeholder="Código postal"
@@ -126,7 +125,7 @@ class DeliveryData extends React.Component {
                             <input
                                 onChange={this.handleChange}
                                 type="text"
-                                className={(this.state.showErrors && this.state.form.phone == "") ? "form-control DeliveryDataError" : "form-control"}
+                                className={(this.state.showErrors && this.state.form.phone == "") ? "form-control formInputError" : "form-control"}
                                 id="phone"
                                 name="phone"
                                 placeholder="Teléfono"
@@ -140,7 +139,7 @@ class DeliveryData extends React.Component {
                             <input
                                 onChange={this.handleChange}
                                 type="email"
-                                className={(this.state.showErrors && this.state.form.email == "") ? "form-control DeliveryDataError" : "form-control"}
+                                className={(this.state.showErrors && this.state.form.email == "") ? "form-control formInputError" : "form-control"}
                                 id="email"
                                 name="email"
                                 placeholder="Correo electrónico"

@@ -3,13 +3,16 @@ import ViewCart from './ViewCart';
 import LineCheckOut from './LineCheckOut';
 import DeliveryData from './DeliveryData';
 import OrderSummary from './OrderSummary';
+import Loading from './Loading';
 import Pay from './Pay';
 import OrderCompleted from './OrderCompleted';
 import Constants from './../config';
+import queryString from 'querystring';
 import './styles/CheckOut.css';
 
 class CheckOut extends React.Component {
     state = {
+        loading: false,
         dataCart: this.props.dataCart,
         status: 0,
         showErrors: false,
@@ -58,21 +61,30 @@ class CheckOut extends React.Component {
             this.state.dataPeronal.email == "")
             this.setState({ showErrors: true });
         else {
-            fetch(Constants.urlServerPHP + '/generateLinkMP')
+            this.setState({ loading: true });
+
+            fetch(Constants.urlServerPHP + '/generateLinkMP', {
+                method: 'POST',
+                body: queryString.stringify({ total: this.state.dataCart.total, totalItems: this.state.dataCart.totalItems }),
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Accept': 'application/json'
+                }
+            })
                 .then(response => response.json())
                 .then(response => {
-                    if (response.status)
-                        this.setState({ linkMP: response.data, status: this.state.status + 1 })
+                    if (response.status == true)
+                        this.setState({ loading: false, linkMP: response.data, status: this.state.status + 1 })
                 });
         }
     }
     nextStepComplete = e => {
-        //TODO 
-        this.setState({
-            showErrors: false,
-            status: this.state.status + 1,
-        });
-        this.props.cleanCart();
+        // //TODO 
+        // this.setState({
+        //     showErrors: false,
+        //     status: this.state.status + 1,
+        // });
+        // this.props.cleanCart();
     }
     backStep = e => {
         this.setState({ status: this.state.status - 1 })
@@ -92,6 +104,7 @@ class CheckOut extends React.Component {
                     setStep={this.setStep}
                 />
                 <div className="CheckOutContainer">
+                    <Loading loading={this.state.loading} />
                     <div className="row">
                         <div className={(this.state.status != 3) ? "col-lg-8" : "col-lg-12"}>
                             {

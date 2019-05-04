@@ -15,6 +15,10 @@ span.required {
     margin-right: 2px
 }
 
+.formInputError {
+    border: 1px solid #f32e31;
+}
+
 .non-selectable {
     -moz-user-select: none;
     -webkit-user-select: none;
