@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import ViewCart from './ViewCart';
 import LineCheckOut from './LineCheckOut';
 import DeliveryData from './DeliveryData';
@@ -17,6 +18,7 @@ class CheckOut extends React.Component {
         dataCart: this.props.dataCart,
         status: 0,
         showErrors: false,
+        errorGenerateMP: false,
         linkMP: null,
         dataPeronal:
         {
@@ -77,6 +79,8 @@ class CheckOut extends React.Component {
                     .then(response => {
                         if (response.status == true)
                             this.setState({ loading: false, linkMP: response.data, status: this.state.status + 1 })
+                    }).catch((error) => {
+                        this.setState({ loading: false, errorGenerateMP: true, status: this.state.status + 1 })
                     });
             } else {
                 this.setState({
@@ -91,7 +95,9 @@ class CheckOut extends React.Component {
         }
     }
     nextStepComplete = e => {
-        // //TODO 
+        if (this.state.errorGenerateMP == false) {
+            window.open(this.state.linkMP, '_blank');
+        }
         // this.setState({
         //     showErrors: false,
         //     status: this.state.status + 1,
@@ -103,6 +109,7 @@ class CheckOut extends React.Component {
     }
     setStep = step => {
         this.setState({
+            errorGenerateMP: false,
             showErrors: false,
             status: step
         })
@@ -124,6 +131,7 @@ class CheckOut extends React.Component {
                                 <ViewCart
                                     toggleViewCart={this.props.toggleViewCart}
                                     handleUpdateQuantity={this.props.handleUpdateQuantity}
+                                    openModalUpdate={this.props.openModalUpdate}
                                     dataCart={this.state.dataCart}
                                     toggleViewCart={this.props.toggleViewCart}
                                     nextStep={this.nextStepDeliveryData}
@@ -140,8 +148,12 @@ class CheckOut extends React.Component {
                                 />
                             }
                             {
-                                this.state.status == 2 &&
+                                (this.state.status == 2 && this.state.errorGenerateMP == false) &&
                                 <Pay linkMP={this.state.linkMP} nextStepComplete={this.nextStepComplete} />
+                            }
+                            {
+                                (this.state.status == 2 && this.state.errorGenerateMP == true) &&
+                                <div className="alert alert-danger text-center w-50 mt-3 mx-auto">Ocurrió un error al generar el link de pago, porfavor póngase en contacto con nosotros <Link to="/contacto">aqui</Link> para solucionarlo.</div>
                             }
                             {
                                 this.state.status == 3 &&

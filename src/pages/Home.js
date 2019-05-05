@@ -20,6 +20,7 @@ class Home extends React.Component {
         articles: new Array(),
         articlesFiltered: new Array(),
         modalVisible: false,
+        modalType: 'NEW',
         showCart: false,
         categories: new Array(),
         dataCart: {
@@ -97,7 +98,7 @@ class Home extends React.Component {
         }
 
         localforage.setItem('dataCart', dataCart);
-        this.setState({ dataCart });
+        this.setState({ dataCart, modalType: 'NEW' });
     }
     handleRemoveItem = item => {
         var newCartItems = this.state.dataCart.cartItems.filter(i => {
@@ -178,8 +179,62 @@ class Home extends React.Component {
     }
     toggleViewCart = e => {
         this.setState({
+            modalType: 'NEW',
             modalVisible: false,
             showCart: !this.state.showCart
+        })
+    }
+    handleUpdateItem = (modified, itemUpdated, item, itemOld) => {
+        if (modified) {
+            var newCartItems = [];
+            var cartItemsById = [];
+
+            this.state.dataCart.cartItems.filter((element) => {
+                if (element.idArticle == itemOld.idArticle)
+                    if (itemOld.size == element.size && itemOld.color == element.color) { } else {
+                        cartItemsById.push(element);
+                    }
+                else
+                    newCartItems.push(element);
+            });
+
+            let isModified = false;
+
+            cartItemsById.map((element) => {
+                if (element.size == itemUpdated.size && element.color == itemUpdated.color) {
+                    isModified = true;
+                    element.quantity = element.quantity + itemOld.quantity;
+                    newCartItems.push(element);
+                } else
+                    newCartItems.push(element);
+            })
+
+            if (!isModified) {
+                itemOld.size = itemUpdated.size;
+                itemOld.color = itemUpdated.color;
+                newCartItems.push(itemOld);
+            }
+
+            var dataCart = {
+                ...this.state.dataCart,
+                cartItems: newCartItems
+            }
+
+            localforage.setItem('dataCart', dataCart);
+            this.setState({ dataCart, modalVisible: false });
+        } else
+            this.setState({ modalVisible: false });
+    }
+    openModalUpdate = (item) => {
+        this.state.articles.map(e => {
+            if (e.id == item.idArticle) {
+                this.setState({
+                    article: e,
+                    modalVisible: true,
+                    modalType: 'EDIT',
+                    articleOptionsChosen: item
+                });
+            }
         })
     }
     handleUpdateQuantity = (itemUpdated, item) => {
@@ -256,6 +311,7 @@ class Home extends React.Component {
                                 <CheckOut
                                     cleanCart={this.cleanCart}
                                     handleUpdateQuantity={this.handleUpdateQuantity}
+                                    openModalUpdate={this.openModalUpdate}
                                     dataCart={this.state.dataCart}
                                     toggleViewCart={this.toggleViewCart}
                                 />
@@ -265,10 +321,14 @@ class Home extends React.Component {
                                 <ModalContainer>
                                     <Modal closeModal={this.closeModal}>
                                         <ViewArticle
+                                            modalType={this.state.modalType}
+                                            articleOptionsChosen={this.state.articleOptionsChosen}
+                                            modalType={this.state.modalType}
                                             item={this.state.article}
                                             quantity={() => this.getQuantityById(this.state.article.id)}
                                             closeModal={this.closeModal}
                                             handleAddItem={this.handleAddItem}
+                                            handleUpdateItem={this.handleUpdateItem}
                                         />
                                     </Modal>
                                 </ModalContainer>

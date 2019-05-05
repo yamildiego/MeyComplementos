@@ -24,6 +24,9 @@ class ViewCartLine extends React.Component {
         }
         this.props.handleUpdateQuantity(itemUpdated, this.state.item);
     }
+    openModalUpdate = () => {
+        this.props.openModalUpdate(this.state.item);
+    }
     handleClickDeleteAll = e => {
         var itemUpdated = {
             ...this.state.item,
@@ -55,7 +58,7 @@ class ViewCartLine extends React.Component {
                                     </div>
                                 }
                                 <div className="ViewCartLineAction">
-                                    <div className="Link">Editar</div>
+                                    <div className="Link" onClick={this.openModalUpdate}>Editar</div>
                                     <div className="Link" onClick={this.handleClickDeleteAll}>Borrar</div>
                                 </div>
                             </div>

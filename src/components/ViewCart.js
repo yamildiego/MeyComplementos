@@ -29,6 +29,7 @@ class ViewCart extends React.Component {
                         return (
                             <ViewCartLine
                                 handleUpdateQuantity={this.props.handleUpdateQuantity}
+                                openModalUpdate={this.props.openModalUpdate}
                                 key={index}
                                 item={this.state.dataCart.cartItems[index]}
                             />

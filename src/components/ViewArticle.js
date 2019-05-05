@@ -9,7 +9,10 @@ import './styles/ViewArticle.css';
 
 class ViewArticle extends React.Component {
     state = {
-        itemSelected: { size: 0, color: 0 }
+        itemSelected: {
+            size: (this.props.modalType == 'EDIT' ? this.props.articleOptionsChosen.size : 0),
+            color: (this.props.modalType == 'EDIT' ? this.props.articleOptionsChosen.color : 0)
+        }
     }
     componentWillReceiveProps = (nextProps) => {
         if (this.props.item.id != nextProps.item.id)
@@ -28,6 +31,13 @@ class ViewArticle extends React.Component {
             colors: this.props.item.colors
         }
         this.props.handleAddItem(element);
+    }
+    handleClickUpdateItem = () => {
+        if (this.props.articleOptionsChosen.size == this.state.itemSelected.size && this.props.articleOptionsChosen.color == this.state.itemSelected.color) {
+            this.props.handleUpdateItem(false);
+        } else {
+            this.props.handleUpdateItem(true, this.state.itemSelected, this.props.item, this.props.articleOptionsChosen);
+        }
     }
     onGroupSizeSelect = value => {
         this.setState(
@@ -62,13 +72,18 @@ class ViewArticle extends React.Component {
                         <h2 className="ViewArticleTitle">
                             {this.props.item.title}
                         </h2>
-                        {this.props.quantity() > 0 &&
+                        {(this.props.quantity() > 0 && this.props.modalType == 'NEW') &&
                             <span className="ViewArticleText">
                                 {
                                     this.props.quantity() == 1
                                         ? "Ya se agrego uno al carrito!"
                                         : "Ya tienes " + this.props.quantity() + " en el carrito!"
                                 }
+                            </span>
+                        }
+                        {this.props.modalType == 'EDIT' &&
+                            <span className="ViewArticleText">
+                                Tienes  {this.props.articleOptionsChosen.quantity} en el carrito!
                             </span>
                         }
                         <span className="ViewArticlePrice">{formatNumber(this.props.item.price)}</span>
@@ -145,7 +160,20 @@ class ViewArticle extends React.Component {
                                     }
                                 </form>
                                 <br />
-                                <Button className="BtnAddArticle" onClick={this.handleClickAdd} block={true} variant="outline-success">Agregar al carrito </Button>
+                                {
+                                    this.props.modalType == 'NEW' &&
+                                    <Button className="BtnAddArticle" onClick={this.handleClickAdd} block={true} variant="outline-success">Agregar al carrito </Button>
+                                }
+                                {
+                                    this.props.modalType == 'EDIT' &&
+                                    <Button
+                                        className="BtnAddArticle"
+                                        onClick={this.handleClickUpdateItem}
+                                        block={true}
+                                        variant="outline-success">
+                                        Confirmar cambio
+                                     </Button>
+                                }
                             </div>
                         </div>
                     </Card.Body>
