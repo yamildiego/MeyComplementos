@@ -20,6 +20,7 @@ class CheckOut extends React.Component {
         showErrors: false,
         errorGenerateMP: false,
         linkMP: null,
+        saleId: null,
         dataPeronal:
         {
             name: '',
@@ -66,6 +67,18 @@ class CheckOut extends React.Component {
         else {
             if (isValidEmail(this.state.dataPeronal.email)) {
                 this.setState({ loading: true });
+
+                fetch(Constants.urlServer + '/newSale', {
+                    method: 'POST',
+                    body: JSON.stringify({ dataCart: this.state.dataCart, dataPersonal: this.state.dataPeronal }),
+                    headers: {
+                        'Content-Type': 'application/json; charset=utf-8',
+                        'Accept': 'application/json'
+                    }
+                }).then(response => response.json())
+                    .then(response => {
+                        this.setState({ saleId: response._id })
+                    });
 
                 fetch(Constants.urlServerPHP + '/generateLinkMP', {
                     method: 'POST',
@@ -153,7 +166,7 @@ class CheckOut extends React.Component {
                             }
                             {
                                 (this.state.status == 2 && this.state.errorGenerateMP == true) &&
-                                <div className="alert alert-danger text-center w-50 mt-3 mx-auto">Ocurrió un error al generar el link de pago, porfavor póngase en contacto con nosotros <Link to="/contacto">aqui</Link> para solucionarlo.</div>
+                                <div className="alert alert-danger text-center w-80 mt-3 mx-auto">Ocurrió un error al generar el link de pago, porfavor póngase en contacto con nosotros, enviandonos el siguiente código #{this.state.saleId} <Link to="/contacto">aqui</Link> para generar el link de manera manual. Disculpe las molestias</div>
                             }
                             {
                                 this.state.status == 3 &&
