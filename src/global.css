@@ -16,7 +16,7 @@ span.required {
 }
 
 .formInputError {
-    border: 1px solid #f32e31;
+    border: 1px solid #f32e31!important;
 }
 
 .non-selectable {

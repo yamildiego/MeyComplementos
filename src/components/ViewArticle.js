@@ -3,7 +3,7 @@ import { Card, ButtonGroup, Button, Image } from 'react-bootstrap';
 import Slider from "react-slick";
 import formatNumber from './../utilities/formatNumber';
 import MultiToggle from 'react-multi-toggle';
-import 'react-multi-toggle/style.css';
+import ToggleStyle from 'react-multi-toggle/style.css';
 import ImagesNotFound from './../images/images-not-found.gif';
 import './styles/ViewArticle.css';
 

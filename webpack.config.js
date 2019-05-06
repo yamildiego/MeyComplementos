@@ -2,7 +2,6 @@ const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
-
 module.exports = (env) => {
     const plugins = [
         new ExtractTextPlugin("css/[name].css")
@@ -22,17 +21,17 @@ module.exports = (env) => {
         output: {
             path: path.resolve(__dirname, 'dist'),
             filename: 'js/[name].js',
-            publicPath: path.resolve(__dirname, 'dist') + "/",
+            publicPath: "/",
             chunkFilename: 'js/[id].[chunkhash].js',
         },
         devServer: {
             port: 9000,
+            historyApiFallback: true,
+            contentBase: './'
         },
         module: {
             rules: [
                 {
-                    // test: que tipo de archivo quiero reconocer,
-                    // use: que loader se va a encargar del archivo
                     test: /\.(js|jsx)$/,
                     exclude: /(node_modules)/,
                     use: {
@@ -56,7 +55,7 @@ module.exports = (env) => {
                     })
                 },
                 {
-                    test: /\.(jpg|png|gif|svg)$/,
+                    test: /\.(jpg|png|gif|svg|eot|woff|woff2|ttf)$/,
                     use: {
                         loader: 'url-loader',
                         options: {

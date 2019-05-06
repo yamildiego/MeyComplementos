@@ -10,6 +10,7 @@ import CheckOut from '../components/CheckOut.js';
 import CartDirectAccess from '../components/CartDirectAccess.js';
 import localforage from 'localforage';
 import Constants from './../config';
+import data from './../api.json';
 import './../components/styles/Home.css';
 
 class Home extends React.Component {
@@ -41,22 +42,17 @@ class Home extends React.Component {
     }
     componentDidMount = () => {
         this.countdown = setInterval(this.timer, 100);
-        fetch(Constants.urlServer + '/getCategories')
-            .then(response => response.json()).then(response => {
-                this.setState({ categories: response });
-            });
-        fetch(Constants.urlServer + '/getArticles')
-            .then(response => response.json())
-            .then(response => {
-                this.setState({ articles: response, articlesFiltered: response, loading: false });
-            });
+        // fetch(Constants.urlServer + '/getCategories')
+        //     .then(response => response.json()).then(response => {
+        //         this.setState({ categories: response });
+        //     });
+        // fetch(Constants.urlServer + '/getArticles')
+        //     .then(response => response.json())
+        //     .then(response => {
+        //         this.setState({ articles: response, articlesFiltered: response, loading: false });
+        //     });
+        this.setState({ categories: data.categories, articles: data.articles, articlesFiltered: data.articles, loading: false });
         var _this = this;
-        // localforage.setItem('dataCart', {
-        //     cartItems: new Array(),
-        //     totalItems: 0,
-        //     total: 0,
-        //     maxId: 0,
-        // });
         localforage.getItem('dataCart', function (err, value) {
             if (typeof value === "object" && value !== null) _this.setState({ dataCart: value });
         });

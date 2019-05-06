@@ -9,7 +9,8 @@
     "build:env": "start c:/Projects/MeyComplementos/dev/Start.bat",
     "build": "webpack",
     "build:local": "webpack --env.NODE_ENV=local",
-    "build:prod": "webpack -p --env.NODE_ENV=production"
+    "build:prod": "webpack -p --env.NODE_ENV=production",
+    "build:prod2": "webpack --mode production"
   },
   "keywords": [
     "webpack"
