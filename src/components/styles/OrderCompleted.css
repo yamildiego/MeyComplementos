@@ -1,4 +1,24 @@
+.OrderCompleted h1, .OrderCompleted h2, .OrderCompleted h5 {
+    text-align: center;
+}
+
+.OrderCompleted h1 {
+    color: #0bb50b;
+}
+
+.OrderCompleted .in_process, .OrderCompleted .pending {
+    color: #fdff59;
+}
+
 .OrderCompleted {
+    width: 50%;
+    background: #fff;
+    padding: 2rem;
+    margin: 4rem auto;
+    border-radius: 10px
+}
+
+.OrderCompletedBody {
     padding-bottom: 2rem;
 }
 

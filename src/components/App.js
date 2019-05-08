@@ -7,6 +7,7 @@ import Contact from '../pages/Contact';
 import CookiesPolicy from '../pages/CookiesPolicy';
 import HandleError from './HandleError';
 import AlertCookies from './AlertCookies';
+import OrderCompleted from './OrderCompleted';
 
 class App extends React.Component {
     render() {
@@ -16,7 +17,7 @@ class App extends React.Component {
                     <AlertCookies />
                     <HandleError>
                         <Switch>
-                            <Route exact path="/" component={Home} />
+                            <Route exact path="/" render={(props) => <Home {...props} />} />
                             <Route exact path="/medios-de-pago" component={PaymentMethods} />
                             <Route exact path="/contacto" component={Contact} />
                             <Route exact path="/politica-de-cookies" component={CookiesPolicy} />

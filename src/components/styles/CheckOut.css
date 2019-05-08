@@ -4,5 +4,10 @@
     border-radius: 5px;
     max-width: 1024px;
     margin: auto;
-    min-width: 475px;
+}
+
+@media only screen and (max-width: 768px) {
+    .w-xs-100 {
+        width: 100%;
+    }
 }

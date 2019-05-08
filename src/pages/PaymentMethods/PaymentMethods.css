@@ -45,3 +45,9 @@
     letter-spacing: 1px;
     user-select: none;
 }
+
+@media only screen and (max-width: 768px) {
+    .BannerMP {
+        height: 60px;
+    }
+}

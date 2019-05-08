@@ -6,7 +6,6 @@ import DeliveryData from './DeliveryData';
 import OrderSummary from './OrderSummary';
 import Loading from './Loading';
 import Pay from './Pay';
-import OrderCompleted from './OrderCompleted';
 import Constants from './../config';
 import queryString from 'querystring';
 import isValidEmail from './../utilities/isValidEmail';
@@ -108,14 +107,8 @@ class CheckOut extends React.Component {
         }
     }
     nextStepComplete = e => {
-        if (this.state.errorGenerateMP == false) {
+        if (this.state.errorGenerateMP == false)
             window.open(this.state.linkMP, '_blank');
-        }
-        // this.setState({
-        //     showErrors: false,
-        //     status: this.state.status + 1,
-        // });
-        // this.props.cleanCart();
     }
     backStep = e => {
         this.setState({ status: this.state.status - 1 })
@@ -138,7 +131,7 @@ class CheckOut extends React.Component {
                 <div className="CheckOutContainer">
                     <Loading loading={this.state.loading} />
                     <div className="row">
-                        <div className={(this.state.status != 3) ? "col-lg-8" : "col-lg-12"}>
+                        <div className="col-lg-8">
                             {
                                 this.state.status == 0 &&
                                 <ViewCart
@@ -168,17 +161,8 @@ class CheckOut extends React.Component {
                                 (this.state.status == 2 && this.state.errorGenerateMP == true) &&
                                 <div className="alert alert-danger text-center w-80 mt-3 mx-auto">Ocurrió un error al generar el link de pago, porfavor póngase en contacto con nosotros, enviandonos el siguiente código #{this.state.saleId} <Link to="/contacto">aqui</Link> para generar el link de manera manual. Disculpe las molestias</div>
                             }
-                            {
-                                this.state.status == 3 &&
-                                <OrderCompleted
-                                    id={"74538DE"}
-                                    email={this.state.dataPeronal.email}
-                                />
-                            }
-
                         </div>
                         {
-                            this.state.status != 3 &&
                             <div className="col-lg-4">
                                 <OrderSummary
                                     nextStepDeliveryData={this.nextStepDeliveryData}

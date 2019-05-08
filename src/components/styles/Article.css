@@ -24,6 +24,7 @@
     -moz-transition: all .2s linear;
     -o-transition: all .2s linear;
     transition: all .2s linear;
+    padding: 2.25rem!important;
 }
 
 .Article-Body .Article-Title {
@@ -32,6 +33,8 @@
     background: #ffffff7a;
     text-align: center;
     padding: 10px;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .Article-Body .Article-Price {
@@ -61,4 +64,23 @@
     height: 100%;
     -o-object-fit: cover;
     object-fit: cover;
+}
+
+@media only screen and (max-width: 1024px) {
+    .Article-Body {
+        padding: 0.25rem!important;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .Article-Body {
+        padding: 0.25rem!important;
+    }
+    .Article-Title {
+        border: 1px solid black;
+        width: 100%;
+        overflow: hidden;
+        white-space: nowrap;
+        margin-bottom: 0!important;
+    }
 }

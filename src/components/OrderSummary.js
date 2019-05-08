@@ -34,7 +34,7 @@ class OrderSummary extends React.Component {
                         type="button"
                         onClick={this.handleClickNext}
                         disabled={(this.state.dataCart.totalItems == 0)}
-                        className="btn btn-success btn-lg w-100">
+                        className="btn btn-success btn-lg w-100 d-none d-sm-block">
                         Continuar&nbsp;&nbsp;
                     <FontAwesomeIcon icon="long-arrow-alt-right" />
                     </button>

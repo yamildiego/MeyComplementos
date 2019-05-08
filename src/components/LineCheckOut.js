@@ -7,7 +7,7 @@ class LineCheckOut extends React.Component {
         return (
             <div className="LineCheckOut">
                 <div className="LineCheckOutContainer">
-                    <a className="LineCheckOutContainerLink" onClick={this.props.toggleViewCart}>Seguir comprando</a>
+                    <a className="LineCheckOutContainerLink d-none d-sm-block" onClick={this.props.toggleViewCart}>Seguir comprando</a>
                     <ul>
                         {
                             statusText.map((item, index) => {

@@ -150,11 +150,11 @@ class DeliveryData extends React.Component {
                             <button
                                 type="button"
                                 onClick={this.props.backStep}
-                                className="btn btn-outline-dark btn-lg mr-5">
+                                className="btn btn-outline-dark btn-lg mr-5 mt-2 w-xs-100">
                                 Volver&nbsp;&nbsp;
                                 </button>
                             <button
-                                className="btn btn-outline-success btn-lg">
+                                className="btn btn-outline-success btn-lg mt-2 w-xs-100">
                                 Continuar&nbsp;&nbsp;
                                 <FontAwesomeIcon icon="long-arrow-alt-right" />
                             </button>

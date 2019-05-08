@@ -8,7 +8,7 @@ const PaymentMethods = props => (
     <div className="container PaymentMethods">
         <h1>Beneficios</h1>
         <div className="BannerMP">
-            <Image src={Banner} />
+            <Image className="w-100" src={Banner} />
         </div>
         <h2>Promociones pagando a través de MercadoPago:</h2>
         <Row>
