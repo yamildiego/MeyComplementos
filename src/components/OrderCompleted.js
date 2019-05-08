@@ -2,6 +2,9 @@ import React from 'react';
 import './styles/OrderCompleted.css';
 
 class OrderCompleted extends React.Component {
+    componentDidMount = () => {
+        this.props.cleanCart();
+    }
     render() {
         return (
             <div className="OrderCompleted">
@@ -43,6 +46,7 @@ class OrderCompleted extends React.Component {
                         </div>
                     </React.Fragment>
                 }
+                <a href="/" className="btn btn-outline-success btn-lg btn-block">Volver al sitio web</a>
             </div>
         )
     }
