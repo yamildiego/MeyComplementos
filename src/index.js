@@ -5,7 +5,7 @@ import { fab } from '@fortawesome/free-brands-svg-icons';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import 'react-multi-toggle/style.css';
-import './bootstrap.css';
+import './bootstrap.min.css';
 import './fonts/fonts.css';
 import './animate.css';
 import './index.css';
