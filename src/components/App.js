@@ -7,7 +7,6 @@ import Contact from '../pages/Contact';
 import CookiesPolicy from '../pages/CookiesPolicy';
 import HandleError from './HandleError';
 import AlertCookies from './AlertCookies';
-import OrderCompleted from './OrderCompleted';
 
 class App extends React.Component {
     render() {

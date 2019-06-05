@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Card } from 'react-bootstrap'
-import formatNumber from './../utilities/formatNumber';
 import ImageNotFound from './../images/images-not-found.gif'
 import './styles/Article.css';
 
@@ -16,7 +15,7 @@ class Article extends React.PureComponent {
                     <div className="ArticleImage">
                         {
                             this.props.images.length > 0
-                                ? <Card.Img variant="top" src={this.props.images[0].path} />
+                                ? <Card.Img variant="top" src={require(`./../images/articles/${this.props.images[0].path}`)} />
                                 : <Card.Img variant="top" src={ImageNotFound} />
                         }
                     </div>

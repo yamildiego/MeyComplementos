@@ -8,14 +8,14 @@ class Categories extends React.Component {
         categoryFiltered: this.props.category
     }
     componentWillReceiveProps = (nextProps) => {
-        if (nextProps.category != this.state.categoryFiltered)
+        if (nextProps.category !== this.state.categoryFiltered)
             this.setState({ categoryFiltered: nextProps.category });
-        if (nextProps.category == 0)
+        if (nextProps.category === 0)
             this.setState({ categoryShow: nextProps.category });
     }
     handleOnChange = (e, item, fatherId) => {
         if (e.target.checked) {
-            if (item.subcategories == undefined || item.subcategories.length == 0)
+            if (item.subcategories === undefined || item.subcategories.length === 0)
                 this.setState({ categoryShow: fatherId });
             else
                 this.setState({ categoryShow: item.id });
@@ -31,7 +31,7 @@ class Categories extends React.Component {
                         return (
                             <React.Fragment key={item.id} >
                                 {
-                                    this.state.categoryShow == 0 &&
+                                    this.state.categoryShow === 0 &&
                                     <div className="list-group-item">
                                         <div className="Category">
                                             <div className="form-check">
@@ -39,7 +39,7 @@ class Categories extends React.Component {
                                                     {item.name}
                                                     <input
                                                         type="checkbox"
-                                                        checked={(this.state.categoryFiltered == item.id)}
+                                                        checked={(this.state.categoryFiltered === item.id)}
                                                         onChange={(e) => { this.handleOnChange(e, item, 0) }}
                                                     />
                                                     <span className="checkmark"></span>
@@ -49,7 +49,7 @@ class Categories extends React.Component {
                                     </div>
                                 }
                                 {
-                                    (this.state.categoryShow == item.id && item.subcategories != undefined) &&
+                                    (this.state.categoryShow === item.id && item.subcategories !== undefined) &&
                                     item.subcategories.map((subcategory) => {
                                         return (
                                             <div key={subcategory.id} className="list-group-item" >
@@ -59,7 +59,7 @@ class Categories extends React.Component {
                                                             {subcategory.name}
                                                             <input
                                                                 type="checkbox"
-                                                                checked={(this.state.categoryFiltered == subcategory.id)}
+                                                                checked={(this.state.categoryFiltered === subcategory.id)}
                                                                 onChange={(e) => { this.handleOnChange(e, subcategory, item.id) }}
                                                             />
                                                             <span className="checkmark"></span>

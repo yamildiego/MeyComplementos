@@ -3,37 +3,37 @@
         {
             "id": 1,
             "name": "Nuevo Banco del Chaco S.A. ",
-            "image": "src/images/pays/logo-chaco.png",
+            "image": "logo-chaco.png",
             "plan": 6
         },
         {
             "id": 2,
             "name": "Banco Coinag",
-            "image": "src/images/pays/logo-coinag.png",
+            "image": "logo-coinag.png",
             "plan": 6
         },
         {
             "id": 3,
             "name": "Tarjeta MercadoPago",
-            "image": "src/images/pays/logo-mercadopago.png",
+            "image": "logo-mercadopago.png",
             "plan": 3
         },
         {
             "id": 4,
             "name": "Banco Patagonia",
-            "image": "src/images/pays/logo-patagonia.png",
+            "image": "logo-patagonia.png",
             "plan": 3
         },
         {
             "id": 5,
             "name": "Banco Ciudad",
-            "image": "src/images/pays/logo-ciudad.png",
+            "image": "logo-ciudad.png",
             "plan": 3
         },
         {
             "id": 6,
             "name": "Banco De Tierra Del Fuego",
-            "image": "src/images/pays/logo-tdf.png",
+            "image": "logo-tdf.png",
             "plan": 3
         }
     ]

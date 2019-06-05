@@ -11,9 +11,9 @@ class Articles extends React.Component {
         categories: this.props.categories
     }
     componentWillReceiveProps = (nextProps) => {
-        if (nextProps.category != this.state.category)
+        if (nextProps.category !== this.state.category)
             this.setState({ category: nextProps.category })
-        if (nextProps.categories != this.state.categories)
+        if (nextProps.categories !== this.state.categories)
             this.setState({ categories: nextProps.categories })
     }
     render() {
@@ -21,7 +21,7 @@ class Articles extends React.Component {
             <React.Fragment>
                 <Search valueSearch={this.props.valueSearch} setFilterBySearch={this.props.setFilterBySearch}></Search>
                 <Breadcrumbs setFilterByCategory={this.props.setFilterByCategory} category={this.state.category} categories={this.state.categories} />
-                {this.props.articles.length == 0 &&
+                {this.props.articles.length === 0 &&
                     <React.Fragment>
                         <div className="ArticlesBoxNoItems">
                             <h2 className="w-100 text-center">No hay publicaciones que coincidan con tu búsqueda.</h2>

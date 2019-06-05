@@ -19,7 +19,7 @@ class Pay extends React.Component {
                             <Image src={LogoMP}></Image>
                         </div>
                         <div className="text-center">
-                            <a target="_blank" className="btn btn-info w-50" href={this.props.linkMP}>Pagar</a>
+                            <a target="_blank" rel="noopener noreferrer" className="btn btn-info w-50" href={this.props.linkMP}>Pagar</a>
                         </div>
                     </div>
                 }

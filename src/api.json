@@ -100,12 +100,12 @@
                 {
                     "id": 1,
                     "type": "image",
-                    "path": "src/images/articles/CN45342.png"
+                    "path": "CN45342.png"
                 },
                 {
                     "id": 2,
                     "type": "image",
-                    "path": "src/images/articles/CN45343.png"
+                    "path": "CN45343.png"
                 }
             ],
             "sizes": [
@@ -146,22 +146,22 @@
                 {
                     "id": 1,
                     "type": "image",
-                    "path": "src/images/articles/95384.png"
+                    "path": "95384.png"
                 },
                 {
                     "id": 2,
                     "type": "image",
-                    "path": "src/images/articles/95386.jpg"
+                    "path": "95386.jpg"
                 },
                 {
                     "id": 3,
                     "type": "image",
-                    "path": "src/images/articles/95388.jpg"
+                    "path": "95388.jpg"
                 },
                 {
                     "id": 4,
                     "type": "video",
-                    "path": "src/images/articles/95388.mp4"
+                    "path": "95388.mp4"
                 }
             ],
             "sizes": [
@@ -202,27 +202,27 @@
                 {
                     "id": 1,
                     "type": "image",
-                    "path": "src/images/articles/CA543.png"
+                    "path": "CA543.png"
                 },
                 {
                     "id": 2,
                     "type": "image",
-                    "path": "src/images/articles/CA544.png"
+                    "path": "CA544.png"
                 },
                 {
                     "id": 3,
                     "type": "image",
-                    "path": "src/images/articles/CA545.png"
+                    "path": "CA545.png"
                 },
                 {
                     "id": 4,
                     "type": "video",
-                    "path": "src/images/articles/CA544.mp4"
+                    "path": "CA544.mp4"
                 },
                 {
                     "id": 5,
                     "type": "image",
-                    "path": "src/images/articles/CA5463.png"
+                    "path": "CA5463.png"
                 }
             ],
             "sizes": [
@@ -267,12 +267,12 @@
                 {
                     "id": 1,
                     "type": "image",
-                    "path": "src/images/articles/25348.jpg"
+                    "path": "25348.jpg"
                 },
                 {
                     "id": 2,
                     "type": "image",
-                    "path": "src/images/articles/343484.png"
+                    "path": "343484.png"
                 }
             ],
             "sizes": [
@@ -313,12 +313,12 @@
                 {
                     "id": 1,
                     "type": "image",
-                    "path": "src/images/articles/ML87834.png"
+                    "path": "ML87834.png"
                 },
                 {
                     "id": 2,
                     "type": "image",
-                    "path": "src/images/articles/ML87134.png"
+                    "path": "ML87134.png"
                 }
             ],
             "sizes": [
@@ -351,12 +351,12 @@
                 {
                     "id": 1,
                     "type": "image",
-                    "path": "src/images/articles/ML4534.png"
+                    "path": "ML4534.png"
                 },
                 {
                     "id": 2,
                     "type": "image",
-                    "path": "src/images/articles/ML4535.png"
+                    "path": "ML4535.png"
                 }
             ],
             "sizes": [
@@ -393,12 +393,12 @@
                 {
                     "id": 1,
                     "type": "image",
-                    "path": "src/images/articles/CAD9876543.png"
+                    "path": "CAD9876543.png"
                 },
                 {
                     "id": 2,
                     "type": "image",
-                    "path": "src/images/articles/CAD9876577.png"
+                    "path": "CAD9876577.png"
                 }
             ],
             "sizes": [
@@ -470,12 +470,12 @@
                 {
                     "id": 1,
                     "type": "image",
-                    "path": "src/images/articles/DE8764.png"
+                    "path": "DE8764.png"
                 },
                 {
                     "id": 2,
                     "type": "image",
-                    "path": "src/images/articles/DE8754.png"
+                    "path": "DE8754.png"
                 }
             ],
             "sizes": [
@@ -528,17 +528,17 @@
                 {
                     "id": 1,
                     "type": "image",
-                    "path": "src/images/articles/AD98534.png"
+                    "path": "AD98534.png"
                 },
                 {
                     "id": 2,
                     "type": "image",
-                    "path": "src/images/articles/AD98544.png"
+                    "path": "AD98544.png"
                 },
                 {
                     "id": 2,
                     "type": "image",
-                    "path": "src/images/articles/AD985488.png"
+                    "path": "AD985488.png"
                 }
             ],
             "sizes": [
@@ -583,27 +583,27 @@
                 {
                     "id": 1,
                     "type": "image",
-                    "path": "src/images/articles/DE32534.png"
+                    "path": "DE32534.png"
                 },
                 {
                     "id": 2,
                     "type": "image",
-                    "path": "src/images/articles/DE32535.png"
+                    "path": "DE32535.png"
                 },
                 {
                     "id": 3,
                     "type": "image",
-                    "path": "src/images/articles/DE32585.png"
+                    "path": "DE32585.png"
                 },
                 {
                     "id": 4,
                     "type": "image",
-                    "path": "src/images/articles/DE325346.png"
+                    "path": "DE325346.png"
                 },
                 {
                     "id": 5,
                     "type": "image",
-                    "path": "src/images/articles/DE32334.png"
+                    "path": "DE32334.png"
                 }
             ],
             "sizes": [
@@ -658,25 +658,25 @@
                     "_id": "5ccd0e63f82f1413c04c0d53",
                     "id": 1,
                     "type": "image",
-                    "path": "src/images/articles/A32534.png"
+                    "path": "A32534.png"
                 },
                 {
                     "_id": "5ccd0e63f82f1413c04c0d52",
                     "id": 2,
                     "type": "image",
-                    "path": "src/images/articles/A32535.png"
+                    "path": "A32535.png"
                 },
                 {
                     "_id": "5ccd0e63f82f1413c04c0d51",
                     "id": 3,
                     "type": "image",
-                    "path": "src/images/articles/A32536.png"
+                    "path": "A32536.png"
                 },
                 {
                     "_id": "5ccd0e63f82f1413c04c0d50",
                     "id": 4,
                     "type": "image",
-                    "path": "src/images/articles/A32538.png"
+                    "path": "A32538.png"
                 }
             ],
             "sizes": [
@@ -727,17 +727,17 @@
                 {
                     "id": 1,
                     "type": "image",
-                    "path": "src/images/articles/AA32534.png"
+                    "path": "AA32534.png"
                 },
                 {
                     "id": 2,
                     "type": "image",
-                    "path": "src/images/articles/AA32535.png"
+                    "path": "AA32535.png"
                 },
                 {
                     "id": 3,
                     "type": "image",
-                    "path": "src/images/articles/AA32536.png"
+                    "path": "AA32536.png"
                 }
             ],
             "sizes": [
@@ -782,12 +782,12 @@
                 {
                     "id": 1,
                     "type": "image",
-                    "path": "src/images/articles/CNB6535.png"
+                    "path": "CNB6535.png"
                 },
                 {
                     "id": 2,
                     "type": "image",
-                    "path": "src/images/articles/CNB6536.png"
+                    "path": "CNB6536.png"
                 }
             ],
             "sizes": [

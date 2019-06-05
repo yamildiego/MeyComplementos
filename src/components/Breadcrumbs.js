@@ -8,9 +8,9 @@ class Breadcrumbs extends React.Component {
         categories: this.props.categories
     }
     componentWillReceiveProps = (nextProps) => {
-        if (nextProps.category != this.state.category)
+        if (nextProps.category !== this.state.category)
             this.setState({ category: nextProps.category })
-        if (nextProps.categories != this.state.categories)
+        if (nextProps.categories !== this.state.categories)
             this.setState({ categories: nextProps.categories })
     }
     handleOnClick = (fatherId) => {
@@ -23,17 +23,17 @@ class Breadcrumbs extends React.Component {
                     this.state.categories.map((item, index) => {
                         return (
                             <React.Fragment key={index}>
-                                {item.id == this.state.category &&
+                                {item.id === this.state.category &&
                                     <span className="BreadcrumbsLabel">
                                         <FontAwesomeIcon onClick={() => this.handleOnClick(0)} className="BreadcrumbsClose" icon="times" />
                                         {item.name}
                                     </span>
                                 }
                                 {
-                                    item.subcategories != undefined &&
+                                    item.subcategories !== undefined &&
                                     item.subcategories.map(subcategory => {
                                         return (
-                                            subcategory.id == this.state.category &&
+                                            subcategory.id === this.state.category &&
                                             <React.Fragment key={subcategory.id} >
                                                 <span className="BreadcrumbsLabel">
                                                     <FontAwesomeIcon onClick={() => this.handleOnClick(0)} className="BreadcrumbsClose" icon="times" />

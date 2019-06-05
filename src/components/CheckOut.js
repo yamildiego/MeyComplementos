@@ -34,7 +34,7 @@ class CheckOut extends React.Component {
         }
     }
     componentWillReceiveProps = nextProps => {
-        if (this.props.dataCart != nextProps.dataCart) {
+        if (this.props.dataCart !== nextProps.dataCart) {
             this.setState({ dataCart: nextProps.dataCart });
         }
     }
@@ -55,13 +55,13 @@ class CheckOut extends React.Component {
     nextStepPay = e => {
         if (e)
             e.preventDefault();
-        if (this.state.dataPeronal.name == "" ||
-            this.state.dataPeronal.lastname == "" ||
-            this.state.dataPeronal.street == "" ||
-            this.state.dataPeronal.numberStreet == "" ||
-            this.state.dataPeronal.postCode == "" ||
-            this.state.dataPeronal.phone == "" ||
-            this.state.dataPeronal.email == "")
+        if (this.state.dataPeronal.name === "" ||
+            this.state.dataPeronal.lastname === "" ||
+            this.state.dataPeronal.street === "" ||
+            this.state.dataPeronal.numberStreet === "" ||
+            this.state.dataPeronal.postCode === "" ||
+            this.state.dataPeronal.phone === "" ||
+            this.state.dataPeronal.email === "")
             this.setState({ showErrors: true });
         else {
             if (isValidEmail(this.state.dataPeronal.email)) {
@@ -89,7 +89,7 @@ class CheckOut extends React.Component {
                 })
                     .then(response => response.json())
                     .then(response => {
-                        if (response.status == true)
+                        if (response.status === true)
                             this.setState({ loading: false, linkMP: response.data, status: this.state.status + 1 })
                     }).catch((error) => {
                         this.setState({ loading: false, errorGenerateMP: true, status: this.state.status + 1 })
@@ -107,7 +107,7 @@ class CheckOut extends React.Component {
         }
     }
     nextStepComplete = e => {
-        if (this.state.errorGenerateMP == false)
+        if (this.state.errorGenerateMP === false)
             window.open(this.state.linkMP, '_blank');
     }
     backStep = e => {
@@ -133,18 +133,17 @@ class CheckOut extends React.Component {
                     <div className="row">
                         <div className="col-lg-8">
                             {
-                                this.state.status == 0 &&
+                                this.state.status === 0 &&
                                 <ViewCart
                                     toggleViewCart={this.props.toggleViewCart}
                                     handleUpdateQuantity={this.props.handleUpdateQuantity}
                                     openModalUpdate={this.props.openModalUpdate}
                                     dataCart={this.state.dataCart}
-                                    toggleViewCart={this.props.toggleViewCart}
                                     nextStep={this.nextStepDeliveryData}
                                 />
                             }
                             {
-                                this.state.status == 1 &&
+                                this.state.status === 1 &&
                                 <DeliveryData
                                     dataPeronal={this.state.dataPeronal}
                                     handleChangeDataPersonal={this.handleChangeDataPersonal}
@@ -154,11 +153,11 @@ class CheckOut extends React.Component {
                                 />
                             }
                             {
-                                (this.state.status == 2 && this.state.errorGenerateMP == false) &&
+                                (this.state.status === 2 && this.state.errorGenerateMP === false) &&
                                 <Pay linkMP={this.state.linkMP} nextStepComplete={this.nextStepComplete} />
                             }
                             {
-                                (this.state.status == 2 && this.state.errorGenerateMP == true) &&
+                                (this.state.status === 2 && this.state.errorGenerateMP === true) &&
                                 <div className="alert alert-danger text-center w-80 mt-3 mx-auto">Ocurrió un error al generar el link de pago, porfavor póngase en contacto con nosotros, enviandonos el siguiente código #{this.state.saleId} <Link to="/contacto">aqui</Link> para generar el link de manera manual. Disculpe las molestias</div>
                             }
                         </div>

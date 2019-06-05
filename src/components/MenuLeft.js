@@ -10,7 +10,7 @@ class MenuLeft extends React.Component {
         category: this.props.category
     }
     componentWillReceiveProps = (nextProps) => {
-        if (nextProps.category != this.state.category)
+        if (nextProps.category !== this.state.category)
             this.setState({ category: nextProps.category });
     }
     render() {

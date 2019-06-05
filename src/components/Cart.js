@@ -40,7 +40,7 @@ class Cart extends React.Component {
                         })
                     }
                     {
-                        (this.props.dataCart.cartItems != undefined && this.props.dataCart.cartItems.length > 0) &&
+                        (this.props.dataCart.cartItems !== undefined && this.props.dataCart.cartItems.length > 0) &&
                         <ListGroup.Item className="CartTotal">
                             <FontAwesomeIcon className="CartCheck" icon="check-circle" color="#55b96c" />
                             <span>Total</span>

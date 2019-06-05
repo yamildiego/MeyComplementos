@@ -26,9 +26,9 @@ class ContactForm extends React.Component {
     }
     handleSubmit = e => {
         if (e) e.preventDefault();
-        if (this.state.form.name == "" ||
-            this.state.form.message == "" ||
-            this.state.form.email == "") {
+        if (this.state.form.name === "" ||
+            this.state.form.message === "" ||
+            this.state.form.email === "") {
             this.setState({ showErrors: true });
         } else {
             this.setState({ loading: true });
@@ -74,7 +74,7 @@ class ContactForm extends React.Component {
                         <input
                             onChange={this.handleChange}
                             type="text"
-                            className={(this.state.showErrors && this.state.form.name == "") ? "form-control formInputError" : "form-control"}
+                            className={(this.state.showErrors && this.state.form.name === "") ? "form-control formInputError" : "form-control"}
                             id="inputName"
                             name="name"
                             placeholder="Nombre"
@@ -85,7 +85,7 @@ class ContactForm extends React.Component {
                         <input
                             onChange={this.handleChange}
                             type="email"
-                            className={(this.state.showErrors && this.state.form.email == "") ? "form-control formInputError" : "form-control"}
+                            className={(this.state.showErrors && this.state.form.email === "") ? "form-control formInputError" : "form-control"}
                             id="inputEmail"
                             name="email"
                             placeholder="Correo electrónico"
@@ -95,7 +95,7 @@ class ContactForm extends React.Component {
                         <label htmlFor="inputMessage"><span className="required">(*)</span>Mensaje</label>
                         <textarea
                             onChange={this.handleChange}
-                            className={(this.state.showErrors && this.state.form.message == "") ? "form-control formInputError" : "form-control"}
+                            className={(this.state.showErrors && this.state.form.message === "") ? "form-control formInputError" : "form-control"}
                             id="inputMessage"
                             name="message"
                             placeholder="Mensaje"
@@ -103,11 +103,11 @@ class ContactForm extends React.Component {
                             value={this.state.form.message} />
                     </div>
                     {
-                        this.state.messageSuccess != '' &&
+                        this.state.messageSuccess !== '' &&
                         <p className="alert alert-info">{this.state.messageSuccess}</p>
                     }
                     {
-                        this.state.messageError != '' &&
+                        this.state.messageError !== '' &&
                         <p className="alert alert-danger">{this.state.messageError}</p>
                     }
                     <button

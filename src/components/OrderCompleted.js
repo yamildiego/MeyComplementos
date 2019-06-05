@@ -9,7 +9,7 @@ class OrderCompleted extends React.Component {
         return (
             <div className="OrderCompleted">
                 {
-                    this.props.collectionStatus == "approved" &&
+                    this.props.collectionStatus === "approved" &&
                     <React.Fragment>
                         <h1>El pedido se ha completado!</h1>
                         <div className="OrderCompletedBody">
@@ -21,7 +21,7 @@ class OrderCompleted extends React.Component {
                     </React.Fragment>
                 }
                 {
-                    this.props.collectionStatus == "in_process" &&
+                    this.props.collectionStatus === "in_process" &&
                     <React.Fragment>
                         <h1>El pedido se ha completado!</h1>
                         <h2 className={this.props.collectionStatus}>El pago se esta procesando.</h2>
@@ -34,7 +34,7 @@ class OrderCompleted extends React.Component {
                     </React.Fragment>
                 }
                 {
-                    this.props.collectionStatus == "pending" &&
+                    this.props.collectionStatus === "pending" &&
                     <React.Fragment>
                         <h1>El pedido se ha completado!</h1>
                         <h2 className={this.props.collectionStatus}>El pago se encuentra pendiente.</h2>

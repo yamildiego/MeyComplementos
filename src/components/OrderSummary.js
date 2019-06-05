@@ -9,17 +9,17 @@ class OrderSummary extends React.Component {
         status: this.props.status
     }
     componentWillReceiveProps = nextProps => {
-        if (this.props != nextProps)
+        if (this.props !== nextProps)
             this.setState({ dataCart: nextProps.dataCart, status: nextProps.status });
     }
     handleClickNext = () => {
-        if (this.state.status == 0) {
+        if (this.state.status === 0) {
             this.props.nextStepDeliveryData();
         } else {
-            if (this.state.status == 1) {
+            if (this.state.status === 1) {
                 this.props.nextStepPay();
             } else {
-                if (this.state.status == 2) {
+                if (this.state.status === 2) {
                     this.props.nextStepComplete();
                 }
             }
@@ -33,7 +33,7 @@ class OrderSummary extends React.Component {
                     <button
                         type="button"
                         onClick={this.handleClickNext}
-                        disabled={(this.state.dataCart.totalItems == 0)}
+                        disabled={(this.state.dataCart.totalItems === 0)}
                         className="btn btn-success btn-lg w-100 d-none d-sm-block">
                         Continuar&nbsp;&nbsp;
                     <FontAwesomeIcon icon="long-arrow-alt-right" />

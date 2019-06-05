@@ -6,7 +6,7 @@ import './styles/ViewCart.css';
 class ViewCart extends React.Component {
     state = { dataCart: this.props.dataCart }
     componentWillReceiveProps = nextProps => {
-        if (this.props.dataCart != nextProps.dataCart) {
+        if (this.props.dataCart !== nextProps.dataCart) {
             this.setState({ dataCart: nextProps.dataCart });
         }
     }
@@ -18,7 +18,7 @@ class ViewCart extends React.Component {
                     <h1>Tu carrito tiene <span>{this.state.dataCart.totalItems} Items</span></h1>
                 }
                 {
-                    this.state.dataCart.totalItems == 0 &&
+                    this.state.dataCart.totalItems === 0 &&
                     <React.Fragment>
                         <h1>Tu carrito está vacío</h1>
                         <button type="button" className="btn btn-outline-dark btn-lg mt-4 ml-4" onClick={this.props.toggleViewCart}>Seguir comprando</button>

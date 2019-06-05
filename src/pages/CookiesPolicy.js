@@ -26,9 +26,9 @@ const CookiesPolicy = () => {
                 <p>En la mayoría de los navegadores web se ofrece la posibilidad de permitir, bloquear o eliminar las cookies instaladas en su equipo.</p>
                 <p>A continuación puedes acceder a la configuración de los navegadores webs más frecuentes para aceptar, instalar o desactivar las cookies:</p>
                 <ul>
-                    <li><a target="_blank" href="https://support.google.com/chrome/answer/95647?hl=es">Configurar cookies en Google Chrome</a></li>
-                    <li><a target="_blank" href="https://support.mozilla.org/es/kb/habilitar-y-deshabilitar-cookies-sitios-web-rastrear-preferencias?redirectlocale=es&amp;redirectslug=habilitar-y-deshabilitar-cookies-que-los-sitios-we">Configurar cookies en MozillaFirefox</a></li>
-                    <li><a target="_blank" href="https://support.apple.com/es-es/HT201265">Configurar cookies en Safari (Apple)</a></li>
+                    <li><a target="_blank" rel="noopener noreferrer" href="https://support.google.com/chrome/answer/95647?hl=es">Configurar cookies en Google Chrome</a></li>
+                    <li><a target="_blank" rel="noopener noreferrer" href="https://support.mozilla.org/es/kb/habilitar-y-deshabilitar-cookies-sitios-web-rastrear-preferencias?redirectlocale=es&amp;redirectslug=habilitar-y-deshabilitar-cookies-que-los-sitios-we">Configurar cookies en MozillaFirefox</a></li>
+                    <li><a target="_blank" rel="noopener noreferrer" href="https://support.apple.com/es-es/HT201265">Configurar cookies en Safari (Apple)</a></li>
                 </ul>
                 <p>&nbsp;</p>
                 <h3>Cookies de terceros.</h3>

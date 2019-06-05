@@ -11,13 +11,13 @@ class DeliveryData extends React.Component {
     handleChange = e => this.props.handleChangeDataPersonal(e);
     handleClickNext = e => this.props.nextStep(e);
     componentWillReceiveProps = nextProps => {
-        if (this.state.form != nextProps.dataPeronal)
+        if (this.state.form !== nextProps.dataPeronal)
             this.setState({
                 form: {
                     ...nextProps.dataPeronal
                 }
             })
-        if (this.state.showErrors != nextProps.showErrors)
+        if (this.state.showErrors !== nextProps.showErrors)
             this.setState({ showErrors: nextProps.showErrors })
     }
     render() {
@@ -31,7 +31,7 @@ class DeliveryData extends React.Component {
                             <input
                                 onChange={this.handleChange}
                                 type="text"
-                                className={(this.state.showErrors && this.state.form.name == "") ? "form-control formInputError" : "form-control"}
+                                className={(this.state.showErrors && this.state.form.name === "") ? "form-control formInputError" : "form-control"}
                                 id="name"
                                 name="name"
                                 placeholder="Ingrese su Nombre(s)"
@@ -43,7 +43,7 @@ class DeliveryData extends React.Component {
                             <input
                                 onChange={this.handleChange}
                                 type="text"
-                                className={(this.state.showErrors && this.state.form.lastname == "") ? "form-control formInputError" : "form-control"}
+                                className={(this.state.showErrors && this.state.form.lastname === "") ? "form-control formInputError" : "form-control"}
                                 id="lastname"
                                 name="lastname"
                                 placeholder="Ingrese su Apellido(s)"
@@ -55,7 +55,7 @@ class DeliveryData extends React.Component {
                             <input
                                 onChange={this.handleChange}
                                 type="text"
-                                className={(this.state.showErrors && this.state.form.street == "") ? "form-control formInputError" : "form-control"}
+                                className={(this.state.showErrors && this.state.form.street === "") ? "form-control formInputError" : "form-control"}
                                 id="street"
                                 name="street"
                                 placeholder="Calle"
@@ -67,7 +67,7 @@ class DeliveryData extends React.Component {
                             <input
                                 onChange={this.handleChange}
                                 type="number"
-                                className={(this.state.showErrors && this.state.form.numberStreet == "") ? "form-control formInputError" : "form-control"}
+                                className={(this.state.showErrors && this.state.form.numberStreet === "") ? "form-control formInputError" : "form-control"}
                                 id="numberStreet"
                                 name="numberStreet"
                                 placeholder="Número"
@@ -103,7 +103,7 @@ class DeliveryData extends React.Component {
                             <input
                                 onChange={this.handleChange}
                                 type="text"
-                                className={(this.state.showErrors && this.state.form.postCode == "") ? "form-control formInputError" : "form-control"}
+                                className={(this.state.showErrors && this.state.form.postCode === "") ? "form-control formInputError" : "form-control"}
                                 id="postCode"
                                 name="postCode"
                                 placeholder="Código postal"
@@ -125,7 +125,7 @@ class DeliveryData extends React.Component {
                             <input
                                 onChange={this.handleChange}
                                 type="text"
-                                className={(this.state.showErrors && this.state.form.phone == "") ? "form-control formInputError" : "form-control"}
+                                className={(this.state.showErrors && this.state.form.phone === "") ? "form-control formInputError" : "form-control"}
                                 id="phone"
                                 name="phone"
                                 placeholder="Teléfono"
@@ -139,7 +139,7 @@ class DeliveryData extends React.Component {
                             <input
                                 onChange={this.handleChange}
                                 type="email"
-                                className={(this.state.showErrors && this.state.form.email == "") ? "form-control formInputError" : "form-control"}
+                                className={(this.state.showErrors && this.state.form.email === "") ? "form-control formInputError" : "form-control"}
                                 id="email"
                                 name="email"
                                 placeholder="Correo electrónico"

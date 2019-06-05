@@ -6,5 +6,5 @@
 
 body {
     overflow-y: scroll;
-    background: url('~/../../src/images/body_pattern.png');
+    background: url('./../../images/body_pattern.png');
 }

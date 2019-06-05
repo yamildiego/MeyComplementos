@@ -18,7 +18,7 @@ const PaymentMethods = props => (
                         <Col md={4} key={item.id}>
                             <div className="PaymentMethodsBox">
                                 <div className="my-img">
-                                    <Image src={item.image} />
+                                    <Image src={require(`./../../images/pays/${item.image}`)} />
                                 </div>
                                 <div className="PaymentMethodsName">{item.name}</div>
                                 <p className="PaymentMethodsLabel">Hasta el 31/may/2019</p>

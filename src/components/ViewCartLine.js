@@ -39,7 +39,7 @@ class ViewCartLine extends React.Component {
             <div className="ViewCartLine">
                 <div className="row">
                     <div className="col-3">
-                        <Image src={this.state.item.image} fluid />
+                        <Image src={require(`./../images/articles/${this.state.item.image}`)} fluid />
                     </div>
                     <div className="col-4 p-0 pl-1">
                         <div>
@@ -75,7 +75,7 @@ class ViewCartLine extends React.Component {
                                     <Dropdown.Menu>
                                         {
                                             MaxItem.map((item, index) => {
-                                                return <Dropdown.Item key={index} eventKey={item} active={this.state.item.quantity == item} >X{item}</Dropdown.Item>
+                                                return <Dropdown.Item key={index} eventKey={item} active={this.state.item.quantity === item} >X{item}</Dropdown.Item>
                                             })
                                         }
                                     </Dropdown.Menu>

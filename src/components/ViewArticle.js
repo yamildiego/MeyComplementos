@@ -1,28 +1,27 @@
 import React from 'react';
-import { Card, ButtonGroup, Button, Image } from 'react-bootstrap';
+import { Card, Button, Image } from 'react-bootstrap';
 import Slider from "react-slick";
 import formatNumber from './../utilities/formatNumber';
 import MultiToggle from 'react-multi-toggle';
-import ToggleStyle from 'react-multi-toggle/style.css';
 import ImagesNotFound from './../images/images-not-found.gif';
 import './styles/ViewArticle.css';
 
 class ViewArticle extends React.Component {
     state = {
         itemSelected: {
-            size: (this.props.modalType == 'EDIT' ? this.props.articleOptionsChosen.size : 0),
-            color: (this.props.modalType == 'EDIT' ? this.props.articleOptionsChosen.color : 0)
+            size: (this.props.modalType === 'EDIT' ? this.props.articleOptionsChosen.size : 0),
+            color: (this.props.modalType === 'EDIT' ? this.props.articleOptionsChosen.color : 0)
         }
     }
     componentWillReceiveProps = (nextProps) => {
-        if (this.props.item.id != nextProps.item.id)
+        if (this.props.item.id !== nextProps.item.id)
             this.setState({ itemSelected: { size: 0, color: 0 } });
     }
     handleClickAdd = () => {
         const element = {
             ...this.state.itemSelected,
-            size: ((this.state.itemSelected.size != undefined) ? this.state.itemSelected.size : 0),
-            color: ((this.state.itemSelected.color != undefined) ? this.state.itemSelected.color : 0),
+            size: ((this.state.itemSelected.size !== undefined) ? this.state.itemSelected.size : 0),
+            color: ((this.state.itemSelected.color !== undefined) ? this.state.itemSelected.color : 0),
             idArticle: this.props.item.id,
             title: this.props.item.title,
             price: this.props.item.price,
@@ -33,7 +32,7 @@ class ViewArticle extends React.Component {
         this.props.handleAddItem(element);
     }
     handleClickUpdateItem = () => {
-        if (this.props.articleOptionsChosen.size == this.state.itemSelected.size && this.props.articleOptionsChosen.color == this.state.itemSelected.color) {
+        if (this.props.articleOptionsChosen.size === this.state.itemSelected.size && this.props.articleOptionsChosen.color === this.state.itemSelected.color) {
             this.props.handleUpdateItem(false);
         } else {
             this.props.handleUpdateItem(true, this.state.itemSelected, this.props.item, this.props.articleOptionsChosen);
@@ -43,7 +42,7 @@ class ViewArticle extends React.Component {
         this.setState(
             {
                 itemSelected: {
-                    ... this.state.itemSelected,
+                    ...this.state.itemSelected,
                     size: value
                 }
             });
@@ -52,7 +51,7 @@ class ViewArticle extends React.Component {
         this.setState(
             {
                 itemSelected: {
-                    ... this.state.itemSelected,
+                    ...this.state.itemSelected,
                     color: value
                 }
             });
@@ -72,16 +71,16 @@ class ViewArticle extends React.Component {
                         <h2 className="ViewArticleTitle">
                             {this.props.item.title}
                         </h2>
-                        {(this.props.quantity() > 0 && this.props.modalType == 'NEW') &&
+                        {(this.props.quantity() > 0 && this.props.modalType === 'NEW') &&
                             <span className="ViewArticleText">
                                 {
-                                    this.props.quantity() == 1
+                                    this.props.quantity() === 1
                                         ? "Ya se agrego uno al carrito!"
                                         : "Ya tienes " + this.props.quantity() + " en el carrito!"
                                 }
                             </span>
                         }
-                        {this.props.modalType == 'EDIT' &&
+                        {this.props.modalType === 'EDIT' &&
                             <span className="ViewArticleText">
                                 Tienes  {this.props.articleOptionsChosen.quantity} en el carrito!
                             </span>
@@ -98,10 +97,10 @@ class ViewArticle extends React.Component {
                                             this.props.item.images.map((element) => {
                                                 return <div key={element.id} className="text-center">
                                                     {
-                                                        element.type == "image" ?
-                                                            <Image src={element.path} className="mx-auto" /> :
+                                                        element.type === "image" ?
+                                                            <Image src={require(`./../images/articles/${element.path}`)} className="mx-auto" /> :
                                                             <video controls>
-                                                                <source src={element.path} type="video/mp4" />
+                                                                <source src={require(`./../images/articles/${element.path}`)} type="video/mp4" />
                                                             </video>
                                                     }
                                                 </div>
@@ -110,7 +109,7 @@ class ViewArticle extends React.Component {
                                     </Slider>
                                 }
                                 {
-                                    this.props.item.images.length == 0 &&
+                                    this.props.item.images.length === 0 &&
                                     <Image src={ImagesNotFound} className="mx-auto" />
                                 }
                             </div>
@@ -161,11 +160,11 @@ class ViewArticle extends React.Component {
                                 </form>
                                 <br />
                                 {
-                                    this.props.modalType == 'NEW' &&
+                                    this.props.modalType === 'NEW' &&
                                     <Button className="BtnAddArticle" onClick={this.handleClickAdd} block={true} variant="outline-success">Agregar al carrito </Button>
                                 }
                                 {
-                                    this.props.modalType == 'EDIT' &&
+                                    this.props.modalType === 'EDIT' &&
                                     <Button
                                         className="BtnAddArticle"
                                         onClick={this.handleClickUpdateItem}

@@ -1,5 +1,3 @@
-import React from 'react';
-
 const Constants = {
     urlVisible: "meycomplementos.com.ar",
     urlServer: "http://localhost:4000",

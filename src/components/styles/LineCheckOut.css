@@ -17,6 +17,7 @@
 }
 
 .LineCheckOutContainerLink:hover {
+    cursor: pointer;
     text-decoration: underline!important;
 }
 

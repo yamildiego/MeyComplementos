@@ -9,7 +9,6 @@ import Modal from '../components/Modal';
 import CheckOut from '../components/CheckOut.js';
 import CartDirectAccess from '../components/CartDirectAccess.js';
 import localforage from 'localforage';
-import Constants from './../config';
 import data from './../api.json';
 import './../components/styles/Home.css';
 import queryString from 'querystring';
@@ -21,14 +20,14 @@ class Home extends React.Component {
         loading: true,
         currentCount: 0,
         filter: { category: 0, text: '' },
-        articles: new Array(),
-        articlesFiltered: new Array(),
+        articles: [],
+        articlesFiltered: [],
         modalVisible: false,
         modalType: 'NEW',
         showCart: false,
-        categories: new Array(),
+        categories: [],
         dataCart: {
-            cartItems: new Array(),
+            cartItems: [],
             totalItems: 0,
             total: 0,
             maxId: 0,
@@ -45,7 +44,7 @@ class Home extends React.Component {
     }
     componentDidMount = () => {
         let params = queryString.parse(this.props.location.search.substring(1, this.props.location.search.length - 1))
-        this.setState({ collectionId: params.collection_id, collectionStatus: params.collection_status });
+        this.setState({ collectionId: (params.collection_id === undefined) ? null : params.collection_id, collectionStatus: params.collection_status });
 
         this.countdown = setInterval(this.timer, 100);
         // fetch(Constants.urlServer + '/getCategories')
@@ -78,13 +77,15 @@ class Home extends React.Component {
         var newCartItems = [];
 
         var ArrayWithiItem = this.state.dataCart.cartItems.filter((item) => {
-            if (item.idArticle == element.idArticle && item.size == element.size && item.color == element.color)
+            if (item.idArticle === element.idArticle && item.size === element.size && item.color === element.color)
                 return item;
-            else
+            else {
                 newCartItems.push(item);
+                return false;
+            }
         });
 
-        if (ArrayWithiItem.length == 0)
+        if (ArrayWithiItem.length === 0)
             newCartItems.push({ ...element, quantity: 1 });
         else {
             var itemUpdated = ArrayWithiItem[0];
@@ -104,11 +105,12 @@ class Home extends React.Component {
     }
     handleRemoveItem = item => {
         var newCartItems = this.state.dataCart.cartItems.filter(i => {
-            if (i.idArticle == item.idArticle && i.size == item.size && i.color == item.color) {
+            if (i.idArticle === item.idArticle && i.size === item.size && i.color === item.color) {
                 if (i.quantity > 1) {
                     i.quantity = i.quantity - 1;
                     return i;
                 }
+                return false;
             } else {
                 return i;
             }
@@ -126,7 +128,7 @@ class Home extends React.Component {
     }
     cleanCart = () => {
         var dataCart = {
-            cartItems: new Array(),
+            cartItems: [],
             totalItems: 0,
             total: 0,
             maxId: 0,
@@ -135,14 +137,16 @@ class Home extends React.Component {
         this.setState({ dataCart });
     }
     setFilterBySearch = text => {
-        if (text == '')
+        if (text === '')
             this.setFilterByCategory(this.state.filter.category);
         else {
             this.setState({
                 filter: { ...this.state.filter, text: text },
                 articlesFiltered: this.setFilterByCategory(this.state.filter.category).filter(item => {
-                    if (item.title.toUpperCase().search(text.toUpperCase()) != -1)
+                    if (item.title.toUpperCase().search(text.toUpperCase()) !== -1)
                         return item;
+                    else
+                        return false;
                 })
             })
         }
@@ -150,25 +154,29 @@ class Home extends React.Component {
     setFilterByCategory = (categoryId) => {
         var itemsFiltered = this.state.articles;
 
-        if (categoryId != 0) {
+        if (categoryId !== 0) {
 
             var category = undefined;
             this.state.categories.map(categoryItem => {
-                if (categoryItem.id == categoryId) category = categoryItem;
+                if (categoryItem.id === categoryId)
+                    category = categoryItem;
+                return false;
             })
 
-            if (category != undefined) {
+            if (category !== undefined) {
                 let ids = [];
                 ids.push(categoryId);
                 if (category.subcategories && category.subcategories.length > 0)
-                    category.subcategories.map(i => { ids.push(i.id); })
+                    category.subcategories.map(i => ids.push(i.id));
 
                 itemsFiltered = this.state.articles.filter(item => {
                     if (ids.includes(item.category)) return item;
+                    return false;
                 });
             } else {
                 itemsFiltered = this.state.articles.filter(item => {
-                    if (item.category == categoryId) return item;
+                    if (item.category === categoryId) return item;
+                    return false;
                 });
             }
         }
@@ -192,23 +200,30 @@ class Home extends React.Component {
             var cartItemsById = [];
 
             this.state.dataCart.cartItems.filter((element) => {
-                if (element.idArticle == itemOld.idArticle)
-                    if (itemOld.size == element.size && itemOld.color == element.color) { } else {
+                if (element.idArticle === itemOld.idArticle) {
+                    if (itemOld.size === element.size && itemOld.color === element.color) { } else {
                         cartItemsById.push(element);
                     }
-                else
+                    return false;
+                }
+                else {
                     newCartItems.push(element);
+                    return false;
+                }
             });
 
             let isModified = false;
 
             cartItemsById.map((element) => {
-                if (element.size == itemUpdated.size && element.color == itemUpdated.color) {
+                if (element.size === itemUpdated.size && element.color === itemUpdated.color) {
                     isModified = true;
                     element.quantity = element.quantity + itemOld.quantity;
                     newCartItems.push(element);
-                } else
+                    return false;
+                } else {
                     newCartItems.push(element);
+                    return false;
+                }
             })
 
             if (!isModified) {
@@ -229,7 +244,7 @@ class Home extends React.Component {
     }
     openModalUpdate = (item) => {
         this.state.articles.map(e => {
-            if (e.id == item.idArticle) {
+            if (e.id === item.idArticle) {
                 this.setState({
                     article: e,
                     modalVisible: true,
@@ -237,19 +252,21 @@ class Home extends React.Component {
                     articleOptionsChosen: item
                 });
             }
+            return false;
         })
     }
     handleUpdateQuantity = (itemUpdated, item) => {
         var cartItemsNew = [];
         this.state.dataCart.cartItems.filter((i) => {
-            if (i.idArticle == itemUpdated.idArticle) {
-                if (i.size == itemUpdated.size && i.color == itemUpdated.color) {
+            if (i.idArticle === itemUpdated.idArticle) {
+                if (i.size === itemUpdated.size && i.color === itemUpdated.color) {
                     if (itemUpdated.quantity > 0)
                         cartItemsNew.push(itemUpdated);
                 } else
                     cartItemsNew.push(i);
             } else
                 cartItemsNew.push(i);
+            return false;
         });
 
         var dataCart = {
@@ -265,18 +282,19 @@ class Home extends React.Component {
     getQuantityById = id => {
         let quantity = 0;
         this.state.dataCart.cartItems.filter(i => {
-            if (i.idArticle == id)
+            if (i.idArticle === id)
                 quantity = quantity + i.quantity;
+            return false;
         })
 
         return quantity;
     }
     render() {
         return (
-            <React.Fragment >
+            <React.Fragment>
                 <React.Fragment >
                     {
-                        this.state.collectionId != null &&
+                        this.state.collectionId !== null &&
                         <OrderCompleted
                             cleanCart={this.cleanCart}
                             collectionId={this.state.collectionId}
@@ -286,9 +304,7 @@ class Home extends React.Component {
                 </React.Fragment>
                 <React.Fragment>
                     {
-                        this.state.collectionId == null &&
-
-
+                        this.state.collectionId === null &&
                         <React.Fragment >
                             {
                                 this.state.loading
@@ -340,7 +356,6 @@ class Home extends React.Component {
                                                     <ViewArticle
                                                         modalType={this.state.modalType}
                                                         articleOptionsChosen={this.state.articleOptionsChosen}
-                                                        modalType={this.state.modalType}
                                                         item={this.state.article}
                                                         quantity={() => this.getQuantityById(this.state.article.id)}
                                                         closeModal={this.closeModal}
