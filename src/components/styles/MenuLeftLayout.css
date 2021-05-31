@@ -4,6 +4,10 @@
     padding: 15px;
 }
 
+.MenuLeftLayout .lead{
+    padding-left: 20px;
+}
+
 .MenuLeftLayout-Ad {
     position: absolute;
     margin-top: 1rem;

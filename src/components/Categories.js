@@ -32,7 +32,7 @@ class Categories extends React.Component {
                             <React.Fragment key={item.id} >
                                 {
                                     this.state.categoryShow === 0 &&
-                                    <div className="list-group-item">
+                                    <div className="list-group-item non-padding-left">
                                         <div className="Category">
                                             <div className="form-check">
                                                 <label className="checkBoxCustom">
@@ -52,7 +52,7 @@ class Categories extends React.Component {
                                     (this.state.categoryShow === item.id && item.subcategories !== undefined) &&
                                     item.subcategories.map((subcategory) => {
                                         return (
-                                            <div key={subcategory.id} className="list-group-item" >
+                                            <div key={subcategory.id} className="list-group-item non-padding-left" >
                                                 <div className="Subcategory">
                                                     <div className="form-check">
                                                         <label className="checkBoxCustom">

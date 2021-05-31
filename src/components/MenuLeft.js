@@ -1,6 +1,8 @@
 import React from 'react';
 import { ListGroup } from 'react-bootstrap';
 import { Link } from "react-router-dom";
+import { connect } from 'react-redux';
+import { FormattedMessage } from 'react-intl';
 import MenuLeftLayout from './MenuLeftLayout';
 import Cart from './Cart';
 import Categories from './Categories';
@@ -32,10 +34,10 @@ class MenuLeft extends React.Component {
                 <ListGroup>
                     <ListGroup.Item className="MenuLeftLayout-Ad">
                         <div className="text-center">
-                            ¿No tenemos lo que estas buscando?
-                    </div>
+                            <FormattedMessage locale={this.props.lang} id="menu_left.text_one" />
+                        </div>
                         <div className="text-center">
-                            Hace tu pedido haciendo clic <Link to="/contacto">aquí!/</Link>
+                            <FormattedMessage locale={this.props.lang} id="menu_left.text_two_part_one" /> <Link to="/contacto"><FormattedMessage locale={this.props.lang} id="menu_left.text_two_part_two" />/</Link>
                         </div>
                     </ListGroup.Item>
                 </ListGroup>
@@ -44,4 +46,12 @@ class MenuLeft extends React.Component {
     }
 }
 
-export default MenuLeft;
+function mapStateToProps(state, props) {
+    let lang = (state.locale.lang === undefined || state.locale.lang === "") ? "en" : state.locale.lang;
+    return {
+        lang,
+        props
+    }
+}
+
+export default connect(mapStateToProps)(MenuLeft);

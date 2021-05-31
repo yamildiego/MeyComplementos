@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { FormattedMessage } from 'react-intl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import formatNumber from './../utilities/formatNumber';
 import './styles/OrderSummary.css';
@@ -35,17 +37,17 @@ class OrderSummary extends React.Component {
                         onClick={this.handleClickNext}
                         disabled={(this.state.dataCart.totalItems === 0)}
                         className="btn btn-success btn-lg w-100 d-none d-sm-block">
-                        Continuar&nbsp;&nbsp;
+                        <FormattedMessage locale={this.props.lang} id="order_summary.next" />&nbsp;&nbsp;
                     <FontAwesomeIcon icon="long-arrow-alt-right" />
                     </button>
                 }
-                <h4 className="OrderSummaryTitle">Resumen del pedido</h4>
+                <h4 className="OrderSummaryTitle"><FormattedMessage locale={this.props.lang} id="order_summary.title" /></h4>
                 <div className="OrderSummaryBody">
                     <ul>
-                        <li>{this.state.dataCart.totalItems} PRODUCTOS</li>
-                        <li>Total en productos<span className="OrderSummaryAmount">{formatNumber(this.state.dataCart.total)}</span></li>
-                        <li>Entrega<span className="OrderSummaryAmount">Gratis</span></li>
-                        <li>Total<span className="OrderSummaryTotal">{formatNumber(this.state.dataCart.total)}</span></li>
+                        <li>{this.state.dataCart.totalItems} <FormattedMessage locale={this.props.lang} id="order_summary.products" /></li>
+                        <li><FormattedMessage locale={this.props.lang} id="order_summary.total_products" /><span className="OrderSummaryAmount">{formatNumber(this.state.dataCart.total)}</span></li>
+                        <li><FormattedMessage locale={this.props.lang} id="order_summary.shipping" /><span className="OrderSummaryAmount"><FormattedMessage locale={this.props.lang} id="order_summary.free" /></span></li>
+                        <li><FormattedMessage locale={this.props.lang} id="order_summary.total" /><span className="OrderSummaryTotal">{formatNumber(this.state.dataCart.total)}</span></li>
                     </ul>
                 </div>
             </div>
@@ -53,4 +55,12 @@ class OrderSummary extends React.Component {
     }
 }
 
-export default OrderSummary;
+function mapStateToProps(state, props) {
+    let lang = (state.locale.lang === undefined || state.locale.lang === "") ? "en" : state.locale.lang;
+    return {
+        lang,
+        props
+    }
+}
+
+export default connect(mapStateToProps)(OrderSummary);

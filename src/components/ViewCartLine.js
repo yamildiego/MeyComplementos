@@ -1,6 +1,8 @@
 import React from 'react';
 import Image from 'react-bootstrap/Image';
-import { Dropdown } from 'react-bootstrap'
+import { connect } from 'react-redux';
+import { FormattedMessage } from 'react-intl';
+import { Dropdown } from 'react-bootstrap';
 import formatNumber from './../utilities/formatNumber';
 import './styles/ViewCartLine.css';
 
@@ -47,19 +49,23 @@ class ViewCartLine extends React.Component {
                             <div className="ViewCartLineBody">
                                 {(this.state.item.colors && this.state.item.colors.length > 0) &&
                                     <div>
-                                        <label className="label">Color</label>
+                                        <label className="label"><FormattedMessage locale={this.props.lang} id="view_cart_line.color" /></label>
                                         <span>{this.state.item.colors[this.state.item.color].displayName}</span>
                                     </div>
                                 }
                                 {(this.state.item.sizes && this.state.item.sizes.length > 0) &&
                                     <div>
-                                        <label className="label">Talle</label>
+                                        <label className="label"><FormattedMessage locale={this.props.lang} id="view_cart_line.size" /></label>
                                         <span>{this.state.item.sizes[this.state.item.size].displayName}</span>
                                     </div>
                                 }
                                 <div className="ViewCartLineAction">
-                                    <div className="Link" onClick={this.openModalUpdate}>Editar</div>
-                                    <div className="Link" onClick={this.handleClickDeleteAll}>Borrar</div>
+                                    <div className="Link" onClick={this.openModalUpdate}>
+                                        <FormattedMessage locale={this.props.lang} id="view_cart_line.edit" />
+                                    </div>
+                                    <div className="Link" onClick={this.handleClickDeleteAll}>
+                                        <FormattedMessage locale={this.props.lang} id="view_cart_line.delete" />
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -90,4 +96,12 @@ class ViewCartLine extends React.Component {
     }
 }
 
-export default ViewCartLine;
+function mapStateToProps(state, props) {
+    let lang = (state.locale.lang === undefined || state.locale.lang === "") ? "en" : state.locale.lang;
+    return {
+        lang,
+        props
+    }
+}
+
+export default connect(mapStateToProps)(ViewCartLine);

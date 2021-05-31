@@ -1,18 +1,26 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { FormattedMessage } from 'react-intl';
 import { ListGroup } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './styles/Cart.css';
 import formatNumber from './../utilities/formatNumber';
 
 class Cart extends React.Component {
+
     handleClick = (item) => {
         this.props.handleRemoveItem(item);
     }
+
     render() {
         return (
             <div className="Cart">
                 <ListGroup >
-                    <h4 className="CartTitle">TOTAL <span>{this.props.dataCart.totalItems}</span> ITEM{this.props.dataCart.totalItems > 1 ? "S" : ""}</h4>
+                    <h4 className="CartTitle"><FormattedMessage locale={this.props.lang} id="cart.total" />&nbsp;
+                        <span>{this.props.dataCart.totalItems}</span>&nbsp;
+                        <FormattedMessage locale={this.props.lang} id="cart.item" />
+                        {this.props.dataCart.totalItems > 1 ? "S" : ""}
+                    </h4>
                     {
                         this.props.dataCart.cartItems.map((item, index) => {
                             return (
@@ -43,16 +51,26 @@ class Cart extends React.Component {
                         (this.props.dataCart.cartItems !== undefined && this.props.dataCart.cartItems.length > 0) &&
                         <ListGroup.Item className="CartTotal">
                             <FontAwesomeIcon className="CartCheck" icon="check-circle" color="#55b96c" />
-                            <span>Total</span>
+                            <span><FormattedMessage locale={this.props.lang} id="cart.total" /></span>
                             <span className="float-right CartTotalPrice">{formatNumber(this.props.dataCart.total)}</span>
                         </ListGroup.Item>
                     }
                 </ListGroup>
 
-                <button type="button" className="btn btn-info ViewArticleSeeCart" onClick={this.props.toggleViewCart}>Ver carrito</button>
+                <button type="button" className="btn btn-info ViewArticleSeeCart" onClick={this.props.toggleViewCart}>
+                    <FormattedMessage locale={this.props.lang} id="cart.view_bag" />
+                </button>
             </div>
         )
     }
 }
 
-export default Cart;
+function mapStateToProps(state, props) {
+    let lang = (state.locale.lang === undefined || state.locale.lang === "") ? "en" : state.locale.lang;
+    return {
+        lang,
+        props
+    }
+}
+
+export default connect(mapStateToProps)(Cart);

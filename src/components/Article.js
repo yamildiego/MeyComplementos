@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Card } from 'react-bootstrap'
+import { FormattedMessage } from 'react-intl';
+import { connect } from 'react-redux';
 import ImageNotFound from './../images/images-not-found.gif'
 import './styles/Article.css';
 
@@ -31,7 +33,6 @@ class Article extends React.PureComponent {
                         {
                             this.props.sizes &&
                             <small className="text-muted float-right">
-                                Talles &nbsp;
                                 {
                                     this.props.sizes.map((item, index) => {
                                         return (item.displayName + (this.props.sizes.length > (index + 1) ? "|" : ""))
