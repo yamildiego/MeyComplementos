@@ -1,29 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Card } from 'react-bootstrap'
-import { FormattedMessage } from 'react-intl';
-import { connect } from 'react-redux';
-import ImageNotFound from './../images/images-not-found.gif'
+import ImageNotFound from './../images/images-not-found.jpg'
 import './styles/Article.css';
+const images = require.context('./../images/articles', true);
 
 class Article extends React.PureComponent {
-    handleClick = event => {
-        this.props.openModal(this.props);
-    }
+
+    handleClick = event => this.props.openModal(this.props);
+
     render() {
+        let loadImage = imageName => (images(`./${imageName}`).default);
+
         return (
             <div className="Article col-6 col-md-4 mb-4" onClick={this.handleClick}>
                 <Card className="Article-Card">
                     <div className="ArticleImage">
                         {
                             this.props.images.length > 0
-                                ? <Card.Img variant="top" src={require(`./../images/articles/${this.props.images[0].path}`)} />
+                                ? <Card.Img variant="top" src={loadImage(this.props.images[0].path)} />
                                 : <Card.Img variant="top" src={ImageNotFound} />
                         }
                     </div>
                     <Card.Body className="Article-Body">
                         <Card.Title className="Article-Title h6">{this.props.title}</Card.Title>
-                        <button className="btn btn-info btn-sm btn-block mt-2">Ver mas</button>
                     </Card.Body>
                     <Card.Footer className="Article-Footer">
                         {

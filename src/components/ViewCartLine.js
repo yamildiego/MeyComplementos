@@ -5,6 +5,7 @@ import { FormattedMessage } from 'react-intl';
 import { Dropdown } from 'react-bootstrap';
 import formatNumber from './../utilities/formatNumber';
 import './styles/ViewCartLine.css';
+const images = require.context('./../images/articles', true);
 
 const MaxItem = [1, 2, 3, 4, 5, 6];
 
@@ -37,11 +38,13 @@ class ViewCartLine extends React.Component {
         this.props.handleUpdateQuantity(itemUpdated, this.state.item);
     }
     render() {
+        let loadImage = imageName => (images(`./${imageName}`).default);
+
         return (
             <div className="ViewCartLine">
                 <div className="row">
                     <div className="col-3">
-                        <Image src={require(`./../images/articles/${this.state.item.image}`)} fluid />
+                        <Image src={loadImage(this.state.item.image)} fluid />
                     </div>
                     <div className="col-4 p-0 pl-1">
                         <div>

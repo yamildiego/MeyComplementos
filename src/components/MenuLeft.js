@@ -37,7 +37,7 @@ class MenuLeft extends React.Component {
                             <FormattedMessage locale={this.props.lang} id="menu_left.text_one" />
                         </div>
                         <div className="text-center">
-                            <FormattedMessage locale={this.props.lang} id="menu_left.text_two_part_one" /> <Link to="/contacto"><FormattedMessage locale={this.props.lang} id="menu_left.text_two_part_two" />/</Link>
+                            <FormattedMessage locale={this.props.lang} id="menu_left.text_two_part_one" /> <Link to="/contacto"><FormattedMessage locale={this.props.lang} id="menu_left.text_two_part_two" /></Link>
                         </div>
                     </ListGroup.Item>
                 </ListGroup>

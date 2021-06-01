@@ -1,4 +1,6 @@
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
+import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 class DeliveryData extends React.Component {
@@ -23,139 +25,136 @@ class DeliveryData extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <h1>Datos personales</h1>
+                <h1><FormattedMessage locale={this.props.lang} id="delivery_data.title" /></h1>
                 <div className="DeliveryData">
                     <form className="row" onSubmit={this.handleClickNext}>
                         <div className="form-group col-sm-6">
-                            <label htmlFor="name"><span className="required">(*)</span>Nombre(s)</label>
-                            <input
-                                onChange={this.handleChange}
-                                type="text"
-                                className={(this.state.showErrors && this.state.form.name === "") ? "form-control formInputError" : "form-control"}
-                                id="name"
-                                name="name"
-                                placeholder="Ingrese su Nombre(s)"
-                                value={this.state.form.name}
-                            />
+                            <label htmlFor="name"><span className="required">(*)</span><FormattedMessage locale={this.props.lang} id="delivery_data.name" /></label>
+                            <FormattedMessage locale={this.props.lang} id="delivery_data.name">
+                                {
+                                    placeholder =>
+                                        <input
+                                            onChange={this.handleChange}
+                                            type="text"
+                                            className={(this.state.showErrors && this.state.form.name === "") ? "form-control formInputError" : "form-control"}
+                                            id="name"
+                                            name="name"
+                                            placeholder={placeholder}
+                                            value={this.state.form.name}
+                                        />
+                                }
+                            </FormattedMessage>
+
                         </div>
                         <div className="form-group col-sm-6">
-                            <label htmlFor="lastname"><span className="required">(*)</span>Apellido(s)</label>
-                            <input
-                                onChange={this.handleChange}
-                                type="text"
-                                className={(this.state.showErrors && this.state.form.lastname === "") ? "form-control formInputError" : "form-control"}
-                                id="lastname"
-                                name="lastname"
-                                placeholder="Ingrese su Apellido(s)"
-                                value={this.state.form.lastname}
-                            />
+                            <label htmlFor="lastname"><span className="required">(*)</span><FormattedMessage locale={this.props.lang} id="delivery_data.lastname" /></label>
+                            <FormattedMessage locale={this.props.lang} id="delivery_data.lastname">
+                                {
+                                    placeholder =>
+                                        <input
+                                            onChange={this.handleChange}
+                                            type="text"
+                                            className={(this.state.showErrors && this.state.form.lastname === "") ? "form-control formInputError" : "form-control"}
+                                            id="lastname"
+                                            name="lastname"
+                                            placeholder={placeholder}
+                                            value={this.state.form.lastname}
+                                        />
+                                }
+                            </FormattedMessage>
                         </div>
-                        <div className="form-group col-8">
-                            <label htmlFor="street"><span className="required">(*)</span>Calle</label>
-                            <input
-                                onChange={this.handleChange}
-                                type="text"
-                                className={(this.state.showErrors && this.state.form.street === "") ? "form-control formInputError" : "form-control"}
-                                id="street"
-                                name="street"
-                                placeholder="Calle"
-                                value={this.state.form.street}
-                            />
-                        </div>
-                        <div className="form-group col-4">
-                            <label htmlFor="numberStreet"><span className="required">(*)</span>Número</label>
-                            <input
-                                onChange={this.handleChange}
-                                type="number"
-                                className={(this.state.showErrors && this.state.form.numberStreet === "") ? "form-control formInputError" : "form-control"}
-                                id="numberStreet"
-                                name="numberStreet"
-                                placeholder="Número"
-                                value={this.state.form.numberStreet}
-                            />
-                        </div>
-                        <div className="form-group col-sm-6">
-                            <label htmlFor="floor">Piso</label>
-                            <input
-                                onChange={this.handleChange}
-                                type="text"
-                                className="form-control"
-                                id="floor"
-                                name="floor"
-                                placeholder="Piso"
-                                value={this.state.form.floor}
-                            />
-                        </div>
-                        <div className="form-group col-sm-6">
-                            <label htmlFor="apartment">Departamento</label>
-                            <input
-                                onChange={this.handleChange}
-                                type="text"
-                                className="form-control"
-                                id="apartment"
-                                name="apartment"
-                                placeholder="Departamento"
-                                value={this.state.form.apartment}
-                            />
-                        </div>
-                        <div className="form-group col-sm-6">
-                            <label htmlFor="postCode"><span className="required">(*)</span>Código postal</label>
-                            <input
-                                onChange={this.handleChange}
-                                type="text"
-                                className={(this.state.showErrors && this.state.form.postCode === "") ? "form-control formInputError" : "form-control"}
-                                id="postCode"
-                                name="postCode"
-                                placeholder="Código postal"
-                                value={this.state.form.postCode}
-                            />
-                        </div>
-                        <div className="form-group col-sm-6">
-                            <label htmlFor="country">País</label>
+                        <div className="form-group col-sm-12">
+                            <label htmlFor="country"><FormattedMessage locale={this.props.lang} id="delivery_data.country" /></label>
                             <input
                                 type="text"
                                 className="form-control"
                                 id="country"
-                                value="Argentina"
+                                value="Australia"
                                 disabled
                             />
                         </div>
-                        <div className="form-group col-sm-6">
-                            <label htmlFor="phone"><span className="required">(*)</span>Teléfono</label>
-                            <input
-                                onChange={this.handleChange}
-                                type="text"
-                                className={(this.state.showErrors && this.state.form.phone === "") ? "form-control formInputError" : "form-control"}
-                                id="phone"
-                                name="phone"
-                                placeholder="Teléfono"
-                                value={this.state.form.phone}
-                            />
-                            <small id="phoneHelp"
-                                className="form-text text-muted">Por si acaso tenemos preguntas sobre tu pedido.</small>
+                        <div className="form-group col-12">
+                            <label htmlFor="street"><span className="required">(*)</span><FormattedMessage locale={this.props.lang} id="delivery_data.street" /></label>
+                            <FormattedMessage locale={this.props.lang} id="delivery_data.street">
+                                {
+                                    placeholder =>
+                                        <input
+                                            onChange={this.handleChange}
+                                            type="text"
+                                            className={(this.state.showErrors && this.state.form.street === "") ? "form-control formInputError" : "form-control"}
+                                            id="street"
+                                            name="street"
+                                            placeholder={placeholder}
+                                            value={this.state.form.street}
+                                        />
+                                }
+                            </FormattedMessage>
+
+                        </div>
+                        <div className="form-group col-sm-12">
+                            <label htmlFor="floor"><FormattedMessage locale={this.props.lang} id="delivery_data.flour" /></label>
+                            <FormattedMessage locale={this.props.lang} id="delivery_data.flour">
+                                {
+                                    placeholder =>
+                                        <input
+                                            onChange={this.handleChange}
+                                            type="text"
+                                            className="form-control"
+                                            id="floor"
+                                            name="floor"
+                                            placeholder={placeholder}
+                                            value={this.state.form.floor}
+                                        />
+                                }
+                            </FormattedMessage>
+
                         </div>
                         <div className="form-group col-sm-6">
-                            <label htmlFor="email"><span className="required">(*)</span>Correo electrónico</label>
-                            <input
-                                onChange={this.handleChange}
-                                type="email"
-                                className={(this.state.showErrors && this.state.form.email === "") ? "form-control formInputError" : "form-control"}
-                                id="email"
-                                name="email"
-                                placeholder="Correo electrónico"
-                                value={this.state.form.email}
-                            />
+                            <label htmlFor="phone"><span className="required">(*)</span><FormattedMessage locale={this.props.lang} id="delivery_data.phone" /></label>
+                            <FormattedMessage locale={this.props.lang} id="delivery_data.phone">
+                                {
+                                    placeholder =>
+                                        <input
+                                            onChange={this.handleChange}
+                                            type="text"
+                                            className={(this.state.showErrors && this.state.form.phone === "") ? "form-control formInputError" : "form-control"}
+                                            id="phone"
+                                            name="phone"
+                                            placeholder={placeholder}
+                                            value={this.state.form.phone}
+                                        />
+
+                                }
+                            </FormattedMessage>
+                        </div>
+                        <div className="form-group col-sm-6">
+                            <label htmlFor="email"><span className="required">(*)</span><FormattedMessage locale={this.props.lang} id="delivery_data.email" /></label>
+                            <FormattedMessage locale={this.props.lang} id="delivery_data.email">
+                                {
+                                    placeholder =>
+                                        <input
+                                            onChange={this.handleChange}
+                                            type="email"
+                                            className={(this.state.showErrors && this.state.form.email === "") ? "form-control formInputError" : "form-control"}
+                                            id="email"
+                                            name="email"
+                                            placeholder={placeholder}
+                                            value={this.state.form.email}
+                                        />
+                                }
+                            </FormattedMessage>
+
                         </div>
                         <div className="col-12 text-center mt-4">
                             <button
                                 type="button"
                                 onClick={this.props.backStep}
                                 className="btn btn-outline-dark btn-lg mr-5 mt-2 w-xs-100">
-                                Volver&nbsp;&nbsp;
+                                <FormattedMessage locale={this.props.lang} id="delivery_data.back" />&nbsp;&nbsp;
                                 </button>
                             <button
                                 className="btn btn-outline-success btn-lg mt-2 w-xs-100">
-                                Continuar&nbsp;&nbsp;
+                                <FormattedMessage locale={this.props.lang} id="delivery_data.next" />&nbsp;&nbsp;
                                 <FontAwesomeIcon icon="long-arrow-alt-right" />
                             </button>
                         </div>
@@ -166,4 +165,11 @@ class DeliveryData extends React.Component {
     }
 }
 
-export default DeliveryData;
+function mapStateToProps(state, props) {
+    let lang = (state.locale.lang === undefined || state.locale.lang === "") ? "en" : state.locale.lang;
+    return {
+        lang
+    }
+}
+
+export default connect(mapStateToProps)(DeliveryData);

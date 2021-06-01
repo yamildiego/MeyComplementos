@@ -10,7 +10,7 @@ export default {
         "menu_left.title": "Filter",
         "menu_left.text_one": "Don't we have what you're looking for?",
         "menu_left.text_two_part_one": "Make your order by clicking",
-        "menu_left.text_two_part_two": "here",
+        "menu_left.text_two_part_two": "here!",
         "cart.total": "TOTAL",
         "cart.item": "PRODUCT",
         "cart.view_bag": "VIEW BAG",
@@ -31,6 +31,30 @@ export default {
         "order_summary.shipping": "Delivery",
         "order_summary.free": "Free",
         "order_summary.total": "Total",
+        "view_article.has_one": "Ya se agrego unossss carrito!AAAAA",
+        "view_article.has_two_part_one": "Ya tienes AAA",
+        "view_article.has_two_part_two": " en el carrito!AAA",
+        "view_article.description": "Description",
+        "view_article.brand": "Brand",
+        "view_article.add": "Add to bag",
+        "view_article.edit": "Edit",
+        "delivery_data.title": "Delivery details",
+        "delivery_data.name": "First name",
+        "delivery_data.lastname": "Last name",
+        "delivery_data.country": "Country",
+        "delivery_data.street": "Delivery Address",
+        "delivery_data.flour": "Company / Level (if applicable)",
+        "delivery_data.phone": "Mobile Phone Number",
+        "delivery_data.email": "Email",
+        "delivery_data.back": "Back",
+        "delivery_data.next": "Next",
+        "footer.copyright": "© Copyright " + yearActual + " MeyComplementos - All rights reserved."
+        // // // // // Ya se agregó uno al carrito!
+        // // // // // Ya se agregó dos al carrito!
+        // // // // // Ya tienes 1 en el carrito!
+        // // // // // Ya tienes 5 en el carrito!
+
+
         // "ourservices.btnseemore": "See more",
         // "contact.title": "Contact",
         // "contact.subtitle": "Get in touch for any question",
@@ -41,7 +65,7 @@ export default {
         // "contact.form.email": "Email",
         // "contact.form.message": "Message",
         // "contact.form.send": "Send",
-        // "aboutus.title": "About us",
+        // "aboutus.title": "About us",1
         // "aboutus.subtitle": " ",
         // "aboutus.paragraphone": "Inspired by the force of nature I created VerdeAGOSTINI, a company dedicated 100% to renewable energy. In my passion I found a balance between generating great savings in my clients and taking care of my favorite place, the environment.",
         // "aboutus.paragraphtwo": "It is a venture, in which I am constantly training to be at the forefront of clean energy technology, creating and innovating. Growing by leaps and bounds thanks to desire, focus, effort, commitment and dedication, VerdeAGOSTINI provides first-rate sustainable energy services.",
@@ -57,7 +81,6 @@ export default {
         // "section.check10": "25 years of useful life",
         // "footer.yamildiego": "Developed by Yamil Diego",
         // "footer.copyrightshort": "© " + yearActual + " VerdeAgostini",
-        // "footer.copyright": "© " + yearActual + " VerdeAgostini - All rights reserved."
     },
     es: {
         // "nav.home": "Inicio",

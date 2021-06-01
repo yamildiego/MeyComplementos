@@ -10,7 +10,6 @@ class LineCheckOut extends React.Component {
             this.props.setStep(index);
     }
     render() {
-
         const statusText = lenguanges[this.props.lang]["line_check_out.status"];
         return (
             <div className="LineCheckOut">

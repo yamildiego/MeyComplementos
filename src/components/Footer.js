@@ -29,8 +29,8 @@ class Footer extends React.Component {
                     </Navbar.Collapse>
                 </Navbar>
                 <div className="Copyright">
-                    © Copyright 2019 {Constants.urlVisible}.
-            </div>
+                    <FormattedMessage locale={this.props.lang} id="footer.copyright" />
+                </div>
             </Container>
         )
     }

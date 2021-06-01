@@ -10,12 +10,14 @@ class Articles extends React.Component {
         category: this.props.category,
         categories: this.props.categories
     }
+
     componentWillReceiveProps = (nextProps) => {
         if (nextProps.category !== this.state.category)
             this.setState({ category: nextProps.category })
         if (nextProps.categories !== this.state.categories)
             this.setState({ categories: nextProps.categories })
     }
+
     render() {
         return (
             <React.Fragment>

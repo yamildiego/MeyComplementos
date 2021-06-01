@@ -2,9 +2,12 @@ import React from 'react';
 import { Card, Button, Image } from 'react-bootstrap';
 import Slider from "react-slick";
 import formatNumber from './../utilities/formatNumber';
+import { connect } from 'react-redux';
+import { FormattedMessage, injectIntl } from 'react-intl';
 import MultiToggle from 'react-multi-toggle';
-import ImagesNotFound from './../images/images-not-found.gif';
+import ImagesNotFound from './../images/images-not-found.jpg';
 import './styles/ViewArticle.css';
+const images = require.context('./../images/articles', true);
 
 class ViewArticle extends React.Component {
     state = {
@@ -47,6 +50,7 @@ class ViewArticle extends React.Component {
                 }
             });
     }
+
     onGroupColorSelect = value => {
         this.setState(
             {
@@ -56,6 +60,7 @@ class ViewArticle extends React.Component {
                 }
             });
     }
+
     render() {
         let settings = {
             dots: true,
@@ -64,7 +69,12 @@ class ViewArticle extends React.Component {
             slidesToShow: 1,
             slidesToScroll: 1
         };
+
+        let loadImage = imageName => (images(`./${imageName}`).default);
+
+        const { intl } = this.props;
         return (
+
             <div className="ViewArticle">
                 <Card>
                     <Card.Header>
@@ -75,14 +85,19 @@ class ViewArticle extends React.Component {
                             <span className="ViewArticleText">
                                 {
                                     this.props.quantity() === 1
-                                        ? "Ya se agrego uno al carrito!"
-                                        : "Ya tienes " + this.props.quantity() + " en el carrito!"
+                                        ? <FormattedMessage locale={this.props.lang} id="view_article.has_one" />
+                                        : (intl.formatMessage({ id: "view_article.has_two_part_one" }) + this.props.quantity() + intl.formatMessage({ id: "view_article.has_two_part_two" }))
                                 }
                             </span>
                         }
                         {this.props.modalType === 'EDIT' &&
                             <span className="ViewArticleText">
-                                Tienes  {this.props.articleOptionsChosen.quantity} en el carrito!
+                                {
+                                    this.props.articleOptionsChosen.quantity === 1
+                                        ? <FormattedMessage locale={this.props.lang} id="view_article.has_one" />
+                                        : (intl.formatMessage({ id: "view_article.has_two_part_one" }) + this.props.articleOptionsChosen.quantity + intl.formatMessage({ id: "view_article.has_two_part_two" }))
+
+                                }
                             </span>
                         }
                         <span className="ViewArticlePrice">{formatNumber(this.props.item.price)}</span>
@@ -98,9 +113,9 @@ class ViewArticle extends React.Component {
                                                 return <div key={element.id} className="text-center">
                                                     {
                                                         element.type === "image" ?
-                                                            <Image src={require(`./../images/articles/${element.path}`)} className="mx-auto" /> :
-                                                            <video controls>
-                                                                <source src={require(`./../images/articles/${element.path}`)} type="video/mp4" />
+                                                            <Image src={loadImage(element.path)} className="mx-auto" /> :
+                                                            <video controls autoPlay loop>
+                                                                <source src={loadImage(element.path)} type="video/mp4" />
                                                             </video>
                                                     }
                                                 </div>
@@ -118,7 +133,7 @@ class ViewArticle extends React.Component {
                                     <div className="form-group">
                                         {(this.props.item.colors && this.props.item.colors.length > 0) &&
                                             <React.Fragment>
-                                                <div className="ViewArticleInfo"><span>Colores</span></div>
+                                                <div className="ViewArticleInfo"><span><FormattedMessage locale={this.props.lang} id="view_cart_line.color" /></span></div>
                                                 <span>
                                                     <MultiToggle
                                                         options={this.props.item.colors}
@@ -132,7 +147,7 @@ class ViewArticle extends React.Component {
 
                                         {(this.props.item.sizes && this.props.item.sizes.length > 0) &&
                                             <React.Fragment>
-                                                <div className="ViewArticleInfo"><span>Talles</span></div>
+                                                <div className="ViewArticleInfo"><span><FormattedMessage locale={this.props.lang} id="view_cart_line.size" /></span></div>
                                                 <span>
                                                     <MultiToggle
                                                         options={this.props.item.sizes}
@@ -146,7 +161,7 @@ class ViewArticle extends React.Component {
 
                                         {this.props.item.brand &&
                                             <React.Fragment>
-                                                <div className="ViewArticleInfo"><span>Marca</span></div>
+                                                <div className="ViewArticleInfo"><span><FormattedMessage locale={this.props.lang} id="view_article.brand" /></span></div>
                                                 <span>
                                                     {this.props.item.brand.displayName}
                                                 </span>
@@ -155,13 +170,13 @@ class ViewArticle extends React.Component {
                                     </div>
                                     {
                                         this.props.item.description &&
-                                        <div className="ViewArticleInfo"><span>Descripción</span> {this.props.item.description}</div>
+                                        <div className="ViewArticleInfo"><span><FormattedMessage locale={this.props.lang} id="view_article.description" /></span> {this.props.item.description}</div>
                                     }
                                 </form>
                                 <br />
                                 {
                                     this.props.modalType === 'NEW' &&
-                                    <Button className="BtnAddArticle" onClick={this.handleClickAdd} block={true} variant="outline-success">Agregar al carrito </Button>
+                                    <Button className="BtnAddArticle" onClick={this.handleClickAdd} block={true} variant="outline-success"><FormattedMessage locale={this.props.lang} id="view_article.add" /> </Button>
                                 }
                                 {
                                     this.props.modalType === 'EDIT' &&
@@ -170,8 +185,8 @@ class ViewArticle extends React.Component {
                                         onClick={this.handleClickUpdateItem}
                                         block={true}
                                         variant="outline-success">
-                                        Confirmar cambio
-                                     </Button>
+                                        <FormattedMessage locale={this.props.lang} id="view_cart_line.edit" />
+                                    </Button>
                                 }
                             </div>
                         </div>
@@ -184,4 +199,11 @@ class ViewArticle extends React.Component {
     }
 }
 
-export default ViewArticle;
+function mapStateToProps(state, props) {
+    let lang = (state.locale.lang === undefined || state.locale.lang === "") ? "en" : state.locale.lang;
+    return {
+        lang
+    }
+}
+
+export default injectIntl(connect(mapStateToProps)(ViewArticle));
