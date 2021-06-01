@@ -1,0 +1,15 @@
+.GenericNotFound{
+    margin: 10px;
+    padding: 10%;
+    background: white;
+    height: 450px;
+}
+
+.GenericNotFound .TitleGenericNotFound{
+    font-size: 50px;
+    text-align: center;
+}
+.GenericNotFound .SubtitleGenericNotFound{
+    font-size: 20px;
+    text-align: center;
+}

@@ -19,9 +19,6 @@ class Footer extends React.Component {
                             <Link className="nav-link" to="/products">
                                 <FormattedMessage locale={this.props.lang} id="nav.products" />
                             </Link>
-                            <Link className="nav-link" to="/about-us">
-                                <FormattedMessage locale={this.props.lang} id="nav.about_us" />
-                            </Link>
                             <Link className="nav-link" to="/contact-us">
                                 <FormattedMessage locale={this.props.lang} id="nav.contact_us" />
                             </Link>

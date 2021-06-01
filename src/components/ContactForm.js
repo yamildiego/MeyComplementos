@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { FormattedMessage } from 'react-intl';
 import queryString from 'querystring';
 import Constants from '../config';
 import isset from '../utilities/isset';
@@ -70,37 +72,55 @@ class ContactForm extends React.Component {
                 <Loading loading={this.state.loading} />
                 <form onSubmit={this.handleSubmit}>
                     <div className="form-group">
-                        <label htmlFor="inputName"><span className="required">(*)</span>Nombre</label>
-                        <input
-                            onChange={this.handleChange}
-                            type="text"
-                            className={(this.state.showErrors && this.state.form.name === "") ? "form-control formInputError" : "form-control"}
-                            id="inputName"
-                            name="name"
-                            placeholder="Nombre"
-                            value={this.state.form.name} />
+                        <label htmlFor="inputName"><span className="required">(*)</span><FormattedMessage locale={this.props.lang} id="contact.form.name" /></label>
+                        <FormattedMessage locale={this.props.lang} id="contact.form.name">
+                            {
+                                placeholder =>
+                                    <input
+                                        onChange={this.handleChange}
+                                        type="text"
+                                        className={(this.state.showErrors && this.state.form.name === "") ? "form-control formInputError" : "form-control"}
+                                        id="inputName"
+                                        name="name"
+                                        placeholder={placeholder}
+                                        value={this.state.form.name} />
+                            }
+                        </FormattedMessage>
+
                     </div>
                     <div className="form-group">
-                        <label htmlFor="inputEmail"><span className="required">(*)</span>Correo electrónico</label>
-                        <input
-                            onChange={this.handleChange}
-                            type="email"
-                            className={(this.state.showErrors && this.state.form.email === "") ? "form-control formInputError" : "form-control"}
-                            id="inputEmail"
-                            name="email"
-                            placeholder="Correo electrónico"
-                            value={this.state.form.email} />
+                        <label htmlFor="inputEmail"><span className="required">(*)</span><FormattedMessage locale={this.props.lang} id="contact.form.email" /></label>
+                        <FormattedMessage locale={this.props.lang} id="contact.form.email" >
+                            {
+                                placeholder =>
+                                    <input
+                                        onChange={this.handleChange}
+                                        type="email"
+                                        className={(this.state.showErrors && this.state.form.email === "") ? "form-control formInputError" : "form-control"}
+                                        id="inputEmail"
+                                        name="email"
+                                        placeholder={placeholder}
+                                        value={this.state.form.email} />
+                            }
+                        </FormattedMessage>
+
                     </div>
                     <div className="form-group">
-                        <label htmlFor="inputMessage"><span className="required">(*)</span>Mensaje</label>
-                        <textarea
-                            onChange={this.handleChange}
-                            className={(this.state.showErrors && this.state.form.message === "") ? "form-control formInputError" : "form-control"}
-                            id="inputMessage"
-                            name="message"
-                            placeholder="Mensaje"
-                            rows="3"
-                            value={this.state.form.message} />
+                        <label htmlFor="inputMessage"><span className="required">(*)</span><FormattedMessage locale={this.props.lang} id="contact.form.message" /></label>
+                        <FormattedMessage locale={this.props.lang} id="contact.form.email" >
+                            {
+                                placeholder =>
+                                    <textarea
+                                        onChange={this.handleChange}
+                                        className={(this.state.showErrors && this.state.form.message === "") ? "form-control formInputError" : "form-control"}
+                                        id="inputMessage"
+                                        name="message"
+                                        placeholder={placeholder}
+                                        rows="3"
+                                        value={this.state.form.message} />
+                            }
+                        </FormattedMessage>
+
                     </div>
                     {
                         this.state.messageSuccess !== '' &&
@@ -113,12 +133,20 @@ class ContactForm extends React.Component {
                     <button
                         type="submit"
                         className="btn btn-primary">
-                        Enviar
-                        </button>
+                        <FormattedMessage locale={this.props.lang} id="contact.form.send" />
+                    </button>
                 </form>
             </React.Fragment>
         )
     }
 }
 
-export default ContactForm;
+function mapStateToProps(state, props) {
+    let lang = (state.locale.lang === undefined || state.locale.lang === "") ? "en" : state.locale.lang;
+    return {
+        lang,
+        props
+    }
+}
+
+export default connect(mapStateToProps)(ContactForm);

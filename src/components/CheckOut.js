@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import { connect } from 'react-redux';
 import ViewCart from './ViewCart';
 import LineCheckOut from './LineCheckOut';
 import DeliveryData from './DeliveryData';
@@ -14,7 +15,6 @@ import './styles/CheckOut.css';
 class CheckOut extends React.Component {
     state = {
         loading: false,
-        dataCart: this.props.dataCart,
         status: 0,
         showErrors: false,
         errorGenerateMP: false,
@@ -33,11 +33,13 @@ class CheckOut extends React.Component {
             email: ''
         }
     }
+
     componentWillReceiveProps = nextProps => {
         if (this.props.dataCart !== nextProps.dataCart) {
             this.setState({ dataCart: nextProps.dataCart });
         }
     }
+
     handleChangeDataPersonal = e => {
         this.setState({
             dataPeronal: {
@@ -69,7 +71,7 @@ class CheckOut extends React.Component {
 
                 fetch(Constants.urlServer + '/newSale', {
                     method: 'POST',
-                    body: JSON.stringify({ dataCart: this.state.dataCart, dataPersonal: this.state.dataPeronal }),
+                    body: JSON.stringify({ dataCart: this.props.dataCart, dataPersonal: this.state.dataPeronal }),
                     headers: {
                         'Content-Type': 'application/json; charset=utf-8',
                         'Accept': 'application/json'
@@ -81,7 +83,7 @@ class CheckOut extends React.Component {
 
                 fetch(Constants.urlServerPHP + '/generateLinkMP', {
                     method: 'POST',
-                    body: queryString.stringify({ total: this.state.dataCart.total, totalItems: this.state.dataCart.totalItems }),
+                    body: queryString.stringify({ total: this.props.dataCart.total, totalItems: this.props.dataCart.totalItems }),
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded',
                         'Accept': 'application/json'
@@ -138,7 +140,7 @@ class CheckOut extends React.Component {
                                     toggleViewCart={this.props.toggleViewCart}
                                     handleUpdateQuantity={this.props.handleUpdateQuantity}
                                     openModalUpdate={this.props.openModalUpdate}
-                                    dataCart={this.state.dataCart}
+                                    dataCart={this.props.dataCart}
                                     nextStep={this.nextStepDeliveryData}
                                 />
                             }
@@ -167,7 +169,7 @@ class CheckOut extends React.Component {
                                     nextStepDeliveryData={this.nextStepDeliveryData}
                                     nextStepPay={this.nextStepPay}
                                     nextStepComplete={this.nextStepComplete}
-                                    dataCart={this.state.dataCart}
+                                    dataCart={this.props.dataCart}
                                     status={this.state.status}
                                 />
                             </div>
@@ -178,4 +180,13 @@ class CheckOut extends React.Component {
         )
     }
 }
-export default CheckOut
+
+function mapStateToProps(state, props) {
+    let lang = (state.locale.lang === undefined || state.locale.lang === "") ? "en" : state.locale.lang;
+    return {
+        lang,
+        props
+    }
+}
+
+export default connect(mapStateToProps)(CheckOut);

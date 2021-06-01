@@ -10,32 +10,24 @@ const images = require.context('./../images/articles', true);
 const MaxItem = [1, 2, 3, 4, 5, 6];
 
 class ViewCartLine extends React.Component {
-    state = {
-        itemBack: this.props.item,
-        item: this.props.item
-    }
-    componentWillReceiveProps = nextProps => {
-        this.setState({
-            itemBack: { ...this.state.item },
-            item: { ...nextProps.item }
-        });
-    }
     handleChange = e => {
         var itemUpdated = {
-            ...this.state.item,
+            ...this.props.item,
             quantity: parseInt(e)
         }
-        this.props.handleUpdateQuantity(itemUpdated, this.state.item);
+        this.props.handleUpdateQuantity(itemUpdated, this.props.item);
     }
+
     openModalUpdate = () => {
-        this.props.openModalUpdate(this.state.item);
+        this.props.openModalUpdate(this.props.item);
     }
+
     handleClickDeleteAll = e => {
         var itemUpdated = {
-            ...this.state.item,
+            ...this.props.item,
             quantity: 0
         }
-        this.props.handleUpdateQuantity(itemUpdated, this.state.item);
+        this.props.handleUpdateQuantity(itemUpdated, this.props.item);
     }
     render() {
         let loadImage = imageName => (images(`./${imageName}`).default);
@@ -44,28 +36,31 @@ class ViewCartLine extends React.Component {
             <div className="ViewCartLine">
                 <div className="row">
                     <div className="col-3">
-                        <Image src={loadImage(this.state.item.image)} fluid />
+                        <Image src={loadImage(this.props.item.image)} fluid />
                     </div>
                     <div className="col-4 p-0 pl-1">
                         <div>
-                            <h5>{this.state.item.title}</h5>
+                            <h5>{this.props.item.title}</h5>
                             <div className="ViewCartLineBody">
-                                {(this.state.item.colors && this.state.item.colors.length > 0) &&
+                                {(this.props.item.colors && this.props.item.colors.length > 0) &&
                                     <div>
                                         <label className="label"><FormattedMessage locale={this.props.lang} id="view_cart_line.color" /></label>
-                                        <span>{this.state.item.colors[this.state.item.color].displayName}</span>
+                                        <span>{this.props.item.colors[this.props.item.color].displayName}</span>
                                     </div>
                                 }
-                                {(this.state.item.sizes && this.state.item.sizes.length > 0) &&
+                                {(this.props.item.sizes && this.props.item.sizes.length > 0) &&
                                     <div>
                                         <label className="label"><FormattedMessage locale={this.props.lang} id="view_cart_line.size" /></label>
-                                        <span>{this.state.item.sizes[this.state.item.size].displayName}</span>
+                                        <span>{this.props.item.sizes[this.props.item.size].displayName}</span>
                                     </div>
                                 }
                                 <div className="ViewCartLineAction">
-                                    <div className="Link" onClick={this.openModalUpdate}>
-                                        <FormattedMessage locale={this.props.lang} id="view_cart_line.edit" />
-                                    </div>
+                                    {
+                                        (this.props.item.sizes && this.props.item.sizes.length > 0 && this.props.item.colors && this.props.item.colors.length > 0) &&
+                                        < div className="Link" onClick={this.openModalUpdate}>
+                                            <FormattedMessage locale={this.props.lang} id="view_cart_line.edit" />
+                                        </div>
+                                    }
                                     <div className="Link" onClick={this.handleClickDeleteAll}>
                                         <FormattedMessage locale={this.props.lang} id="view_cart_line.delete" />
                                     </div>
@@ -75,26 +70,26 @@ class ViewCartLine extends React.Component {
                     </div>
                     <div className="col-5 p-0" >
                         <div className="ViewCartLinePrice">
-                            <div className="ViewCartLineItem">{formatNumber(this.state.item.price)}</div>
+                            <div className="ViewCartLineItem">{formatNumber(this.props.item.price)}</div>
                             <div className="ViewCartLineItem">
                                 <Dropdown onSelect={this.handleChange}>
                                     <Dropdown.Toggle id="dropdown-custom-components" variant="outline-dark">
-                                        X{this.state.item.quantity}
+                                        X{this.props.item.quantity}
                                     </Dropdown.Toggle>
                                     <Dropdown.Menu>
                                         {
                                             MaxItem.map((item, index) => {
-                                                return <Dropdown.Item key={index} eventKey={item} active={this.state.item.quantity === item} >X{item}</Dropdown.Item>
+                                                return <Dropdown.Item key={index} eventKey={item} active={this.props.item.quantity === item} >X{item}</Dropdown.Item>
                                             })
                                         }
                                     </Dropdown.Menu>
                                 </Dropdown>
                             </div>
-                            <div className="ViewCartLineItem">{formatNumber(this.state.item.price * this.state.item.quantity)}</div>
+                            <div className="ViewCartLineItem">{formatNumber(this.props.item.price * this.props.item.quantity)}</div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div >
         )
     }
 }

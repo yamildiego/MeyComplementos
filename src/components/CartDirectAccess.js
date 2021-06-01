@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './styles/CartDirectAccess.css';
 
@@ -16,4 +17,13 @@ const CartDirectAccess = (props) => {
     )
 }
 
-export default CartDirectAccess;
+function mapStateToProps(state, props) {
+    let lang = (state.locale.lang === undefined || state.locale.lang === "") ? "en" : state.locale.lang;
+    return {
+        lang,
+        props,
+        totalItems: state.articleReducer.totalItems
+    }
+}
+
+export default connect(mapStateToProps)(CartDirectAccess);

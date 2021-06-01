@@ -4,16 +4,15 @@ import { connect } from 'react-redux';
 import { IntlProvider } from 'react-intl';
 import LayoutApp from './AppLayout';
 import Home from '../pages/Home';
-// import PaymentMethods from '../pages/PaymentMethods/PaymentMethods';
-import Contact from '../pages/Contact';
-import CookiesPolicy from '../pages/CookiesPolicy';
+// import Contact from '../pages/Contact';
+// import CookiesPolicy from '../pages/CookiesPolicy';
 import HandleError from './HandleError';
 import AlertCookies from './AlertCookies';
+import GenericNotFound from './GenericNotFound';
 import localforage from 'localforage';
 import * as actions from './actions/locale';
 
 import lenguanges from './../lang';
-
 
 class App extends React.Component {
 
@@ -43,13 +42,14 @@ class App extends React.Component {
                         <AlertCookies />
                         <HandleError>
                             <Switch>
-                                {/* <Route exact path="/" render={(props) => <Home {...props} />} /> */}
-                                {/* <Route exact path="/medios-de-pago" component={PaymentMethods} /> */}
                                 <Route exact path="/" component={Home} />
-                                <Route exact path="/products" component={Contact} />
-                                <Route exact path="/about-us" component={Contact} />
-                                <Route exact path="/contact-us" component={Contact} />
-                                <Route exact path="/cookies-policy" component={CookiesPolicy} />
+                                {/* <Route exact path="/products" component={Contact} /> */}
+                                {/* <Route exact path="/contact-us" component={Contact} /> */}
+                                {/* <Route exact path="/cookies-policy" component={CookiesPolicy} /> */}
+                                {/* <Route exact path="/cookies-policy" component={CookiesPolicy} /> */}
+                                {/* <Route path="/404" component={GenericNotFound} /> */}
+                                {/* <Redirect to="/404" /> */}
+                                <Route path='*' exact={true} component={GenericNotFound} />
                             </Switch>
                         </HandleError>
                     </LayoutApp>
@@ -58,7 +58,6 @@ class App extends React.Component {
         )
     }
 }
-
 
 function mapStateToProps(state, props) {
     let lang = (state.locale.lang === undefined || state.locale.lang === "") ? "en" : state.locale.lang;

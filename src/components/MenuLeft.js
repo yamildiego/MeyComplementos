@@ -24,11 +24,10 @@ class MenuLeft extends React.Component {
                     categories={this.props.categories}
                 />
                 {
-                    this.props.dataCart.cartItems.length > 0 &&
+                    this.props.totalItems > 0 &&
                     <Cart
                         handleRemoveItem={this.props.handleRemoveItem}
                         toggleViewCart={this.props.toggleViewCart}
-                        dataCart={this.props.dataCart}
                     />
                 }
                 <ListGroup>
@@ -37,7 +36,7 @@ class MenuLeft extends React.Component {
                             <FormattedMessage locale={this.props.lang} id="menu_left.text_one" />
                         </div>
                         <div className="text-center">
-                            <FormattedMessage locale={this.props.lang} id="menu_left.text_two_part_one" /> <Link to="/contacto"><FormattedMessage locale={this.props.lang} id="menu_left.text_two_part_two" /></Link>
+                            <FormattedMessage locale={this.props.lang} id="menu_left.text_two_part_one" /> <Link to="/contact-us"><FormattedMessage locale={this.props.lang} id="menu_left.text_two_part_two" /></Link>
                         </div>
                     </ListGroup.Item>
                 </ListGroup>
@@ -50,7 +49,8 @@ function mapStateToProps(state, props) {
     let lang = (state.locale.lang === undefined || state.locale.lang === "") ? "en" : state.locale.lang;
     return {
         lang,
-        props
+        props,
+        totalItems: state.articleReducer.totalItems,
     }
 }
 

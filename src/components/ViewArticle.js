@@ -7,59 +7,47 @@ import { FormattedMessage, injectIntl } from 'react-intl';
 import MultiToggle from 'react-multi-toggle';
 import ImagesNotFound from './../images/images-not-found.jpg';
 import './styles/ViewArticle.css';
+import * as actions from './actions/article';
 const images = require.context('./../images/articles', true);
 
 class ViewArticle extends React.Component {
     state = {
-        itemSelected: {
-            size: (this.props.modalType === 'EDIT' ? this.props.articleOptionsChosen.size : 0),
-            color: (this.props.modalType === 'EDIT' ? this.props.articleOptionsChosen.color : 0)
-        }
-    }
-    componentWillReceiveProps = (nextProps) => {
-        if (this.props.item.id !== nextProps.item.id)
-            this.setState({ itemSelected: { size: 0, color: 0 } });
-    }
-    handleClickAdd = () => {
-        const element = {
-            ...this.state.itemSelected,
-            size: ((this.state.itemSelected.size !== undefined) ? this.state.itemSelected.size : 0),
-            color: ((this.state.itemSelected.color !== undefined) ? this.state.itemSelected.color : 0),
-            idArticle: this.props.item.id,
-            title: this.props.item.title,
-            price: this.props.item.price,
-            image: ((this.props.item.images.length > 0) ? this.props.item.images[0].path : ImagesNotFound),
-            sizes: this.props.item.sizes,
-            colors: this.props.item.colors
-        }
-        this.props.handleAddItem(element);
-    }
-    handleClickUpdateItem = () => {
-        if (this.props.articleOptionsChosen.size === this.state.itemSelected.size && this.props.articleOptionsChosen.color === this.state.itemSelected.color) {
-            this.props.handleUpdateItem(false);
-        } else {
-            this.props.handleUpdateItem(true, this.state.itemSelected, this.props.item, this.props.articleOptionsChosen);
-        }
-    }
-    onGroupSizeSelect = value => {
-        this.setState(
-            {
-                itemSelected: {
-                    ...this.state.itemSelected,
-                    size: value
-                }
-            });
+        size: (this.props.size != undefined ? this.props.size : 0),
+        color: (this.props.color != undefined ? this.props.color : 0),
     }
 
-    onGroupColorSelect = value => {
-        this.setState(
-            {
-                itemSelected: {
-                    ...this.state.itemSelected,
-                    color: value
-                }
-            });
+    handleClickAdd = () => {
+        let newItem = {
+            id: this.props.item.id,
+            size: this.state.size,
+            color: this.state.color,
+            price: this.props.item.price,
+            qty: 1
+        }
+
+        // // localforage.setItem('lang', lang);
+        this.props.dispatch(actions.articleActionAdd(newItem));
     }
+
+    handleClickUpdateItem = () => {
+        // let newItem = {
+        //     id: this.props.item.id,
+        //     size: this.state.size,
+        //     color: this.state.color,
+        //     price: this.props.item.price,
+        //     qty: 1
+        // }
+        // this.props.dispatch(actions.articleActionAdd(newItem));
+        //     if (this.props.articleOptionsChosen.size === this.state.itemSelected.size && this.props.articleOptionsChosen.color === this.state.itemSelected.color) {
+        //         this.props.handleUpdateItem(false);
+        //     } else {
+        //         this.props.handleUpdateItem(true, this.state.itemSelected, this.props.item, this.props.articleOptionsChosen);
+        //     }
+    }
+
+    onGroupSizeSelect = value => this.setState({ ...this.state, size: value });
+
+    onGroupColorSelect = value => this.setState({ ...this.state, color: value });
 
     render() {
         let settings = {
@@ -81,7 +69,7 @@ class ViewArticle extends React.Component {
                         <h2 className="ViewArticleTitle">
                             {this.props.item.title}
                         </h2>
-                        {(this.props.quantity() > 0 && this.props.modalType === 'NEW') &&
+                        {/* {(this.props.quantity() > 0 && this.props.modalType === 'NEW') &&
                             <span className="ViewArticleText">
                                 {
                                     this.props.quantity() === 1
@@ -89,7 +77,7 @@ class ViewArticle extends React.Component {
                                         : (intl.formatMessage({ id: "view_article.has_two_part_one" }) + this.props.quantity() + intl.formatMessage({ id: "view_article.has_two_part_two" }))
                                 }
                             </span>
-                        }
+                        } */}
                         {this.props.modalType === 'EDIT' &&
                             <span className="ViewArticleText">
                                 {
@@ -137,7 +125,7 @@ class ViewArticle extends React.Component {
                                                 <span>
                                                     <MultiToggle
                                                         options={this.props.item.colors}
-                                                        selectedOption={this.state.itemSelected.color}
+                                                        selectedOption={this.state.color}
                                                         onSelectOption={this.onGroupColorSelect}
                                                         className="ViewArticleToggleColors"
                                                     />
@@ -151,7 +139,7 @@ class ViewArticle extends React.Component {
                                                 <span>
                                                     <MultiToggle
                                                         options={this.props.item.sizes}
-                                                        selectedOption={this.state.itemSelected.size}
+                                                        selectedOption={this.state.size}
                                                         onSelectOption={this.onGroupSizeSelect}
                                                         className="ViewArticleToggleSizes"
                                                     />
@@ -170,7 +158,14 @@ class ViewArticle extends React.Component {
                                     </div>
                                     {
                                         this.props.item.description &&
-                                        <div className="ViewArticleInfo"><span><FormattedMessage locale={this.props.lang} id="view_article.description" /></span> {this.props.item.description}</div>
+                                        <div className="ViewArticleInfo">
+                                            <span>
+                                                <FormattedMessage locale={this.props.lang} id="view_article.description" />
+                                            </span>
+                                            <div>
+                                                {this.props.item.description}
+                                            </div>
+                                        </div>
                                     }
                                 </form>
                                 <br />

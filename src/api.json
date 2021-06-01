@@ -2,460 +2,152 @@
     "categories": [
         {
             "id": 1,
-            "name": "Calzas",
+            "name": "Womens",
             "subcategories": [
                 {
                     "id": 2,
                     "name": "Moda"
-                },
-                {
-                    "id": 3,
-                    "name": "Running"
-                },
-                {
-                    "id": 4,
-                    "name": "Training"
                 }
             ]
         },
         {
             "id": 5,
-            "name": "Camperas",
+            "name": "Toys",
             "subcategories": [
                 {
                     "id": 6,
-                    "name": "Moda"
+                    "name": "Board Games & Puzzles"
                 },
                 {
                     "id": 7,
-                    "name": "Running"
-                },
-                {
-                    "id": 8,
-                    "name": "Training"
+                    "name": "Action Figures"
                 }
             ]
         },
         {
-            "id": 9,
-            "name": "Remeras",
-            "subcategories": [
-                {
-                    "id": 10,
-                    "name": "Moda"
-                },
-                {
-                    "id": 11,
-                    "name": "Running"
-                },
-                {
-                    "id": 12,
-                    "name": "Tenis"
-                },
-                {
-                    "id": 13,
-                    "name": "Training"
-                }
-            ]
-        },
-        {
-            "id": 14,
-            "name": "Zapatillas",
-            "subcategories": [
-                {
-                    "id": 15,
-                    "name": "Moda"
-                },
-                {
-                    "id": 16,
-                    "name": "Running"
-                },
-                {
-                    "id": 17,
-                    "name": "Tenis"
-                },
-                {
-                    "id": 18,
-                    "name": "Training"
-                }
-            ]
-        },
-        {
-            "id": 19,
+            "id": 20,
             "name": "Otros",
             "subcategories": []
         }
     ],
     "articles": [
         {
+            "id": 1,
             "brand": {
                 "id": 1,
-                "displayName": "PUMA"
+                "displayName": "Hasbro Gaming"
             },
-            "id": 1,
-            "title": "Calzas puma chase",
-            "price": 3599.99,
-            "category": 4,
+            "title": "Yahtzee Classic Board Game",
+            "description": "The classic dice game gets a sharp, high-roller look with casino-cool dice and a sleek shaker that doubles as a storage case. So, how will you roll? Will you stick with a straight, hustle for a full house, or risk it all for a 5-of-a kind Yahtzee score? Go ahead, roll with it!",
+            "price": 35.99,
+            "category": 6,
             "images": [
                 {
                     "id": 1,
                     "type": "image",
-                    "path": "CN45342.png"
-                },
-                {
-                    "id": 2,
-                    "type": "image",
-                    "path": "CN45343.png"
-                }
-            ],
-            "sizes": [
-                {
-                    "displayName": "XS",
-                    "value": 0
-                },
-                {
-                    "displayName": "S",
-                    "value": 1
-                },
-                {
-                    "displayName": "M",
-                    "value": 2
-                },
-                {
-                    "displayName": "L",
-                    "value": 3
-                }
-            ],
-            "colors": [
-                {
-                    "displayName": "Negro, Blanco y Rosa",
-                    "value": 0
+                    "path": "11HYT35.jpg"
                 }
             ]
         },
         {
+            "id": 2,
             "brand": {
-                "id": 3,
-                "displayName": "Adidas"
+                "id": 2,
+                "displayName": "Crossword Game"
             },
+            "title": "Scrabble Original Game",
+            "description": "Wits and Words. Scrabble is a classic battle of wits and words where every word counts. Using letter tiles, players take turns spelling out words in crossword fashion to score as many points as possible. More than just a game, Scrabble game improves your vocabulary as you're introduced to new words each time you play. Create new connections and bring letters and people together! It's the game that always spells F-U-N.",
+            "price": 44.5,
+            "category": 6,
+            "images": [
+                {
+                    "id": 1,
+                    "type": "image",
+                    "path": "22CSW44.jpg"
+                }
+            ]
+        },
+        {
             "id": 3,
-            "title": "Shorts para ciclismo",
-            "price": 1899.99,
-            "category": 19,
+            "brand": {
+                "id": 1,
+                "displayName": "Hasbro Gaming"
+            },
+            "title": "Monopoly Classic Board Game",
+            "description": "The World's Favorite Family Brand: It's the fast-dealing property trading game where players buy, sell, dream, and scheme their way to riches. This version of the Monopoly game includes the Rubber Ducky, Tyrannosaurus Rex, and Penguin in its family of tokens. Choose a fave, place it on Go and roll the dice to own it all!",
+            "price": 50,
+            "category": 6,
             "images": [
                 {
                     "id": 1,
                     "type": "image",
-                    "path": "95384.png"
-                },
-                {
-                    "id": 2,
-                    "type": "image",
-                    "path": "95386.jpg"
-                },
-                {
-                    "id": 3,
-                    "type": "image",
-                    "path": "95388.jpg"
-                },
-                {
-                    "id": 4,
-                    "type": "video",
-                    "path": "95388.mp4"
-                }
-            ],
-            "sizes": [
-                {
-                    "displayName": "XS",
-                    "value": 0
-                },
-                {
-                    "displayName": "S",
-                    "value": 1
-                },
-                {
-                    "displayName": "M",
-                    "value": 2
-                },
-                {
-                    "displayName": "L",
-                    "value": 3
-                }
-            ],
-            "colors": [
-                {
-                    "displayName": "Rojo",
-                    "value": 0
+                    "path": "31HMT50.jpg"
                 }
             ]
         },
         {
-            "brand": {
-                "id": 3,
-                "displayName": "Adidas"
-            },
             "id": 4,
-            "title": "Calzas 7/8 how we do",
-            "price": 3299.99,
-            "category": 3,
-            "images": [
-                {
-                    "id": 1,
-                    "type": "image",
-                    "path": "CA543.png"
-                },
-                {
-                    "id": 2,
-                    "type": "image",
-                    "path": "CA544.png"
-                },
-                {
-                    "id": 3,
-                    "type": "image",
-                    "path": "CA545.png"
-                },
-                {
-                    "id": 4,
-                    "type": "video",
-                    "path": "CA544.mp4"
-                },
-                {
-                    "id": 5,
-                    "type": "image",
-                    "path": "CA5463.png"
-                }
-            ],
-            "sizes": [
-                {
-                    "displayName": "XS",
-                    "value": 0
-                },
-                {
-                    "displayName": "S",
-                    "value": 1
-                },
-                {
-                    "displayName": "M",
-                    "value": 2
-                },
-                {
-                    "displayName": "L",
-                    "value": 3
-                }
-            ],
-            "colors": [
-                {
-                    "displayName": "Legend Ink",
-                    "value": 0
-                },
-                {
-                    "displayName": "Shock Cyan",
-                    "value": 1
-                }
-            ]
-        },
-        {
             "brand": {
                 "id": 3,
-                "displayName": "Adidas"
+                "displayName": "Mattel"
             },
-            "id": 5,
-            "title": "Remera 3 tiras",
-            "price": 2299.99,
-            "category": 10,
+            "title": "Pictionary",
+            "description": "Count on big laughs when you and your friends get together to find out who's an artist and who really isn't! In this quick-draw classic, the guesses can be just as hilarious as the sketches, as you use markers to draw your best rendition of the clue on the card. You have one minute to convey what's on the card. Is it an animal? A person? An action? Just what is that word you're drawing?? If your team members just aren't getting it, try a different direction; you never know what kinds of clues might trigger the answer. You take turns drawing, so all players get to channel their inner artists! Don't worry if 'can't draw', the game can be even funnier, and the laughs just keep coming! Two levels of clues (120 adults, 80 junior) make this a great game for both kids and adults! Year after year since 1985, Pictionary has proven itself to be the ultimate party game!",
+            "price": 38,
+            "category": 6,
             "images": [
                 {
                     "id": 1,
                     "type": "image",
-                    "path": "25348.jpg"
-                },
-                {
-                    "id": 2,
-                    "type": "image",
-                    "path": "343484.png"
-                }
-            ],
-            "sizes": [
-                {
-                    "displayName": "XS",
-                    "value": 0
-                },
-                {
-                    "displayName": "S",
-                    "value": 1
-                },
-                {
-                    "displayName": "M",
-                    "value": 2
-                },
-                {
-                    "displayName": "L",
-                    "value": 3
-                }
-            ],
-            "colors": [
-                {
-                    "displayName": "Rojo",
-                    "value": 0
+                    "path": "43MPC38.jpg"
                 }
             ]
         },
         {
+            "id": 5,
             "brand": {
                 "id": 4,
-                "displayName": "Under Armour"
+                "displayName": "Hasbro"
             },
-            "id": 6,
-            "title": "Calzas under armour heatgear",
-            "price": 2299.99,
-            "category": 4,
-            "images": [
-                {
-                    "id": 1,
-                    "type": "image",
-                    "path": "ML87834.png"
-                },
-                {
-                    "id": 2,
-                    "type": "image",
-                    "path": "ML87134.png"
-                }
-            ],
-            "sizes": [
-                {
-                    "displayName": "XS",
-                    "value": 0
-                },
-                {
-                    "displayName": "S",
-                    "value": 1
-                }
-            ],
-            "colors": [
-                {
-                    "displayName": "Negro",
-                    "value": 0
-                }
-            ]
-        },
-        {
-            "brand": {
-                "id": 5,
-                "displayName": "Puma"
-            },
-            "id": 7,
-            "title": "Calza Puma",
-            "price": 3199,
-            "category": 4,
-            "images": [
-                {
-                    "id": 1,
-                    "type": "image",
-                    "path": "ML4534.png"
-                },
-                {
-                    "id": 2,
-                    "type": "image",
-                    "path": "ML4535.png"
-                }
-            ],
-            "sizes": [
-                {
-                    "displayName": "XS",
-                    "value": 0
-                },
-                {
-                    "displayName": "M",
-                    "value": 1
-                },
-                {
-                    "displayName": "L",
-                    "value": 2
-                }
-            ],
-            "colors": [
-                {
-                    "displayName": "Negro y Blanco",
-                    "value": 0
-                }
-            ]
-        },
-        {
-            "brand": {
-                "id": 6,
-                "displayName": "Adidas"
-            },
-            "id": 8,
-            "title": "Campera deportiva",
-            "price": 4299,
+            "title": "Marvel Spider-Man Titan Hero",
+            "description": "Imagine leaping into adventure with Avengers figures, vehicles, and roleplay items inspired by the Marvel Universe. With this classic inspired line of toys, kids can imagine all the action of the Marvel Universe with their favourite heroes including Spider-Man, Miles Morales, and Venom.",
+            "price": 102,
             "category": 7,
             "images": [
                 {
                     "id": 1,
                     "type": "image",
-                    "path": "CAD9876543.png"
+                    "path": "54HMI101.jpg"
                 },
                 {
                     "id": 2,
                     "type": "image",
-                    "path": "CAD9876577.png"
-                }
-            ],
-            "sizes": [
-                {
-                    "displayName": "XS",
-                    "value": 0
-                },
-                {
-                    "displayName": "S",
-                    "value": 1
-                },
-                {
-                    "displayName": "M",
-                    "value": 2
-                }
-            ],
-            "colors": [
-                {
-                    "displayName": "Negro y Blanco",
-                    "value": 0
+                    "path": "54HMI102.jpg"
                 }
             ]
         },
         {
+            "id": 6,
             "brand": {
-                "id": 8,
-                "displayName": "Mood"
+                "id": 1,
+                "displayName": "Hasbro Gaming"
             },
-            "id": 10,
-            "title": "Campera Mood Chenna",
-            "price": 4899,
-            "category": 6,
-            "sizes": [
+            "title": "Peeing Pup",
+            "description": "It's a puppy version of the game of 'hot potato' as kids take turns passing the pup and petting its head. ",
+            "price": 15,
+            "category": 7,
+            "images": [
                 {
-                    "displayName": "S",
-                    "value": 0
+                    "id": 1,
+                    "type": "image",
+                    "path": "31HGPI151.jpg"
                 },
                 {
-                    "displayName": "M",
-                    "value": 1
-                },
-                {
-                    "displayName": "L",
-                    "value": 2
-                },
-                {
-                    "displayName": "XL",
-                    "value": 3
+                    "id": 2,
+                    "type": "image",
+                    "path": "31HGPI152.jpg"
                 }
-            ],
-            "colors": [
-                {
-                    "displayName": "Negro",
-                    "value": 0
-                }
-            ],
-            "images": []
+            ]
         },
         {
             "brand": {
@@ -476,6 +168,11 @@
                     "id": 2,
                     "type": "image",
                     "path": "DE8754.png"
+                },
+                {
+                    "id": 3,
+                    "type": "video",
+                    "path": "DE8764.mp4"
                 }
             ],
             "sizes": [
@@ -512,310 +209,6 @@
                 {
                     "displayName": "Negro",
                     "value": 2
-                }
-            ]
-        },
-        {
-            "brand": {
-                "id": 6,
-                "displayName": "Adidas"
-            },
-            "id": 11,
-            "title": "Campera design 2 move",
-            "price": 4670,
-            "category": 8,
-            "images": [
-                {
-                    "id": 1,
-                    "type": "image",
-                    "path": "AD98534.png"
-                },
-                {
-                    "id": 2,
-                    "type": "image",
-                    "path": "AD98544.png"
-                },
-                {
-                    "id": 2,
-                    "type": "image",
-                    "path": "AD985488.png"
-                }
-            ],
-            "sizes": [
-                {
-                    "displayName": "XS",
-                    "value": 0
-                },
-                {
-                    "displayName": "S",
-                    "value": 1
-                },
-                {
-                    "displayName": "M",
-                    "value": 2
-                },
-                {
-                    "displayName": "L",
-                    "value": 3
-                },
-                {
-                    "displayName": "XL",
-                    "value": 4
-                }
-            ],
-            "colors": [
-                {
-                    "displayName": "Gris y Negro",
-                    "value": 0
-                }
-            ]
-        },
-        {
-            "brand": {
-                "id": 6,
-                "displayName": "Adidas"
-            },
-            "id": 12,
-            "title": "Zapatillas barricade court",
-            "price": 3980,
-            "category": 17,
-            "images": [
-                {
-                    "id": 1,
-                    "type": "image",
-                    "path": "DE32534.png"
-                },
-                {
-                    "id": 2,
-                    "type": "image",
-                    "path": "DE32535.png"
-                },
-                {
-                    "id": 3,
-                    "type": "image",
-                    "path": "DE32585.png"
-                },
-                {
-                    "id": 4,
-                    "type": "image",
-                    "path": "DE325346.png"
-                },
-                {
-                    "id": 5,
-                    "type": "image",
-                    "path": "DE32334.png"
-                }
-            ],
-            "sizes": [
-                {
-                    "displayName": "35",
-                    "value": 0
-                },
-                {
-                    "displayName": "35.5",
-                    "value": 1
-                },
-                {
-                    "displayName": "36",
-                    "value": 2
-                },
-                {
-                    "displayName": "36.5",
-                    "value": 3
-                },
-                {
-                    "displayName": "37",
-                    "value": 4
-                },
-                {
-                    "displayName": "37.5",
-                    "value": 5
-                }
-            ],
-            "colors": [
-                {
-                    "displayName": "BLACK/MATTE SILVER/FLASH RED",
-                    "value": 0
-                },
-                {
-                    "displayName": "FTWR WHITE/TECH INK F16/HI-RES AQUA",
-                    "value": 1
-                }
-            ]
-        },
-        {
-            "brand": {
-                "id": 6,
-                "displayName": "Adidas"
-            },
-            "_id": "5ccd0e63f82f1413c04c0d4f",
-            "id": 13,
-            "title": "Zapatillas Skyfreeze 2.0 ",
-            "price": 2959.99,
-            "category": 16,
-            "images": [
-                {
-                    "_id": "5ccd0e63f82f1413c04c0d53",
-                    "id": 1,
-                    "type": "image",
-                    "path": "A32534.png"
-                },
-                {
-                    "_id": "5ccd0e63f82f1413c04c0d52",
-                    "id": 2,
-                    "type": "image",
-                    "path": "A32535.png"
-                },
-                {
-                    "_id": "5ccd0e63f82f1413c04c0d51",
-                    "id": 3,
-                    "type": "image",
-                    "path": "A32536.png"
-                },
-                {
-                    "_id": "5ccd0e63f82f1413c04c0d50",
-                    "id": 4,
-                    "type": "image",
-                    "path": "A32538.png"
-                }
-            ],
-            "sizes": [
-                {
-                    "_id": "5ccd0e63f82f1413c04c0d59",
-                    "displayName": "36",
-                    "value": 0
-                },
-                {
-                    "_id": "5ccd0e63f82f1413c04c0d58",
-                    "displayName": "36.5",
-                    "value": 1
-                },
-                {
-                    "displayName": "37",
-                    "value": 2
-                },
-                {
-                    "displayName": "37.5",
-                    "value": 3
-                },
-                {
-                    "displayName": "38",
-                    "value": 4
-                },
-                {
-                    "displayName": "38.5",
-                    "value": 6
-                }
-            ],
-            "colors": [
-                {
-                    "displayName": "Verde Agua",
-                    "value": 0
-                }
-            ]
-        },
-        {
-            "brand": {
-                "id": 6,
-                "displayName": "Adidas"
-            },
-            "id": 14,
-            "title": "Zapatillas Cosmic 2",
-            "price": 3729.99,
-            "category": 16,
-            "images": [
-                {
-                    "id": 1,
-                    "type": "image",
-                    "path": "AA32534.png"
-                },
-                {
-                    "id": 2,
-                    "type": "image",
-                    "path": "AA32535.png"
-                },
-                {
-                    "id": 3,
-                    "type": "image",
-                    "path": "AA32536.png"
-                }
-            ],
-            "sizes": [
-                {
-                    "displayName": "36",
-                    "value": 0
-                },
-                {
-                    "displayName": "36.5",
-                    "value": 1
-                },
-                {
-                    "displayName": "37",
-                    "value": 2
-                },
-                {
-                    "displayName": "38",
-                    "value": 3
-                },
-                {
-                    "displayName": "39",
-                    "value": 4
-                }
-            ],
-            "colors": [
-                {
-                    "displayName": "Negro y Blanco",
-                    "value": 0
-                }
-            ]
-        },
-        {
-            "brand": {
-                "id": 2,
-                "displayName": "NEW BALANCE"
-            },
-            "id": 2,
-            "title": "Calzas new balance",
-            "price": 2299.99,
-            "category": 2,
-            "images": [
-                {
-                    "id": 1,
-                    "type": "image",
-                    "path": "CNB6535.png"
-                },
-                {
-                    "id": 2,
-                    "type": "image",
-                    "path": "CNB6536.png"
-                }
-            ],
-            "sizes": [
-                {
-                    "displayName": "XS",
-                    "value": 0
-                },
-                {
-                    "displayName": "S",
-                    "value": 1
-                },
-                {
-                    "displayName": "M",
-                    "value": 2
-                },
-                {
-                    "displayName": "L",
-                    "value": 3
-                },
-                {
-                    "displayName": "XL",
-                    "value": 4
-                }
-            ],
-            "colors": [
-                {
-                    "displayName": "Gris",
-                    "value": 0
                 }
             ]
         }

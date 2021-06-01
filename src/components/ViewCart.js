@@ -6,21 +6,15 @@ import ViewCartLine from './ViewCartLine';
 import './styles/ViewCart.css';
 
 class ViewCart extends React.Component {
-    state = { dataCart: this.props.dataCart }
-    componentWillReceiveProps = nextProps => {
-        if (this.props.dataCart !== nextProps.dataCart) {
-            this.setState({ dataCart: nextProps.dataCart });
-        }
-    }
     render() {
         return (
             <React.Fragment>
                 {
-                    this.state.dataCart.totalItems > 0 &&
-                    <h1><FormattedMessage locale={this.props.lang} id="view_cart.title" /><span>{this.state.dataCart.totalItems} Items</span></h1>
+                    this.props.dataCart.totalItems > 0 &&
+                    <h1><FormattedMessage locale={this.props.lang} id="view_cart.title" /><span>{this.props.dataCart.totalItems} Items</span></h1>
                 }
                 {
-                    this.state.dataCart.totalItems === 0 &&
+                    this.props.dataCart.totalItems === 0 &&
                     <React.Fragment>
                         <h1><FormattedMessage locale={this.props.lang} id="view_cart.empty" /></h1>
                         <button type="button" className="btn btn-outline-dark btn-lg mt-4 ml-4" onClick={this.props.toggleViewCart}>
@@ -29,19 +23,19 @@ class ViewCart extends React.Component {
                     </React.Fragment>
                 }
                 {
-                    this.state.dataCart.cartItems.map((item, index) => {
+                    this.props.dataCart.cartItems.map((item, index) => {
                         return (
                             <ViewCartLine
                                 handleUpdateQuantity={this.props.handleUpdateQuantity}
                                 openModalUpdate={this.props.openModalUpdate}
                                 key={index}
-                                item={this.state.dataCart.cartItems[index]}
+                                item={item}
                             />
                         )
                     })
                 }
                 {
-                    this.state.dataCart.totalItems > 0 &&
+                    this.props.dataCart.totalItems > 0 &&
                     <div className="text-center mt-4">
                         <button
                             type="button"

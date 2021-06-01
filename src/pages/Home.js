@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
+import { connect } from 'react-redux';
 import MenuLeft from '../components/MenuLeft';
 import Articles from '../components/Articles';
 import ViewArticle from '../components/ViewArticle';
@@ -25,28 +26,35 @@ class Home extends React.Component {
         modalVisible: false,
         modalType: 'NEW',
         showCart: false,
-        categories: [],
-        dataCart: {
-            cartItems: [],
-            totalItems: 0,
-            total: 0,
-            maxId: 0,
+        categories: []
+    }
+
+    componentWillUnmount = () => clearInterval(this.timeout);
+
+    timer = () => {
+        if (this.state.currentCount < 100) {
+            setTimeout(
+                () => {
+                    this.setState({ currentCount: (this.state.currentCount + 5) })
+                    this.timer()
+                }
+                ,
+                100
+            );
+        } else {
+            clearInterval(this.timeout);
         }
     }
-    componentWillUnmount() {
-        clearInterval(this.countdown);
-    }
-    timer = () => {
-        if (!this.state.loading)
-            clearInterval(this.countdown);
-        else
-            this.setState({ currentCount: (this.state.currentCount + 5) });
-    }
+
     componentDidMount = () => {
         let params = queryString.parse(this.props.location.search.substring(1, this.props.location.search.length - 1))
         this.setState({ collectionId: (params.collection_id === undefined) ? null : params.collection_id, collectionStatus: params.collection_status });
 
-        this.countdown = setInterval(this.timer, 100);
+        // this.countdown = setInterval(this.timer, 100);
+        this.timeout = this.timer;
+        this.timeout();
+
+
         // fetch(Constants.urlServer + '/getCategories')
         //     .then(response => response.json()).then(response => {
         //         this.setState({ categories: response });
@@ -56,86 +64,96 @@ class Home extends React.Component {
         //     .then(response => {
         //         this.setState({ articles: response, articlesFiltered: response, loading: false });
         //     });
+
         this.setState({ categories: data.categories, articles: data.articles, articlesFiltered: data.articles, loading: false });
+
         var _this = this;
+
         localforage.getItem('dataCart', function (err, value) {
             if (typeof value === "object" && value !== null) _this.setState({ dataCart: value });
         });
     }
+
     openModal = article => {
         this.setState({
             modalVisible: true,
             article
         })
     }
+
     closeModal = () => this.setState({ modalVisible: false })
-    getNextId = () => {
-        this.setState({ dataCart: { ...this.state.dataCart, maxId: this.state.dataCart.maxId + 1 } });
-        return this.state.dataCart.maxId;
-    }
-    handleAddItem = (element) => {
-        var newCartItems = [];
 
-        var ArrayWithiItem = this.state.dataCart.cartItems.filter((item) => {
-            if (item.idArticle === element.idArticle && item.size === element.size && item.color === element.color)
-                return item;
-            else {
-                newCartItems.push(item);
-                return false;
-            }
-        });
+    // getNextId = () => {
+    //     this.setState({ dataCart: { ...this.state.dataCart, maxId: this.state.dataCart.maxId + 1 } });
+    //     return this.state.dataCart.maxId;
+    // }
 
-        if (ArrayWithiItem.length === 0)
-            newCartItems.push({ ...element, quantity: 1 });
-        else {
-            var itemUpdated = ArrayWithiItem[0];
-            itemUpdated.quantity++;
-            newCartItems.push(itemUpdated);
-        }
+    // handleAddItem = (element) => {
+    //     var newCartItems = [];
 
-        var dataCart = {
-            ...this.state.dataCart,
-            cartItems: newCartItems,
-            totalItems: this.state.dataCart.totalItems + 1,
-            total: this.state.dataCart.total + element.price
-        }
+    //     var ArrayWithiItem = this.state.dataCart.cartItems.filter((item) => {
+    //         if (item.idArticle === element.idArticle && item.size === element.size && item.color === element.color)
+    //             return item;
+    //         else {
+    //             newCartItems.push(item);
+    //             return false;
+    //         }
+    //     });
 
-        localforage.setItem('dataCart', dataCart);
-        this.setState({ dataCart, modalType: 'NEW' });
-    }
-    handleRemoveItem = item => {
-        var newCartItems = this.state.dataCart.cartItems.filter(i => {
-            if (i.idArticle === item.idArticle && i.size === item.size && i.color === item.color) {
-                if (i.quantity > 1) {
-                    i.quantity = i.quantity - 1;
-                    return i;
-                }
-                return false;
-            } else {
-                return i;
-            }
-        })
+    //     if (ArrayWithiItem.length === 0)
+    //         newCartItems.push({ ...element, quantity: 1 });
+    //     else {
+    //         var itemUpdated = ArrayWithiItem[0];
+    //         itemUpdated.quantity++;
+    //         newCartItems.push(itemUpdated);
+    //     }
 
-        var dataCart = {
-            ...this.state.dataCart,
-            cartItems: newCartItems,
-            totalItems: this.state.dataCart.totalItems - 1,
-            total: this.state.dataCart.total - item.price
-        }
+    //     var dataCart = {
+    //         ...this.state.dataCart,
+    //         cartItems: newCartItems,
+    //         totalItems: this.state.dataCart.totalItems + 1,
+    //         total: this.state.dataCart.total + element.price
+    //     }
 
-        localforage.setItem('dataCart', dataCart);
-        this.setState({ dataCart });
-    }
-    cleanCart = () => {
-        var dataCart = {
-            cartItems: [],
-            totalItems: 0,
-            total: 0,
-            maxId: 0,
-        }
-        localforage.setItem('dataCart', dataCart);
-        this.setState({ dataCart });
-    }
+    //     localforage.setItem('dataCart', dataCart);
+    //     this.setState({ dataCart, modalType: 'NEW' });
+    // }
+
+    // handleRemoveItem = item => {
+    //     var newCartItems = this.state.dataCart.cartItems.filter(i => {
+    //         if (i.idArticle === item.idArticle && i.size === item.size && i.color === item.color) {
+    //             if (i.quantity > 1) {
+    //                 i.quantity = i.quantity - 1;
+    //                 return i;
+    //             }
+    //             return false;
+    //         } else {
+    //             return i;
+    //         }
+    //     })
+
+    //     var dataCart = {
+    //         ...this.state.dataCart,
+    //         cartItems: newCartItems,
+    //         totalItems: this.state.dataCart.totalItems - 1,
+    //         total: this.state.dataCart.total - item.price
+    //     }
+
+    //     localforage.setItem('dataCart', dataCart);
+    //     this.setState({ dataCart });
+    // }
+
+    // cleanCart = () => {
+    //     var dataCart = {
+    //         cartItems: [],
+    //         totalItems: 0,
+    //         total: 0,
+    //         maxId: 0,
+    //     }
+    //     localforage.setItem('dataCart', dataCart);
+    //     this.setState({ dataCart });
+    // }
+
     setFilterBySearch = text => {
         if (text === '')
             this.setFilterByCategory(this.state.filter.category);
@@ -151,144 +169,151 @@ class Home extends React.Component {
             })
         }
     }
-    setFilterByCategory = (categoryId) => {
-        var itemsFiltered = this.state.articles;
 
-        if (categoryId !== 0) {
+    // setFilterByCategory = (categoryId) => {
+    //     var itemsFiltered = this.state.articles;
 
-            var category = undefined;
-            this.state.categories.map(categoryItem => {
-                if (categoryItem.id === categoryId)
-                    category = categoryItem;
-                return false;
-            })
+    //     if (categoryId !== 0) {
 
-            if (category !== undefined) {
-                let ids = [];
-                ids.push(categoryId);
-                if (category.subcategories && category.subcategories.length > 0)
-                    category.subcategories.map(i => ids.push(i.id));
+    //         var category = undefined;
+    //         this.state.categories.map(categoryItem => {
+    //             if (categoryItem.id === categoryId)
+    //                 category = categoryItem;
+    //             return false;
+    //         })
 
-                itemsFiltered = this.state.articles.filter(item => {
-                    if (ids.includes(item.category)) return item;
-                    return false;
-                });
-            } else {
-                itemsFiltered = this.state.articles.filter(item => {
-                    if (item.category === categoryId) return item;
-                    return false;
-                });
-            }
-        }
+    //         if (category !== undefined) {
+    //             let ids = [];
+    //             ids.push(categoryId);
+    //             if (category.subcategories && category.subcategories.length > 0)
+    //                 category.subcategories.map(i => ids.push(i.id));
 
-        this.setState({
-            filter: { category: categoryId, text: '' },
-            articlesFiltered: itemsFiltered
-        })
-        return itemsFiltered;
-    }
-    toggleViewCart = e => {
-        this.setState({
-            modalType: 'NEW',
-            modalVisible: false,
-            showCart: !this.state.showCart
-        })
-    }
-    handleUpdateItem = (modified, itemUpdated, item, itemOld) => {
-        if (modified) {
-            var newCartItems = [];
-            var cartItemsById = [];
+    //             itemsFiltered = this.state.articles.filter(item => {
+    //                 if (ids.includes(item.category)) return item;
+    //                 return false;
+    //             });
+    //         } else {
+    //             itemsFiltered = this.state.articles.filter(item => {
+    //                 if (item.category === categoryId) return item;
+    //                 return false;
+    //             });
+    //         }
+    //     }
 
-            this.state.dataCart.cartItems.filter((element) => {
-                if (element.idArticle === itemOld.idArticle) {
-                    if (itemOld.size === element.size && itemOld.color === element.color) { } else {
-                        cartItemsById.push(element);
-                    }
-                    return false;
-                }
-                else {
-                    newCartItems.push(element);
-                    return false;
-                }
-            });
+    //     this.setState({
+    //         filter: { category: categoryId, text: '' },
+    //         articlesFiltered: itemsFiltered
+    //     })
+    //     return itemsFiltered;
+    // }
 
-            let isModified = false;
+    // toggleViewCart = e => {
+    //     this.setState({
+    //         modalType: 'NEW',
+    //         modalVisible: false,
+    //         showCart: !this.state.showCart
+    //     })
+    // }
 
-            cartItemsById.map((element) => {
-                if (element.size === itemUpdated.size && element.color === itemUpdated.color) {
-                    isModified = true;
-                    element.quantity = element.quantity + itemOld.quantity;
-                    newCartItems.push(element);
-                    return false;
-                } else {
-                    newCartItems.push(element);
-                    return false;
-                }
-            })
+    // handleUpdateItem = (modified, itemUpdated, item, itemOld) => {
+    //     if (modified) {
+    //         var newCartItems = [];
+    //         var cartItemsById = [];
 
-            if (!isModified) {
-                itemOld.size = itemUpdated.size;
-                itemOld.color = itemUpdated.color;
-                newCartItems.push(itemOld);
-            }
+    //         this.state.dataCart.cartItems.filter((element) => {
+    //             if (element.idArticle === itemOld.idArticle) {
+    //                 if (itemOld.size === element.size && itemOld.color === element.color) { } else {
+    //                     cartItemsById.push(element);
+    //                 }
+    //                 return false;
+    //             }
+    //             else {
+    //                 newCartItems.push(element);
+    //                 return false;
+    //             }
+    //         });
 
-            var dataCart = {
-                ...this.state.dataCart,
-                cartItems: newCartItems
-            }
+    //         let isModified = false;
 
-            localforage.setItem('dataCart', dataCart);
-            this.setState({ dataCart, modalVisible: false });
-        } else
-            this.setState({ modalVisible: false });
-    }
-    openModalUpdate = (item) => {
-        this.state.articles.map(e => {
-            if (e.id === item.idArticle) {
-                this.setState({
-                    article: e,
-                    modalVisible: true,
-                    modalType: 'EDIT',
-                    articleOptionsChosen: item
-                });
-            }
-            return false;
-        })
-    }
-    handleUpdateQuantity = (itemUpdated, item) => {
-        var cartItemsNew = [];
-        this.state.dataCart.cartItems.filter((i) => {
-            if (i.idArticle === itemUpdated.idArticle) {
-                if (i.size === itemUpdated.size && i.color === itemUpdated.color) {
-                    if (itemUpdated.quantity > 0)
-                        cartItemsNew.push(itemUpdated);
-                } else
-                    cartItemsNew.push(i);
-            } else
-                cartItemsNew.push(i);
-            return false;
-        });
+    //         cartItemsById.map((element) => {
+    //             if (element.size === itemUpdated.size && element.color === itemUpdated.color) {
+    //                 isModified = true;
+    //                 element.quantity = element.quantity + itemOld.quantity;
+    //                 newCartItems.push(element);
+    //                 return false;
+    //             } else {
+    //                 newCartItems.push(element);
+    //                 return false;
+    //             }
+    //         })
 
-        var dataCart = {
-            ...this.state.dataCart,
-            cartItems: cartItemsNew,
-            total: this.state.dataCart.total - (item.quantity * item.price) + (itemUpdated.quantity * itemUpdated.price),
-            totalItems: this.state.dataCart.totalItems - item.quantity + itemUpdated.quantity
-        }
+    //         if (!isModified) {
+    //             itemOld.size = itemUpdated.size;
+    //             itemOld.color = itemUpdated.color;
+    //             newCartItems.push(itemOld);
+    //         }
 
-        localforage.setItem('dataCart', dataCart);
-        this.setState({ dataCart });
-    }
-    getQuantityById = id => {
-        let quantity = 0;
-        this.state.dataCart.cartItems.filter(i => {
-            if (i.idArticle === id)
-                quantity = quantity + i.quantity;
-            return false;
-        })
+    //         var dataCart = {
+    //             ...this.state.dataCart,
+    //             cartItems: newCartItems
+    //         }
 
-        return quantity;
-    }
+    //         localforage.setItem('dataCart', dataCart);
+    //         this.setState({ dataCart, modalVisible: false });
+    //     } else
+    //         this.setState({ modalVisible: false });
+    // }
+
+    // openModalUpdate = (item) => {
+    //     this.state.articles.map(e => {
+    //         if (e.id === item.idArticle) {
+    //             this.setState({
+    //                 article: e,
+    //                 modalVisible: true,
+    //                 modalType: 'EDIT',
+    //                 articleOptionsChosen: item
+    //             });
+    //         }
+    //         return false;
+    //     })
+    // }
+
+    // handleUpdateQuantity = (itemUpdated, item) => {
+    //     var cartItemsNew = [];
+    //     this.state.dataCart.cartItems.filter((i) => {
+    //         if (i.idArticle === itemUpdated.idArticle) {
+    //             if (i.size === itemUpdated.size && i.color === itemUpdated.color) {
+    //                 if (itemUpdated.quantity > 0)
+    //                     cartItemsNew.push(itemUpdated);
+    //             } else
+    //                 cartItemsNew.push(i);
+    //         } else
+    //             cartItemsNew.push(i);
+    //         return false;
+    //     });
+
+    //     var dataCart = {
+    //         ...this.state.dataCart,
+    //         cartItems: cartItemsNew,
+    //         total: this.state.dataCart.total - (item.quantity * item.price) + (itemUpdated.quantity * itemUpdated.price),
+    //         totalItems: this.state.dataCart.totalItems - item.quantity + itemUpdated.quantity
+    //     }
+
+    //     localforage.setItem('dataCart', dataCart);
+    //     this.setState({ dataCart });
+    // }
+
+    // getQuantityById = id => {
+    //     let quantity = 0;
+    //     this.state.dataCart.cartItems.filter(i => {
+    //         if (i.idArticle === id)
+    //             quantity = quantity + i.quantity;
+    //         return false;
+    //     })
+
+    //     return quantity;
+    // }
+
     render() {
         return (
             <React.Fragment>
@@ -307,7 +332,7 @@ class Home extends React.Component {
                         this.state.collectionId === null &&
                         <React.Fragment >
                             {
-                                this.state.loading
+                                this.state.currentCount < 100
                                     ? <LogoPresentation progress={this.state.currentCount} />
                                     : <React.Fragment>
                                         <CartDirectAccess
@@ -321,10 +346,8 @@ class Home extends React.Component {
                                                     <Col md={4}>
                                                         <MenuLeft
                                                             category={this.state.filter.category}
-                                                            handleRemoveItem={this.handleRemoveItem}
                                                             toggleViewCart={this.toggleViewCart}
                                                             setFilterByCategory={this.setFilterByCategory}
-                                                            dataCart={this.state.dataCart}
                                                             categories={this.state.categories}
                                                         />
                                                     </Col>
@@ -357,7 +380,7 @@ class Home extends React.Component {
                                                         modalType={this.state.modalType}
                                                         articleOptionsChosen={this.state.articleOptionsChosen}
                                                         item={this.state.article}
-                                                        quantity={() => this.getQuantityById(this.state.article.id)}
+                                                        // quantity={() => this.getQuantityById(this.state.article.id)}
                                                         closeModal={this.closeModal}
                                                         handleAddItem={this.handleAddItem}
                                                         handleUpdateItem={this.handleUpdateItem}
@@ -375,4 +398,12 @@ class Home extends React.Component {
     }
 }
 
-export default Home;
+function mapStateToProps(state, props) {
+    let lang = (state.locale.lang === undefined || state.locale.lang === "") ? "en" : state.locale.lang;
+    return {
+        lang,
+        props
+    }
+}
+
+export default connect(mapStateToProps)(Home);

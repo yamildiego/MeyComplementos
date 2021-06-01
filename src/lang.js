@@ -6,7 +6,9 @@ export default {
         "nav.products": "Products",
         "nav.about_us": "About Us",
         "nav.contact_us": "Contact Us",
-        // "article.size": "Size",
+        "nav.search": "Search",
+        "nav.search_no_found": "Sorry, we found no results for ",
+        "nav.search_no_found_text": "We've looked everywhere but couldn't find any items. Check the spelling or try less specific search terms.",
         "menu_left.title": "Filter",
         "menu_left.text_one": "Don't we have what you're looking for?",
         "menu_left.text_two_part_one": "Make your order by clicking",
@@ -34,7 +36,7 @@ export default {
         "view_article.has_one": "Ya se agrego unossss carrito!AAAAA",
         "view_article.has_two_part_one": "Ya tienes AAA",
         "view_article.has_two_part_two": " en el carrito!AAA",
-        "view_article.description": "Description",
+        "view_article.description": "Product details",
         "view_article.brand": "Brand",
         "view_article.add": "Add to bag",
         "view_article.edit": "Edit",
@@ -48,7 +50,11 @@ export default {
         "delivery_data.email": "Email",
         "delivery_data.back": "Back",
         "delivery_data.next": "Next",
-        "footer.copyright": "© Copyright " + yearActual + " MeyComplementos - All rights reserved."
+        "contact.form.name": "Name",
+        "contact.form.email": "Email",
+        "contact.form.message": "Message",
+        "contact.form.send": "Send",
+        "footer.copyright": "© Copyright " + yearActual + " MeyComplementos - All rights reserved.",
         // // // // // Ya se agregó uno al carrito!
         // // // // // Ya se agregó dos al carrito!
         // // // // // Ya tienes 1 en el carrito!
@@ -60,11 +66,6 @@ export default {
         // "contact.subtitle": "Get in touch for any question",
         // "contact.subtitleform": "Your Details",
         // "contact.contactinformation": "Contact details",
-        // "contact.form.name": "Name",
-        // "contact.form.phone": "Phone",
-        // "contact.form.email": "Email",
-        // "contact.form.message": "Message",
-        // "contact.form.send": "Send",
         // "aboutus.title": "About us",1
         // "aboutus.subtitle": " ",
         // "aboutus.paragraphone": "Inspired by the force of nature I created VerdeAGOSTINI, a company dedicated 100% to renewable energy. In my passion I found a balance between generating great savings in my clients and taking care of my favorite place, the environment.",

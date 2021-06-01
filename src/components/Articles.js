@@ -1,42 +1,26 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FormattedMessage } from 'react-intl';
+import { connect } from 'react-redux';
 import Article from './Article';
 import Search from './Search';
 import Breadcrumbs from './Breadcrumbs';
 import './../components/styles/ArticlesLayout.css';
 
 class Articles extends React.Component {
-    state = {
-        category: this.props.category,
-        categories: this.props.categories
-    }
-
-    componentWillReceiveProps = (nextProps) => {
-        if (nextProps.category !== this.state.category)
-            this.setState({ category: nextProps.category })
-        if (nextProps.categories !== this.state.categories)
-            this.setState({ categories: nextProps.categories })
-    }
-
     render() {
         return (
             <React.Fragment>
                 <Search valueSearch={this.props.valueSearch} setFilterBySearch={this.props.setFilterBySearch}></Search>
-                <Breadcrumbs setFilterByCategory={this.props.setFilterByCategory} category={this.state.category} categories={this.state.categories} />
+                <Breadcrumbs setFilterByCategory={this.props.setFilterByCategory} category={this.props.category} categories={this.props.categories} />
                 {this.props.articles.length === 0 &&
                     <React.Fragment>
                         <div className="ArticlesBoxNoItems">
-                            <h2 className="w-100 text-center">No hay publicaciones que coincidan con tu búsqueda.</h2>
+                            <h2 className="w-100 text-center"><FormattedMessage locale={this.props.lang} id="nav.search_no_found" />{this.props.valueSearch}</h2>
                             <div className="row">
-                                <div className="col-md-4 ArticlesSearch">
-                                    <FontAwesomeIcon className="ArticlesIconSearch" icon="search" color="green" />
-                                </div>
-                                <div className="col-md-8">
-                                    <ul className="ArticlesItems mx-auto">
-                                        <li>Revisá la ortografía de la palabra.</li>
-                                        <li>Utilizá palabras más genéricas o menos palabras.</li>
-                                        <li>Navega por las categorías para encontrar un producto similar.</li>
-                                    </ul>
+                                <div className="col-md-12">
+                                    <div className="text-center">
+                                        <FormattedMessage locale={this.props.lang} id="nav.search_no_found_text" />
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -54,4 +38,12 @@ class Articles extends React.Component {
     }
 }
 
-export default Articles;
+function mapStateToProps(state, props) {
+    let lang = (state.locale.lang === undefined || state.locale.lang === "") ? "en" : state.locale.lang;
+    return {
+        lang,
+        props
+    }
+}
+
+export default connect(mapStateToProps)(Articles);
