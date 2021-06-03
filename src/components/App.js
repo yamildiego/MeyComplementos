@@ -4,13 +4,14 @@ import { connect } from 'react-redux';
 import { IntlProvider } from 'react-intl';
 import LayoutApp from './AppLayout';
 import Home from '../pages/Home';
-// import Contact from '../pages/Contact';
-// import CookiesPolicy from '../pages/CookiesPolicy';
+import Contact from '../pages/Contact';
+import CookiesPolicy from '../pages/CookiesPolicy';
 import HandleError from './HandleError';
 import AlertCookies from './AlertCookies';
 import GenericNotFound from './GenericNotFound';
 import localforage from 'localforage';
 import * as actions from './actions/locale';
+import * as actionsArticles from './actions/article';
 
 import lenguanges from './../lang';
 
@@ -21,16 +22,17 @@ class App extends React.Component {
             let lang = "en";
             if (langLocalForage == null) {
                 let navigatorLanguage = navigator.language.split("-")[0];
-                if (navigatorLanguage !== undefined && Object.keys(lenguanges).includes(navigatorLanguage)) {
+                if (navigatorLanguage !== undefined && Object.keys(lenguanges).includes(navigatorLanguage))
                     lang = navigatorLanguage;
-                }
-            } else {
-                if (Object.keys(lenguanges).includes(langLocalForage)) {
-                    lang = langLocalForage;
-                }
-            }
+            } else
+                if (Object.keys(lenguanges).includes(langLocalForage)) lang = langLocalForage;
 
             this.props.dispatch(actions.langSet(lang))
+        });
+
+        localforage.getItem('dataCart', (err, dataCart) => {
+            if (typeof dataCart === 'object')
+                this.props.dispatch(actionsArticles.setItemsFromLocalForage(dataCart))
         });
     }
 
@@ -42,14 +44,11 @@ class App extends React.Component {
                         <AlertCookies />
                         <HandleError>
                             <Switch>
-                                <Route exact path="/" component={Home} />
-                                {/* <Route exact path="/products" component={Contact} /> */}
-                                {/* <Route exact path="/contact-us" component={Contact} /> */}
-                                {/* <Route exact path="/cookies-policy" component={CookiesPolicy} /> */}
-                                {/* <Route exact path="/cookies-policy" component={CookiesPolicy} /> */}
-                                {/* <Route path="/404" component={GenericNotFound} /> */}
-                                {/* <Redirect to="/404" /> */}
-                                <Route path='*' exact={true} component={GenericNotFound} />
+                                <Route exact path="/" component={props => <Home {...props} />} />
+                                <Route exact path="/products" component={props => <Home {...props} />} />
+                                <Route exact path="/contact-us" component={props => <Contact {...props} />} />
+                                <Route exact path="/cookies-policy" component={props => <CookiesPolicy {...props} />} />
+                                <Route exact path='*' component={props => <GenericNotFound {...props} />} />
                             </Switch>
                         </HandleError>
                     </LayoutApp>
@@ -62,7 +61,8 @@ class App extends React.Component {
 function mapStateToProps(state, props) {
     let lang = (state.locale.lang === undefined || state.locale.lang === "") ? "en" : state.locale.lang;
     return {
-        lang
+        lang,
+        props
     }
 }
 

@@ -3,7 +3,7 @@ import { Card, Button, Image } from 'react-bootstrap';
 import Slider from "react-slick";
 import formatNumber from './../utilities/formatNumber';
 import { connect } from 'react-redux';
-import { FormattedMessage, injectIntl } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import MultiToggle from 'react-multi-toggle';
 import ImagesNotFound from './../images/images-not-found.jpg';
 import './styles/ViewArticle.css';
@@ -11,9 +11,11 @@ import * as actions from './actions/article';
 const images = require.context('./../images/articles', true);
 
 class ViewArticle extends React.Component {
+
     state = {
-        size: (this.props.size != undefined ? this.props.size : 0),
-        color: (this.props.color != undefined ? this.props.color : 0),
+        size: ((this.props.itemData && this.props.itemData.size !== undefined) ? this.props.itemData.size : 0),
+        color: ((this.props.itemData && this.props.itemData.color !== undefined) ? this.props.itemData.color : 0),
+        qty: ((this.props.itemData && this.props.itemData.qty !== undefined) ? this.props.itemData.qty : 0)
     }
 
     handleClickAdd = () => {
@@ -25,24 +27,30 @@ class ViewArticle extends React.Component {
             qty: 1
         }
 
-        // // localforage.setItem('lang', lang);
+        this.setState({ ...this.state, qty: (this.state.qty + 1) })
+
         this.props.dispatch(actions.articleActionAdd(newItem));
     }
 
     handleClickUpdateItem = () => {
-        // let newItem = {
-        //     id: this.props.item.id,
-        //     size: this.state.size,
-        //     color: this.state.color,
-        //     price: this.props.item.price,
-        //     qty: 1
-        // }
-        // this.props.dispatch(actions.articleActionAdd(newItem));
-        //     if (this.props.articleOptionsChosen.size === this.state.itemSelected.size && this.props.articleOptionsChosen.color === this.state.itemSelected.color) {
-        //         this.props.handleUpdateItem(false);
-        //     } else {
-        //         this.props.handleUpdateItem(true, this.state.itemSelected, this.props.item, this.props.articleOptionsChosen);
-        //     }
+        let oldItem = {
+            id: this.props.item.id,
+            size: this.props.itemData.size,
+            color: this.props.itemData.color,
+            price: this.props.item.price,
+            qty: this.props.itemData.qty
+        }
+
+        let newItem = {
+            id: this.props.item.id,
+            size: this.state.size,
+            color: this.state.color,
+            price: this.props.item.price,
+            qty: this.props.itemData.qty
+        }
+
+        this.props.dispatch(actions.articleActionUpdate(oldItem, newItem));
+        this.props.closeModal();
     }
 
     onGroupSizeSelect = value => this.setState({ ...this.state, size: value });
@@ -60,7 +68,6 @@ class ViewArticle extends React.Component {
 
         let loadImage = imageName => (images(`./${imageName}`).default);
 
-        const { intl } = this.props;
         return (
 
             <div className="ViewArticle">
@@ -69,25 +76,28 @@ class ViewArticle extends React.Component {
                         <h2 className="ViewArticleTitle">
                             {this.props.item.title}
                         </h2>
-                        {/* {(this.props.quantity() > 0 && this.props.modalType === 'NEW') &&
+                        {this.state.qty > 0 &&
                             <span className="ViewArticleText">
-                                {
-                                    this.props.quantity() === 1
-                                        ? <FormattedMessage locale={this.props.lang} id="view_article.has_one" />
-                                        : (intl.formatMessage({ id: "view_article.has_two_part_one" }) + this.props.quantity() + intl.formatMessage({ id: "view_article.has_two_part_two" }))
-                                }
+                                <FormattedMessage locale={this.props.lang} id="view_article.added" />! <span className="ViewArticleQTY">QTY:{this.state.qty}</span>
+                            </span>
+                        }
+                        {/* {(this.props.quantity() > 0 && this.props.modalType === 'NEW') && */}
+                        {/* {this.props.itemData.qty &&
+                            <span className="ViewArticleText">
+                                <FormattedMessage locale={this.props.lang} id="view_article.added" /> QTY:{this.props.itemData.qty}
                             </span>
                         } */}
-                        {this.props.modalType === 'EDIT' &&
+                        {/* } */}
+                        {/* {this.props.modalType === 'EDIT' &&
                             <span className="ViewArticleText">
                                 {
-                                    this.props.articleOptionsChosen.quantity === 1
+                                    this.props.itemData.qty === 1
                                         ? <FormattedMessage locale={this.props.lang} id="view_article.has_one" />
-                                        : (intl.formatMessage({ id: "view_article.has_two_part_one" }) + this.props.articleOptionsChosen.quantity + intl.formatMessage({ id: "view_article.has_two_part_two" }))
+                                        : (intl.formatMessage({ id: "view_article.has_two_part_one" }) + this.props.itemData.qty + intl.formatMessage({ id: "view_article.has_two_part_two" }))
 
                                 }
                             </span>
-                        }
+                        } */}
                         <span className="ViewArticlePrice">{formatNumber(this.props.item.price)}</span>
                     </Card.Header>
                     <Card.Body>
@@ -197,8 +207,9 @@ class ViewArticle extends React.Component {
 function mapStateToProps(state, props) {
     let lang = (state.locale.lang === undefined || state.locale.lang === "") ? "en" : state.locale.lang;
     return {
-        lang
+        lang,
+        props
     }
 }
 
-export default injectIntl(connect(mapStateToProps)(ViewArticle));
+export default connect(mapStateToProps)(ViewArticle);

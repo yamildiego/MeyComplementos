@@ -1,6 +1,5 @@
 let yearActual = new Date().getFullYear();
-
-export default {
+let lang = {
     en: {
         "nav.home": "Home",
         "nav.products": "Products",
@@ -33,9 +32,7 @@ export default {
         "order_summary.shipping": "Delivery",
         "order_summary.free": "Free",
         "order_summary.total": "Total",
-        "view_article.has_one": "Ya se agrego unossss carrito!AAAAA",
-        "view_article.has_two_part_one": "Ya tienes AAA",
-        "view_article.has_two_part_two": " en el carrito!AAA",
+        "view_article.added": "Added to your bag",
         "view_article.description": "Product details",
         "view_article.brand": "Brand",
         "view_article.add": "Add to bag",
@@ -118,3 +115,4 @@ export default {
         // "footer.copyright": "© " + yearActual + " VerdeAgostini - Todos los derechos reservados."
     }
 };
+export default lang;

@@ -52,7 +52,6 @@ class Breadcrumbs extends React.Component {
                         )
                     })
                 }
-                {/* {this.state.category} */}
             </div>
         )
     }

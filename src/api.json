@@ -6,7 +6,15 @@
             "subcategories": [
                 {
                     "id": 2,
-                    "name": "Moda"
+                    "name": "Pants"
+                },
+                {
+                    "id": 3,
+                    "name": "Tops"
+                },
+                {
+                    "id": 4,
+                    "name": "Shoes"
                 }
             ]
         },
@@ -25,9 +33,8 @@
             ]
         },
         {
-            "id": 20,
-            "name": "Otros",
-            "subcategories": []
+            "id": 8,
+            "name": "Others"
         }
     ],
     "articles": [
@@ -152,63 +159,127 @@
         {
             "brand": {
                 "id": 7,
-                "displayName": "CataMa"
+                "displayName": "Kmart"
             },
             "id": 9,
-            "title": "Campera Parka",
-            "price": 3899,
-            "category": 6,
+            "title": "Ponte Pleat Pants",
+            "price": 36,
+            "category": 2,
             "images": [
                 {
                     "id": 1,
                     "type": "image",
-                    "path": "DE8764.png"
+                    "path": "DE8764.jpg"
                 },
                 {
                     "id": 2,
                     "type": "image",
-                    "path": "DE8754.png"
+                    "path": "DE8754.jpg"
                 },
                 {
                     "id": 3,
-                    "type": "video",
-                    "path": "DE8764.mp4"
+                    "type": "image",
+                    "path": "DE8777.jpg"
+                },
+                {
+                    "id": 4,
+                    "type": "image",
+                    "path": "DE8790.jpg"
                 }
             ],
             "sizes": [
                 {
-                    "displayName": "XS",
+                    "displayName": "6",
                     "value": 0
                 },
                 {
-                    "displayName": "S",
+                    "displayName": "8",
                     "value": 1
                 },
                 {
-                    "displayName": "M",
+                    "displayName": "10",
                     "value": 2
                 },
                 {
-                    "displayName": "L",
+                    "displayName": "12",
                     "value": 3
                 },
                 {
-                    "displayName": "XL",
+                    "displayName": "14",
                     "value": 4
+                },
+                {
+                    "displayName": "16",
+                    "value": 5
                 }
             ],
             "colors": [
                 {
-                    "displayName": "Verde",
+                    "displayName": "Black",
                     "value": 0
                 },
                 {
-                    "displayName": "Azul marino",
+                    "displayName": "Blue",
+                    "value": 1
+                }
+            ]
+        },
+        {
+            "brand": {
+                "id": 7,
+                "displayName": "Kmart"
+            },
+            "id": 10,
+            "title": "3/4 Table Leggings",
+            "price": 25,
+            "category": 2,
+            "images": [
+                {
+                    "id": 1,
+                    "type": "image",
+                    "path": "AA8764.jpg"
+                },
+                {
+                    "id": 2,
+                    "type": "image",
+                    "path": "AA8754.jpg"
+                },
+                {
+                    "id": 3,
+                    "type": "image",
+                    "path": "AA8777.jpg"
+                }
+            ],
+            "sizes": [
+                {
+                    "displayName": "6",
+                    "value": 0
+                },
+                {
+                    "displayName": "8",
                     "value": 1
                 },
                 {
-                    "displayName": "Negro",
+                    "displayName": "10",
                     "value": 2
+                },
+                {
+                    "displayName": "12",
+                    "value": 3
+                },
+                {
+                    "displayName": "14",
+                    "value": 4
+                },
+                {
+                    "displayName": "16",
+                    "value": 5
+                }
+            ],
+            "colors": [
+                {
+                    "displayName": "Black Marl",
+                    "value": 0
                 }
             ]
         }

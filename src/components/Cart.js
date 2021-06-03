@@ -47,16 +47,16 @@ class Cart extends React.Component {
                                             {item.title} <span className="font-weight-bold">X{itemData.qty}</span>
                                         </span>
                                         <FontAwesomeIcon onClick={() => this.handleClickDelete(item, itemData)} className="CartRemove" icon="times" color="grey" />
-                                        <span className="CartPrice">{formatNumber(item.price)}</span>
+                                        <span className="CartPrice">{formatNumber(itemData.qty * item.price)}</span>
                                     </div>
                                     <div className="CartDetail">
                                         {
                                             (item.colors && item.colors.length > 0) &&
-                                            <span>Color {item.colors[itemData.color].displayName}</span>
+                                            <span><FormattedMessage locale={this.props.lang} id="view_cart_line.color" /> {item.colors[itemData.color].displayName}</span>
                                         }
                                         {
                                             (item.sizes && item.sizes.length > 0) &&
-                                            <span>Talle {item.sizes[itemData.size].displayName}</span>
+                                            <span><FormattedMessage locale={this.props.lang} id="view_cart_line.size" /> {item.sizes[itemData.size].displayName}</span>
                                         }
                                     </div>
                                 </ListGroup.Item>

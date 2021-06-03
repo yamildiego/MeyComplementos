@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
 import ViewCart from './ViewCart';
 import LineCheckOut from './LineCheckOut';
@@ -7,8 +7,8 @@ import DeliveryData from './DeliveryData';
 import OrderSummary from './OrderSummary';
 import Loading from './Loading';
 import Pay from './Pay';
-import Constants from './../config';
-import queryString from 'querystring';
+// import Constants from './../config';
+// import queryString from 'querystring';
 import isValidEmail from './../utilities/isValidEmail';
 import './styles/CheckOut.css';
 
@@ -34,12 +34,6 @@ class CheckOut extends React.Component {
         }
     }
 
-    componentWillReceiveProps = nextProps => {
-        if (this.props.dataCart !== nextProps.dataCart) {
-            this.setState({ dataCart: nextProps.dataCart });
-        }
-    }
-
     handleChangeDataPersonal = e => {
         this.setState({
             dataPeronal: {
@@ -48,54 +42,54 @@ class CheckOut extends React.Component {
             }
         })
     }
+
     nextStepDeliveryData = e => {
         this.setState({
             showErrors: false,
             status: this.state.status + 1
         })
     }
+
     nextStepPay = e => {
         if (e)
             e.preventDefault();
         if (this.state.dataPeronal.name === "" ||
             this.state.dataPeronal.lastname === "" ||
             this.state.dataPeronal.street === "" ||
-            this.state.dataPeronal.numberStreet === "" ||
-            this.state.dataPeronal.postCode === "" ||
             this.state.dataPeronal.phone === "" ||
             this.state.dataPeronal.email === "")
             this.setState({ showErrors: true });
         else {
             if (isValidEmail(this.state.dataPeronal.email)) {
                 this.setState({ loading: true });
+                setTimeout(() => this.setState({ loading: false, status: this.state.status + 1 }), 1000);
+                // fetch(Constants.urlServer + '/newSale', {
+                //     method: 'POST',
+                //     body: JSON.stringify({ dataCart: this.props.dataCart, dataPersonal: this.state.dataPeronal }),
+                //     headers: {
+                //         'Content-Type': 'application/json; charset=utf-8',
+                //         'Accept': 'application/json'
+                //     }
+                // }).then(response => response.json())
+                //     .then(response => {
+                //         this.setState({ saleId: response._id })
+                //     });
 
-                fetch(Constants.urlServer + '/newSale', {
-                    method: 'POST',
-                    body: JSON.stringify({ dataCart: this.props.dataCart, dataPersonal: this.state.dataPeronal }),
-                    headers: {
-                        'Content-Type': 'application/json; charset=utf-8',
-                        'Accept': 'application/json'
-                    }
-                }).then(response => response.json())
-                    .then(response => {
-                        this.setState({ saleId: response._id })
-                    });
-
-                fetch(Constants.urlServerPHP + '/generateLinkMP', {
-                    method: 'POST',
-                    body: queryString.stringify({ total: this.props.dataCart.total, totalItems: this.props.dataCart.totalItems }),
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                        'Accept': 'application/json'
-                    }
-                })
-                    .then(response => response.json())
-                    .then(response => {
-                        if (response.status === true)
-                            this.setState({ loading: false, linkMP: response.data, status: this.state.status + 1 })
-                    }).catch((error) => {
-                        this.setState({ loading: false, errorGenerateMP: true, status: this.state.status + 1 })
-                    });
+                // fetch(Constants.urlServerPHP + '/generateLinkMP', {
+                //     method: 'POST',
+                //     body: queryString.stringify({ total: this.props.dataCart.total, totalItems: this.props.dataCart.totalItems }),
+                //     headers: {
+                //         'Content-Type': 'application/x-www-form-urlencoded',
+                //         'Accept': 'application/json'
+                //     }
+                // })
+                //     .then(response => response.json())
+                //     .then(response => {
+                //         if (response.status === true)
+                //             this.setState({ loading: false, linkMP: response.data, status: this.state.status + 1 })
+                //     }).catch((error) => {
+                //         this.setState({ loading: false, errorGenerateMP: true, status: this.state.status + 1 })
+                //     });
             } else {
                 this.setState({
                     showErrors: true,
@@ -108,13 +102,14 @@ class CheckOut extends React.Component {
 
         }
     }
+
     nextStepComplete = e => {
-        if (this.state.errorGenerateMP === false)
-            window.open(this.state.linkMP, '_blank');
+        // if (this.state.errorGenerateMP === false)
+        // window.open(this.state.linkMP, '_blank');
     }
-    backStep = e => {
-        this.setState({ status: this.state.status - 1 })
-    }
+
+    backStep = e => this.setState({ status: this.state.status - 1 })
+
     setStep = step => {
         this.setState({
             errorGenerateMP: false,
@@ -122,6 +117,7 @@ class CheckOut extends React.Component {
             status: step
         })
     }
+
     render() {
         return (
             <div className="container-fuild CheckOut">
@@ -140,7 +136,6 @@ class CheckOut extends React.Component {
                                     toggleViewCart={this.props.toggleViewCart}
                                     handleUpdateQuantity={this.props.handleUpdateQuantity}
                                     openModalUpdate={this.props.openModalUpdate}
-                                    dataCart={this.props.dataCart}
                                     nextStep={this.nextStepDeliveryData}
                                 />
                             }
@@ -155,13 +150,17 @@ class CheckOut extends React.Component {
                                 />
                             }
                             {
-                                (this.state.status === 2 && this.state.errorGenerateMP === false) &&
+                                this.state.status === 2 &&
                                 <Pay linkMP={this.state.linkMP} nextStepComplete={this.nextStepComplete} />
                             }
-                            {
+                            {/* {
+                                (this.state.status === 2 && this.state.errorGenerateMP === false) &&
+                                <Pay linkMP={this.state.linkMP} nextStepComplete={this.nextStepComplete} />
+                            } */}
+                            {/* {
                                 (this.state.status === 2 && this.state.errorGenerateMP === true) &&
                                 <div className="alert alert-danger text-center w-80 mt-3 mx-auto">Ocurrió un error al generar el link de pago, porfavor póngase en contacto con nosotros, enviandonos el siguiente código #{this.state.saleId} <Link to="/contacto">aqui</Link> para generar el link de manera manual. Disculpe las molestias</div>
-                            }
+                            } */}
                         </div>
                         {
                             <div className="col-lg-4">
@@ -169,7 +168,6 @@ class CheckOut extends React.Component {
                                     nextStepDeliveryData={this.nextStepDeliveryData}
                                     nextStepPay={this.nextStepPay}
                                     nextStepComplete={this.nextStepComplete}
-                                    dataCart={this.props.dataCart}
                                     status={this.state.status}
                                 />
                             </div>
