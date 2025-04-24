@@ -19,7 +19,7 @@
     "react-intl": "^5.18.1",
     "react-multi-toggle": "^1.1.0",
     "react-redux": "^7.2.4",
-    "react-router-dom": "^4.3.1",
+    "react-router-dom": "^7.5.2",
     "react-scripts": "^4.0.3",
     "react-slick": "^0.23.2",
     "redux-devtools-extension": "^2.13.9",
